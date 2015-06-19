@@ -20,7 +20,7 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
-import com.unister.semweb.apiontology.demonstrator.api.owl.AO;
+import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
 public class RunningOntology implements AutoCloseable {
 
@@ -51,12 +51,12 @@ public class RunningOntology implements AutoCloseable {
 				.getOWLAnonymousIndividual();
 		OWLClassAssertionAxiom service = this.factory
 				.getOWLClassAssertionAxiom(
-						this.factory.getOWLClass(AO.WEB_SERVICE),
+						this.factory.getOWLClass(GD.WEB_SERVICE),
 						owlAnonymousIndividual);
 
 		for (IRI param : params) {
 			factory.getOWLObjectPropertyAssertionAxiom(
-					factory.getOWLObjectProperty(AO.HAS_PARAMETER),
+					factory.getOWLObjectProperty(GD.HAS_PARAMETER),
 					owlAnonymousIndividual,
 					factory.getOWLNamedIndividual(param));
 		}
@@ -67,7 +67,7 @@ public class RunningOntology implements AutoCloseable {
 
 		Set<OWLClass> classes = owlAnonymousIndividual.getClassesInSignature();
 		for (OWLClass owlClass : classes) {
-			if (!owlClass.getIRI().equals(AO.WEB_SERVICE)) {
+			if (!owlClass.getIRI().equals(GD.WEB_SERVICE)) {
 
 			}
 		}
@@ -80,7 +80,7 @@ public class RunningOntology implements AutoCloseable {
 		Object container = null;
 		for (OWLAnnotation annotation : serviceClass
 				.getAnnotations(baseOntology)) {
-			if (annotation.getProperty().getIRI().equals(AO.OBJECT_NAME)) {
+			if (annotation.getProperty().getIRI().equals(GD.OBJECT_NAME)) {
 				Class<?> containerClass = Thread.currentThread()
 						.getContextClassLoader()
 						.loadClass(annotation.getValue().toString());
@@ -90,14 +90,14 @@ public class RunningOntology implements AutoCloseable {
 
 		OWLLiteral literal;
 		for (OWLIndividual value : individual.getObjectPropertyValues(
-				factory.getOWLObjectProperty(AO.HAS_PARAMETER), baseOntology)) {
+				factory.getOWLObjectProperty(GD.HAS_PARAMETER), baseOntology)) {
 			literal = value
 					.getDataPropertyValues(
-							factory.getOWLDataProperty(AO.VALUE), baseOntology)
+							factory.getOWLDataProperty(GD.VALUE), baseOntology)
 					.iterator().next();
 			String methodName="";
 			for (OWLLiteral method : value.getDataPropertyValues(
-					factory.getOWLDataProperty(AO.METHOD), baseOntology)) {
+					factory.getOWLDataProperty(GD.METHOD), baseOntology)) {
 				methodName = method.getLiteral();
 			}
 

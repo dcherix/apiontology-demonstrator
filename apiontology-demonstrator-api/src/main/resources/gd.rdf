@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/gd#"
+     xml:base="http://ontology.unister.de/ontology/gd"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/gd#">
+        <rdfs:comment>Global definitions</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#ObjectName -->
+
+    <owl:AnnotationProperty rdf:about="http://ontology.unister.de/ontology/gd#ObjectName">
+        <rdfs:domain rdf:resource="http://ontology.unister.de/ontology#WebService"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#name -->
+
+    <owl:AnnotationProperty rdf:about="http://ontology.unister.de/ontology/gd#name">
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#url -->
+
+    <owl:AnnotationProperty rdf:about="http://ontology.unister.de/ontology/gd#url">
+        <rdfs:domain rdf:resource="http://ontology.unister.de/ontology#WebService"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#hasParam -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.unister.de/ontology/gd#hasParam">
+        <rdfs:domain rdf:resource="http://ontology.unister.de/ontology#WebService"/>
+        <rdfs:range rdf:resource="http://ontology.unister.de/ontology/gd#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#method -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.unister.de/ontology/gd#method">
+        <rdfs:domain rdf:resource="http://ontology.unister.de/ontology/gd#Parameter"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#value -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.unister.de/ontology/gd#value">
+        <rdfs:domain rdf:resource="http://ontology.unister.de/ontology/gd#Parameter"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology#WebService -->
+
+    <owl:Class rdf:about="http://ontology.unister.de/ontology#WebService"/>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#DoubleParameter -->
+
+    <owl:Class rdf:about="http://ontology.unister.de/ontology/gd#DoubleParameter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/gd#value"/>
+                <owl:allValuesFrom rdf:resource="&xsd;double"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/gd#Parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#IntegerParameter -->
+
+    <owl:Class rdf:about="http://ontology.unister.de/ontology/gd#IntegerParameter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/gd#value"/>
+                <owl:allValuesFrom rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/gd#Parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#Parameter -->
+
+    <owl:Class rdf:about="http://ontology.unister.de/ontology/gd#Parameter"/>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/gd#StringParameter -->
+
+    <owl:Class rdf:about="http://ontology.unister.de/ontology/gd#StringParameter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/gd#value"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/gd#Parameter"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
