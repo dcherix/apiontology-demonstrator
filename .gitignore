@@ -1,0 +1,10 @@
+.project
+.checkstyle
+.settings
+.classpath
+.springBeans
+target
+data
+bin
+*.versionsBackup
+**/*.versionsBackup
