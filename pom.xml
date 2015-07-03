@@ -8,7 +8,7 @@
 	<modules>
 		<module>apiontology-demonstrator-core</module>
 		<module>apiontology-demonstrator-api</module>
-		
+		<module>apiontology-demonstrator-webapp</module>
 	</modules>
 
 	<dependencyManagement>
