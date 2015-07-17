@@ -1,120 +1,213 @@
-Prefix: owl: <http://www.w3.org/2002/07/owl#>
-Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-Prefix: xml: <http://www.w3.org/XML/1998/namespace>
-Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
-Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY api "http://ontology.unister.de/ontology/api#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:api="http://ontology.unister.de/ontology/api#">
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#isInput -->
+
+    <AnnotationProperty rdf:about="&api;isInput"/>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#webService -->
+
+    <AnnotationProperty rdf:about="&api;webService"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#hasParameter -->
+
+    <ObjectProperty rdf:about="&api;hasParameter"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#value -->
+
+    <DatatypeProperty rdf:about="&api;value"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#Param/base64Binary -->
+
+    <Class rdf:about="&api;Param/base64Binary">
+        <rdfs:subClassOf rdf:resource="&api;Parameter"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&api;value"/>
+                <someValuesFrom rdf:resource="&xsd;base64Binary"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#Param/string -->
+
+    <Class rdf:about="&api;Param/string">
+        <rdfs:subClassOf rdf:resource="&api;Parameter"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&api;value"/>
+                <someValuesFrom rdf:resource="&xsd;string"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#Parameter -->
+
+    <Class rdf:about="&api;Parameter"/>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#WebService -->
+
+    <Class rdf:about="&api;WebService"/>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP">
+        <rdfs:subClassOf rdf:resource="&api;WebService"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&api;hasParameter"/>
+                <someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="&api;WebService"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetWeatherInformation -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformation">
+        <rdfs:subClassOf rdf:resource="&api;WebService"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP">
+        <rdfs:subClassOf rdf:resource="&api;Param/string"/>
+        <api:isInput rdf:datatype="&xsd;boolean">true</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult">
+        <rdfs:subClassOf rdf:resource="&api;Param/base64Binary"/>
+        <api:isInput rdf:datatype="&xsd;boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP">
+        <rdfs:subClassOf rdf:resource="&api;Param/string"/>
+        <api:isInput rdf:datatype="&xsd;boolean">true</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult">
+        <rdfs:subClassOf rdf:resource="&api;Param/base64Binary"/>
+        <api:isInput rdf:datatype="&xsd;boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
+    </Class>
+    
+
+
+    <!-- http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult -->
+
+    <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult">
+        <rdfs:subClassOf rdf:resource="&api;Param/base64Binary"/>
+        <api:isInput rdf:datatype="&xsd;boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetWeatherInformation"/>
+    </Class>
+</rdf:RDF>
 
 
 
-Ontology: 
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 
-AnnotationProperty: <http://ontology.unister.de/ontology/api#webService>
-
-    
-AnnotationProperty: <http://ontology.unister.de/ontology/api#isInput>
-
-    
-Datatype: xsd:base64Binary
-
-    
-Datatype: xsd:string
-
-    
-Datatype: xsd:boolean
-
-    
-ObjectProperty: <http://ontology.unister.de/ontology/api#hasParameter>
-
-    
-DataProperty: <http://ontology.unister.de/ontology/api#value>
-
-    
-Class: <http://ontology.unister.de/ontology/api#Parameter>
-
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetWeatherInformation>
-
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#WebService>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetWeatherInformation>,
-        <http://ontology.unister.de/ontology/api#isInput> false
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/base64Binary>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>,
-        <http://ontology.unister.de/ontology/api#isInput> true
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/string>
-    
-    
-Class: <http://ontology.unister.de/ontology/api#Param/base64Binary>
-
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Parameter>,
-        <http://ontology.unister.de/ontology/api#value> some xsd:base64Binary
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#isInput> false,
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/base64Binary>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP>
-
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#WebService>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#isInput> false,
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP>
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/base64Binary>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP>,
-        <http://ontology.unister.de/ontology/api#isInput> true
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/string>
-    
-    
-Class: <http://ontology.unister.de/ontology/api#Param/string>
-
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Parameter>,
-        <http://ontology.unister.de/ontology/api#value> some xsd:string
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>
-
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#WebService>,
-        <http://ontology.unister.de/ontology/api#hasParameter> some <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP>
-    
-    
-Class: <http://ontology.unister.de/ontology/api#WebService>
-
-    

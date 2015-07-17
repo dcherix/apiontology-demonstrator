@@ -110,7 +110,7 @@ public class ServiceDiscovery {
 		OWLObjectSomeValuesFrom someValues = factory.getOWLObjectSomeValuesFrom(hasParam, factory.getOWLClass(IRI.create("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP")));
 		ontology.getOWLOntologyManager().addAxiom(ontology, factory.getOWLSubClassOfAxiom(factory.getOWLClass(IRI.create("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP")), someValues));
 		ontology.getOWLOntologyManager().saveOntology(ontology,
-				new ManchesterOWLSyntaxOntologyFormat(),
+				new DefaultOntologyFormat(),
 				new FileOutputStream("test"));
 	}
 }

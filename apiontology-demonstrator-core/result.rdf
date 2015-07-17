@@ -35,35 +35,6 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/2001/XMLSchema#base64Binary -->
-
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#base64Binary"/>
-    
-
-
-    <!-- http://www.w3.org/2001/XMLSchema#boolean -->
-
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#boolean"/>
-    
-
-
-    <!-- http://www.w3.org/2001/XMLSchema#string -->
-
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // Object Properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -157,13 +128,13 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <rdfs:subClassOf>
+        <equivalentClass>
             <Restriction>
                 <onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
                 <someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
             </Restriction>
-        </rdfs:subClassOf>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
     </Class>
     
 
@@ -237,20 +208,20 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/0b972afb-f291-4707-99dd-b92ebdb33dec -->
+    <!-- http://ontology.unister.de/ontology/api#/param/5310d13b-6332-4d35-9c38-994392a552c9 -->
 
-    <NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/0b972afb-f291-4707-99dd-b92ebdb33dec">
+    <NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/5310d13b-6332-4d35-9c38-994392a552c9">
         <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">34567</api:value>
     </NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/service/e9004c76-259c-4379-9241-8dfde516d22a -->
+    <!-- http://ontology.unister.de/ontology/api#/service/91d9ed7c-c6d7-44c4-86c8-ce4d7a293208 -->
 
-    <NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/e9004c76-259c-4379-9241-8dfde516d22a">
+    <NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/91d9ed7c-c6d7-44c4-86c8-ce4d7a293208">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/0b972afb-f291-4707-99dd-b92ebdb33dec"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/5310d13b-6332-4d35-9c38-994392a552c9"/>
     </NamedIndividual>
 </rdf:RDF>
 

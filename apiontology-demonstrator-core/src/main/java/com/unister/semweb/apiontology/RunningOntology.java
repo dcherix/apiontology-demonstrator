@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -26,11 +25,10 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
-import org.semanticweb.owlapi.owllink.OWLlinkHTTPXMLReasonerFactory;
-import org.semanticweb.owlapi.owllink.OWLlinkReasonerConfiguration;
 import org.semanticweb.owlapi.reasoner.NodeSet;
-import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
+import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import com.google.common.collect.Lists;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
@@ -38,7 +36,7 @@ public class RunningOntology implements AutoCloseable {
 
 	private OWLOntology baseOntology;
 	private IRI ontologyFile;
-	private OWLReasoner reasoner;
+	private PelletReasoner reasoner;
 	private OWLDataFactory factory;
 	private OWLOntologyManager manager;
 
@@ -51,13 +49,11 @@ public class RunningOntology implements AutoCloseable {
 		this.baseOntology = manager
 				.loadOntologyFromOntologyDocument(ontologyFile);
 
-		URL url = new URL("http://localhost:8080");
-		OWLlinkReasonerConfiguration reasonerConfiguration =
-			new OWLlinkReasonerConfiguration(url);
+		// create the Pellet reasoner
+		reasoner = PelletReasonerFactory.getInstance().createNonBufferingReasoner( baseOntology );
 
-		OWLlinkHTTPXMLReasonerFactory reasonerFactory = new OWLlinkHTTPXMLReasonerFactory();
-	 	reasoner =
-			reasonerFactory.createReasoner(baseOntology, reasonerConfiguration);
+		// add the reasoner as an ontology change listener
+		manager.addOntologyChangeListener( reasoner );
 
 		factory = this.baseOntology.getOWLOntologyManager().getOWLDataFactory();
 
@@ -132,7 +128,7 @@ public class RunningOntology implements AutoCloseable {
 				System.out.println(owlClass);
 			}
 		}
-
+		
 		try {
 			manager.saveOntology(baseOntology, new DefaultOntologyFormat(), new FileOutputStream("result.rdf"));
 		} catch (OWLOntologyStorageException | FileNotFoundException e) {
