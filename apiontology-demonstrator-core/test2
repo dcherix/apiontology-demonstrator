@@ -32,12 +32,6 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#operationName -->
-
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#operationName"/>
-    
-
-
     <!-- http://ontology.unister.de/ontology/api#outputClass -->
 
     <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#outputClass"/>
@@ -144,14 +138,7 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP">
-        <equivalentClass>
-            <Restriction>
-                <onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
-                <someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP"/>
-            </Restriction>
-        </equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetCityForecastByZIP</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityForecastByZIP</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityForecastByZIPResponse</api:outputClass>
         <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
@@ -169,7 +156,6 @@
             </Restriction>
         </equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetCityWeatherByZIP</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityWeatherByZIP</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityWeatherByZIPResponse</api:outputClass>
         <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
@@ -181,7 +167,6 @@
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformation">
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetWeatherInformation</api:operationName>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetWeatherInformationResponse</api:outputClass>
         <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
     </Class>
