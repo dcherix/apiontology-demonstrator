@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+    <!-- An appender is an output destination, such as the console or a file; names of appenders are arbitrarily chosen -->
+    <!-- Stdout Appender -->
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%c{1}][%t]: - %m %n" />
+        </layout>
+    </appender>
+    <!-- Hotel API Search Logger -->
+    <logger name="com.unister.semweb" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="stdout" />
+    </logger>
+    <!-- [SPRING] Logger -->
+    <logger name="org.springframework" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="stdout" />
+    </logger>
+    <logger name="org.apache.http" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="stdout" />
+    </logger>
+    <logger name="org.mortbay.jetty" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="stdout" />
+    </logger>
+    
+    <root>
+        <level value="WARN" />
+        <appender-ref ref="stdout" />
+    </root>
+</log4j:configuration>
