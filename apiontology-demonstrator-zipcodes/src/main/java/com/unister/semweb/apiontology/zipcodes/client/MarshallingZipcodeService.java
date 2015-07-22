@@ -1,4 +1,4 @@
-package com.unister.semweb.apiontology.zipcodes.service;
+package com.unister.semweb.apiontology.zipcodes.client;
 
 import com.unister.semweb.apiontology.zipcodes.domain.GetZipcodeRequest;
 import com.unister.semweb.apiontology.zipcodes.domain.ZipcodeResponse;
@@ -11,8 +11,8 @@ import com.unister.semweb.apiontology.zipcodes.domain.ZipcodeResponse;
  */
 public interface MarshallingZipcodeService {
 
-    String NAMESPACE = "http://www.unister.de/zipcode/schema/beans";
-    String GET_PERSONS_REQUEST = "get-zipcode-request";
+    String NAMESPACE_ZIP = "http://www.unister.de/zipcode/schema/beans";
+    String GET_ZIPCODE_REQUEST = "get-zipcode-request";
 
     /**
      * Gets person list.

@@ -36,7 +36,7 @@
                                         </property>
                                         <property name="initParameters">
                                             <map>
-                                                <entry key="contextConfigLocation" value="classpath:/spring/zipcodes-client-context.xml" />
+                                                <entry key="contextConfigLocation" value="classpath:/spring/zipcodes-context.xml" />
                                             </map>
                                         </property>
                                     </bean>

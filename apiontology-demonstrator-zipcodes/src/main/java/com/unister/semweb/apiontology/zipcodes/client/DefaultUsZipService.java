@@ -19,7 +19,7 @@ import org.springframework.ws.client.core.SourceExtractor;
  * @author m.priebe
  *
  */
-public class UsZipRestClient {
+public class DefaultUsZipService implements UsCityZipService {
 
     private static String BASE_URL = "http://www.webservicex.net/uszip.asmx/GetInfoByCity?USCity={city}";
 
@@ -32,7 +32,7 @@ public class UsZipRestClient {
      * 
      * @param restTemplate
      */
-    public UsZipRestClient(RestTemplate restTemplate) {
+    public DefaultUsZipService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.logger = LoggerFactory.getLogger(getClass());
     }
@@ -43,7 +43,8 @@ public class UsZipRestClient {
      * @param city
      * @return {@link String}
      */
-    public String getZipCodeForUsCity(String city) {
+    @Override
+    public String getZipcodeForCity(String city) {
         logger.info("GetZipcode for City '{}'",city);
         Map<String, String> params = new HashMap<>();
         params.put("city", city);
@@ -62,8 +63,10 @@ public class UsZipRestClient {
                 }
             }
         }
+        logger.warn("No Zip Code available for city with name '{}', return n/a!",city);
         return "n/a";
     }
+    
 
     /**
      * {@link SourceExtractor} implementation used to extract the zip code.
@@ -202,5 +205,7 @@ public class UsZipRestClient {
         }
 
     }
+
+
 
 }

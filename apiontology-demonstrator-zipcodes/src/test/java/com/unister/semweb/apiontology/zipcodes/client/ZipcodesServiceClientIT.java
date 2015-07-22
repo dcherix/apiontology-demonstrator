@@ -1,13 +1,10 @@
 package com.unister.semweb.apiontology.zipcodes.client;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,22 +17,28 @@ import com.unister.semweb.apiontology.zipcodes.domain.ZipcodeResponse;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/spring/jetty-context.xml",
-        "/spring/client-context.xml","/spring/uszip-client-context.xml"})
-public class ZipcodeServiceClientIT {
-
-    final Logger logger = LoggerFactory.getLogger(ZipcodeServiceClientIT.class);
+@ContextConfiguration(locations={"file:src/main/resources/spring/zipcodes-context.xml","/spring/jetty-context.xml"})
+public class ZipcodesServiceClientIT {
 
     @Autowired
-    protected ZipcodeClient client;
+    protected DefaultMarshallingZipcodeService client;
 
     @Test
-    @DirtiesContext
-    public void testZipcodeSOAPResponseClient() {
+    public void testZipcodeSOAPResponseClientForNewYork() {
+        assertNotNull("Client is null.", client);
+        GetZipcodeRequest request = new GetZipcodeRequest();
+        request.setCity("New York");
+        ZipcodeResponse response = client.getFirstZipcode(request);
+        assertNotNull("Response is null.", response);
+        assertEquals("10001", response.getZipcode());
+    }
+
+    @Test
+    public void testZipcodeSOAPResponseClientForNothin() {
         assertNotNull("Client is null.", client);
         ZipcodeResponse response = client.getFirstZipcode(new GetZipcodeRequest());
-        logger.debug("Received response from server.");
         assertNotNull("Response is null.", response);
+        assertEquals("n/a", response.getZipcode());
     }
 
 }

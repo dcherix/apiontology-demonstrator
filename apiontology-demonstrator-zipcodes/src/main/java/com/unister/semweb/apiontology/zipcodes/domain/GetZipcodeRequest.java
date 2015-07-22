@@ -77,4 +77,9 @@ public class GetZipcodeRequest {
         setCity(value);
         return this;
     }
+    
+    @Override
+    public String toString(){
+        return getClass().getSimpleName()+"[city:"+city+"]";
+    }
 }

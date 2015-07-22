@@ -6,10 +6,8 @@
 		http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-     <!--    <context:component-scan base-package="com.unister.semweb.apiontology.zipcodes" /> -->
-
-    <!-- Client -->
-    <bean id="usZipRestClient" class="com.unister.semweb.apiontology.zipcodes.client.UsZipRestClient">
+    <!-- REST Client -->
+    <bean id="usZipRestClient" class="com.unister.semweb.apiontology.zipcodes.client.DefaultUsZipService">
         <constructor-arg name="restTemplate" ref="restTemplate" />
     </bean>
 
@@ -32,15 +30,15 @@
                     </constructor-arg>
                 </bean>
                 <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-                    <property name="marshaller" ref="marshaller" />
-                    <property name="unmarshaller" ref="marshaller" />
+                    <property name="marshaller" ref="marshallerUSZIPr" />
+                    <property name="unmarshaller" ref="marshallerUSZIPr" />
                 </bean>
             </list>
         </property>
     </bean>
 
     <!-- Bean used for JAXB Un-/marshalling -->
-    <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    <bean id="marshallerUSZIPr" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="classesToBeBound">
             <list>
                 <value>com.unister.semweb.apiontology.zipcodes.client.UsZipRestClient.NewDataSet</value>

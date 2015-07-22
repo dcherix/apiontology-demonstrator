@@ -14,6 +14,7 @@
         <jetty.version>6.1.26</jetty.version>
         <apache.httpclient.version>4.3.3</apache.httpclient.version>
         <junit.version>4.12</junit.version>
+        <java.version>1.7</java.version>
     </properties>
 
     <dependencies>
@@ -74,7 +75,39 @@
                     <contextPath>/spring-ws-test</contextPath>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/resources/spring</directory>
+                            <includes>
+                                <include>*.*</include>
+                            </includes>
+                            <targetPath>WEB-INF/spring</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
+    <packaging>war</packaging>
 </project>
