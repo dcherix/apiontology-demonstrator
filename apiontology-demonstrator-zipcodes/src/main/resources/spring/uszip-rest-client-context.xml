@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:sws="http://www.springframework.org/schema/web-services"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- REST Client -->
+    <bean id="usZipRestClient" class="com.unister.semweb.apiontology.zipcodes.client.DefaultUsZipService">
+        <constructor-arg name="restTemplate" ref="restTemplate" />
+    </bean>
+
+    <!-- Bean responsible for HTTP access -->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg name="requestFactory">
+            <bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+                <property name="readTimeout" value="5000" />
+            </bean>
+        </constructor-arg>
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <constructor-arg name="defaultCharset">
+                        <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                            <property name="targetClass" value="java.nio.charset.Charset" />
+                            <property name="targetMethod" value="forName" />
+                            <property name="arguments" value="UTF-8" />
+                        </bean>
+                    </constructor-arg>
+                </bean>
+                <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="marshallerUSZIPr" />
+                    <property name="unmarshaller" ref="marshallerUSZIPr" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Bean used for JAXB Un-/marshalling -->
+    <bean id="marshallerUSZIPr" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>com.unister.semweb.apiontology.zipcodes.client.UsZipRestClient.NewDataSet</value>
+                <value>com.unister.semweb.apiontology.zipcodes.client.UsZipRestClient.Table</value>
+            </list>
+        </property>
+    </bean>
+</beans>

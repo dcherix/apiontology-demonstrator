@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://api.eyeblaster.com/">
+    <soapenv:Header />
+    <soapenv:Body>
+        <api:GetZipcodeRequest>
+            <api:city>Boston</api:city>
+        </api:GetZipcodeRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
