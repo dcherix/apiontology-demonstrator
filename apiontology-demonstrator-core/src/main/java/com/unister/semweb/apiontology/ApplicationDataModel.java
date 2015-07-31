@@ -1,6 +1,7 @@
 package com.unister.semweb.apiontology;
 
 import java.io.File;
+import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.util.Iterator;
@@ -10,7 +11,11 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.bind.JAXB;
 
+import org.apache.cxf.common.jaxb.JAXBUtils;
+import org.apache.cxf.jaxb.attachment.JAXBAttachmentMarshaller;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -67,10 +72,11 @@ public class ApplicationDataModel {
 
 				for (Iterator<OWLClass> it = classes.iterator(); it.hasNext();) {
 					Object[] results = ro.invoke(service, it.next());
-
+					processResults(results, ontology);
 				}
 
 				baseOntology = ontology;
+				break;
 				// ontology.getOWLOntologyManager().saveOntology(ontology,
 				// IRI.create(file));
 			}
@@ -101,9 +107,11 @@ public class ApplicationDataModel {
 		}
 	}
 
-	private void processResults(Object[] results) {
+	private void processResults(Object[] results, OWLOntology ontology) {
 		for (Object result : results) {
-			// result.getClass()
+			StringWriter writer = new StringWriter();
+			JAXB.marshal(result, writer);
+			System.out.println(DatatypeConverter.printBase64Binary(writer.toString().getBytes()));
 		}
 	}
 

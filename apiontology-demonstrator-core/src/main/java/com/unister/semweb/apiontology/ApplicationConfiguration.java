@@ -51,7 +51,7 @@ public class ApplicationConfiguration {
 		 adm.addWebService("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL");
 		 adm.addMandatoryParam("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP", Lists.newArrayList("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"));
 		 Map<String, String> params = Maps.newHashMap();
-		 params.put("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP", "9001");
+		 params.put("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP", "90001");
 		 adm.runExperiment(params);
 	}
 }
