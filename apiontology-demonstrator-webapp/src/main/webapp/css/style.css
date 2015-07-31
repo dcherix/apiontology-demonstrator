@@ -2,4 +2,45 @@
 
 body {
 	margin: 0;
+	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+}
+
+.content {
+	padding: 20px;
+	width: 50%;
+}
+
+.label {
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+.box {
+	border: solid 1px #000;
+	margin: 10px 0 20px;
+}
+
+.table {
+	display: table;
+	table-layout: fixed;
+	border-spacing: 5px;
+	width: 100%;
+}
+
+.row {
+	display: row;
+}
+
+.cell {
+	display: table-cell;
+}
+
+.option {
+	cursor: pointer;
+}
+
+.selected {
+	background: #0ff;
 }
