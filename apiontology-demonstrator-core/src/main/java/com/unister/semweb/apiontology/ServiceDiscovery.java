@@ -71,7 +71,7 @@ public class ServiceDiscovery {
 			String localPart = part.getElementQName().getLocalPart();
 			Class<?> partClass = part.getTypeClass();
 			for (Method m : partClass.getDeclaredMethods()) {
-				if (m.getName().startsWith("set")) {
+				if (m.getName().startsWith("set") || m.getName().startsWith("get") ) {
 					for (Class<?> paramType : m.getParameterTypes()) {
 						OWLDatatype datatype = null;
 						if (paramType.equals(String.class)) {
@@ -85,7 +85,7 @@ public class ServiceDiscovery {
 						} else {
 							datatype = XSD.BASE_64_BINARY;
 						}
-						dao.addParam(IRI.create(base + localPart + "#", m.getName().replaceAll("set", "")), datatype,
+						dao.addParam(IRI.create(base + localPart + "#", m.getName().replaceAll("set", "").replaceAll("get", "")), datatype,
 								serviceIri, isInput, partClass);
 					}
 				}

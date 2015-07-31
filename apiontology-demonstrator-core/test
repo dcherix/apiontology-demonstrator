@@ -1,4 +1,15 @@
 <?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY api "http://ontology.unister.de/ontology/api#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
 <rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
      xml:base="http://www.w3.org/2002/07/owl"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -22,37 +33,43 @@
 
     <!-- http://ontology.unister.de/ontology/api#inputClass -->
 
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#inputClass"/>
+    <AnnotationProperty rdf:about="&api;inputClass"/>
     
 
 
     <!-- http://ontology.unister.de/ontology/api#isInput -->
 
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#isInput"/>
+    <AnnotationProperty rdf:about="&api;isInput"/>
     
 
 
     <!-- http://ontology.unister.de/ontology/api#operationName -->
 
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#operationName"/>
+    <AnnotationProperty rdf:about="&api;operationName"/>
     
 
 
     <!-- http://ontology.unister.de/ontology/api#outputClass -->
 
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#outputClass"/>
+    <AnnotationProperty rdf:about="&api;outputClass"/>
     
 
 
     <!-- http://ontology.unister.de/ontology/api#webService -->
 
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#webService"/>
+    <AnnotationProperty rdf:about="&api;webService"/>
     
 
 
     <!-- http://ontology.unister.de/ontology/api#wsdlUrl -->
 
-    <AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#wsdlUrl"/>
+    <AnnotationProperty rdf:about="&api;wsdlUrl"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#equivalentClass -->
+
+    <AnnotationProperty rdf:about="&owl;equivalentClass"/>
     
 
 
@@ -69,7 +86,7 @@
 
     <!-- http://ontology.unister.de/ontology/api#hasParameter -->
 
-    <ObjectProperty rdf:about="http://ontology.unister.de/ontology/api#hasParameter"/>
+    <ObjectProperty rdf:about="&api;hasParameter"/>
     
 
 
@@ -86,7 +103,7 @@
 
     <!-- http://ontology.unister.de/ontology/api#value -->
 
-    <DatatypeProperty rdf:about="http://ontology.unister.de/ontology/api#value"/>
+    <DatatypeProperty rdf:about="&api;value"/>
     
 
 
@@ -101,26 +118,14 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#Parameter -->
-
-    <Class rdf:about="http://ontology.unister.de/ontology/api#Parameter"/>
-    
-
-
-    <!-- http://ontology.unister.de/ontology/api#WebService -->
-
-    <Class rdf:about="http://ontology.unister.de/ontology/api#WebService"/>
-    
-
-
     <!-- http://ontology.unister.de/ontology/api#Param/base64Binary -->
 
-    <Class rdf:about="http://ontology.unister.de/ontology/api#Param/base64Binary">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+    <Class rdf:about="&api;Param/base64Binary">
+        <rdfs:subClassOf rdf:resource="&api;Parameter"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://ontology.unister.de/ontology/api#value"/>
-                <someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#base64Binary"/>
+                <onProperty rdf:resource="&api;value"/>
+                <someValuesFrom rdf:resource="&xsd;base64Binary"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -129,15 +134,27 @@
 
     <!-- http://ontology.unister.de/ontology/api#Param/string -->
 
-    <Class rdf:about="http://ontology.unister.de/ontology/api#Param/string">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+    <Class rdf:about="&api;Param/string">
+        <rdfs:subClassOf rdf:resource="&api;Parameter"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://ontology.unister.de/ontology/api#value"/>
-                <someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <onProperty rdf:resource="&api;value"/>
+                <someValuesFrom rdf:resource="&xsd;string"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#Parameter -->
+
+    <Class rdf:about="&api;Parameter"/>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#WebService -->
+
+    <Class rdf:about="&api;WebService"/>
     
 
 
@@ -146,15 +163,15 @@
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP">
         <equivalentClass>
             <Restriction>
-                <onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                <onProperty rdf:resource="&api;hasParameter"/>
                 <someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP"/>
             </Restriction>
         </equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetCityForecastByZIP</api:operationName>
-        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityForecastByZIP</api:inputClass>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityForecastByZIPResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
+        <rdfs:subClassOf rdf:resource="&api;WebService"/>
+        <api:operationName rdf:datatype="&xsd;string">GetCityForecastByZIP</api:operationName>
+        <api:inputClass rdf:datatype="&xsd;string">com.cdyne.ws.weatherws.GetCityForecastByZIP</api:inputClass>
+        <api:outputClass rdf:datatype="&xsd;string">com.cdyne.ws.weatherws.GetCityForecastByZIPResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="&xsd;string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
     </Class>
     
 
@@ -164,15 +181,15 @@
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP">
         <equivalentClass>
             <Restriction>
-                <onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                <onProperty rdf:resource="&api;hasParameter"/>
                 <someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
             </Restriction>
         </equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetCityWeatherByZIP</api:operationName>
-        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityWeatherByZIP</api:inputClass>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityWeatherByZIPResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
+        <rdfs:subClassOf rdf:resource="&api;WebService"/>
+        <api:operationName rdf:datatype="&xsd;string">GetCityWeatherByZIP</api:operationName>
+        <api:inputClass rdf:datatype="&xsd;string">com.cdyne.ws.weatherws.GetCityWeatherByZIP</api:inputClass>
+        <api:outputClass rdf:datatype="&xsd;string">com.cdyne.ws.weatherws.GetCityWeatherByZIPResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="&xsd;string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
     </Class>
     
 
@@ -180,10 +197,10 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetWeatherInformation -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformation">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetWeatherInformation</api:operationName>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetWeatherInformationResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
+        <rdfs:subClassOf rdf:resource="&api;WebService"/>
+        <api:operationName rdf:datatype="&xsd;string">GetWeatherInformation</api:operationName>
+        <api:outputClass rdf:datatype="&xsd;string">com.cdyne.ws.weatherws.GetWeatherInformationResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="&xsd;string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
     </Class>
     
 
@@ -191,8 +208,9 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <equivalentClass rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
+        <rdfs:subClassOf rdf:resource="&api;Param/string"/>
+        <api:isInput rdf:datatype="&xsd;boolean">true</api:isInput>
         <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
     </Class>
     
@@ -201,8 +219,8 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/base64Binary"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <rdfs:subClassOf rdf:resource="&api;Param/base64Binary"/>
+        <api:isInput rdf:datatype="&xsd;boolean">false</api:isInput>
         <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
     </Class>
     
@@ -211,8 +229,9 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <equivalentClass>http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP</equivalentClass>
+        <rdfs:subClassOf rdf:resource="&api;Param/string"/>
+        <api:isInput rdf:datatype="&xsd;boolean">true</api:isInput>
         <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
     </Class>
     
@@ -221,8 +240,8 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/base64Binary"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <rdfs:subClassOf rdf:resource="&api;Param/base64Binary"/>
+        <api:isInput rdf:datatype="&xsd;boolean">false</api:isInput>
         <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
     </Class>
     
@@ -231,13 +250,13 @@
     <!-- http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult -->
 
     <Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/base64Binary"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <rdfs:subClassOf rdf:resource="&api;Param/base64Binary"/>
+        <api:isInput rdf:datatype="&xsd;boolean">false</api:isInput>
         <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetWeatherInformation"/>
     </Class>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.5.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 
