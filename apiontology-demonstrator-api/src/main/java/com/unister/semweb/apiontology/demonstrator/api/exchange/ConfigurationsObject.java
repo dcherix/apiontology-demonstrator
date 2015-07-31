@@ -6,6 +6,14 @@ public class ConfigurationsObject {
 
 	private List<Constraint> constraints;
 	private List<Equivalence> equivalences;
+	private String datamodel;
+
+	public String getDatamodel() {
+		return datamodel;
+	}
+	public void setDatamodel(String datamodel) {
+		this.datamodel = datamodel;
+	}
 	public List<Constraint> getConstraints() {
 		return constraints;
 	}

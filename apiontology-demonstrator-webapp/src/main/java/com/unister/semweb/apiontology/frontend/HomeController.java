@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.unister.semweb.apiontology.demonstrator.api.Mock;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationsObject;
+
 @Controller
 public class HomeController {
 	@SuppressWarnings("unused")
@@ -35,5 +38,14 @@ public class HomeController {
 
 		model.addObject("ontology", StringEscapeUtils.escapeHtml4(builder.toString()));
 		return model;
+	}
+
+
+	public ConfigurationsObject config(){
+		return Mock.mock();
+	}
+
+	public ConfigurationsObject config(ConfigurationsObject object){
+		return Mock.mock();
 	}
 }

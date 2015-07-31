@@ -52,6 +52,16 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.unister.semweb</groupId>
+			<artifactId>apiontology-demonstrator-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.unister.semweb</groupId>
+			<artifactId>apiontology-demonstrator-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<properties>
