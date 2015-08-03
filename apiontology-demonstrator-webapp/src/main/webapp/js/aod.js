@@ -52,8 +52,6 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', function(s,
             datamodel : null
         };
 
-        console.log(configurations)
-
         $http.post('configurations.json', configurations).success(function(configurations) {
             s.configurations = configurations;
         });
