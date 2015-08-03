@@ -1,6 +1,6 @@
 var aodApp = angular.module('aodApp', []);
 
-aodApp.controller('MainController', [ '$scope', '$element', '$http', function(s, $element, $http) {
+aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', function(s, $element, $http, $sce) {
     s.init = function() {
         $http.get('configurations.json').success(function(configurations) {
             s.configurations = configurations;
@@ -55,5 +55,9 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', function(s,
         $http.post('configurations.json', configurations).success(function(configurations) {
             s.configurations = configurations;
         });
+    };
+
+    s.datamodel = function() {
+        return $sce.trustAsHtml(s.configurations && s.configurations.datamodel ? s.configurations.datamodel : '');
     };
 } ]);

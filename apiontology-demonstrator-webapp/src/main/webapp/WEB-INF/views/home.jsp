@@ -58,7 +58,8 @@
 		<div class="label">Ontotlogy</div>
 		<div class="table box datamodel">
 			<div class="row">
-				<div class="cell">{{ configurations.datamodel }}</div>
+				<div class="cell"
+					data-ng-bind-html="datamodel()"></div>
 			</div>
 		</div>
 	</div>
