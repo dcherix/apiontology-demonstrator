@@ -57,7 +57,7 @@
 	<div class="right content cell">
 		<div class="label">Ontotlogy</div>
 		<div class="table box datamodel">
-			<div class="equivalence row">
+			<div class="row">
 				<div class="cell">{{ configurations.datamodel }}</div>
 			</div>
 		</div>
