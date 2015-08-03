@@ -2,32 +2,7 @@ var aodApp = angular.module('aodApp', []);
 
 aodApp.controller('MainController', [ '$scope', '$element', '$http', function(s, $element, $http) {
     s.init = function() {
-        // TODO remove mock
-        s.configurations = {
-            constraints : [ {
-                webService : 'web-service-1',
-                parameters : [ 'parameter-1', 'parameter-2', 'parameter-3' ]
-            }, {
-                webService : 'web-service-2',
-                parameters : [ 'parameter-1', 'parameter-2', 'parameter-3' ]
-            }, {
-                webService : 'web-service-3',
-                parameters : [ 'parameter-1', 'parameter-2', 'parameter-3' ]
-            } ],
-            equivalences : [ {
-                parameter : 'parameter-1',
-                eqParameters : [ 'eq-parameter-1', 'eq-parameter-2', 'eq-parameter-3' ]
-            }, {
-                parameter : 'parameter-2',
-                eqParameters : [ 'eq-parameter-1', 'eq-parameter-2', 'eq-parameter-3' ]
-            }, {
-                parameter : 'parameter-3',
-                eqParameters : [ 'eq-parameter-1', 'eq-parameter-2', 'eq-parameter-3' ]
-            } ],
-            datamodel : 'datamodel'
-        };
-
-        $http.post('/configurations.json').success(function(configurations) {
+        $http.get('configurations.json').success(function(configurations) {
             s.configurations = configurations;
         });
     };
@@ -79,7 +54,7 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', function(s,
 
         console.log(configurations)
 
-        $http.post('/configurations.json', configurations).success(function(configurations) {
+        $http.post('configurations.json', configurations).success(function(configurations) {
             s.configurations = configurations;
         });
     };
