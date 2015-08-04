@@ -3,6 +3,7 @@ package com.unister.semweb.apiontology;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import javax.xml.namespace.QName;
 
@@ -26,14 +27,14 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
 import com.clarkparsia.owlapiv3.XSD;
-import com.unister.semweb.apiontology.data.WebServiceDAO;
+import com.unister.semweb.apiontology.data.OntologyUtils;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
 public class ServiceDiscovery {
 
-	private WebServiceDAO dao;
+	private OntologyUtils dao;
 
-	public ServiceDiscovery(WebServiceDAO dao) {
+	public ServiceDiscovery(OntologyUtils dao) {
 		super();
 		this.dao = dao;
 		this.dao.init();
@@ -96,7 +97,7 @@ public class ServiceDiscovery {
 	public static void main(String[] args)
 			throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
 		OWLOntology ontology = OWLManager.createOWLOntologyManager().createOntology();
-		ServiceDiscovery sd = new ServiceDiscovery(new WebServiceDAO(ontology));
+		ServiceDiscovery sd = new ServiceDiscovery(new OntologyUtils(ontology));
 		sd.discover("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL");
 		OWLDataFactory factory = ontology.getOWLOntologyManager().getOWLDataFactory();
 		OWLObjectProperty hasParam = factory.getOWLObjectProperty(GD.HAS_PARAMETER);

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.unister.semweb.apiontology.data.WebServiceDAO;
+import com.unister.semweb.apiontology.data.OntologyUtils;
 import com.unister.semweb.apiontology.util.Constants;
 
 @Configuration
@@ -25,8 +25,8 @@ public class ApplicationConfiguration {
 	}
 
 	@Bean
-	public WebServiceDAO webServiceDAO(){
-		return new WebServiceDAO();
+	public OntologyUtils webServiceDAO(){
+		return new OntologyUtils();
 	}
 
 	@Bean
@@ -41,13 +41,13 @@ public class ApplicationConfiguration {
 	}
 
 	@Bean
-	public ApplicationDataModel adm(){
-		return new ApplicationDataModel();
+	public ExperimentRunner adm(){
+		return new ExperimentRunner();
 	}
 
 	public static void main(String[] args) throws OWLOntologyStorageException {
 		 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
-		 ApplicationDataModel adm = context.getBean(ApplicationDataModel.class);
+		 ExperimentRunner adm = context.getBean(ExperimentRunner.class);
 		 adm.addWebService("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL");
 		 adm.addMandatoryParam("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP", Lists.newArrayList("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"));
 		 Map<String, String> params = Maps.newHashMap();

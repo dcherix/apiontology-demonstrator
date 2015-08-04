@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.cxf.endpoint.Client;
+import org.mindswap.pellet.PelletOptions;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationValue;
@@ -21,7 +22,6 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.model.SpecificOntologyChangeBroadcastStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,6 +52,7 @@ public class RunningOntology implements AutoCloseable {
 
 		// create the Pellet reasoner
 		reasoner = PelletReasonerFactory.getInstance().createNonBufferingReasoner(ontology);
+		reasoner.getKB();
 
 		// add the reasoner as an ontology change listener
 		manager.addOntologyChangeListener(reasoner);
@@ -64,6 +65,7 @@ public class RunningOntology implements AutoCloseable {
 		OWLNamedIndividual individual = createParam(paramType);
 		manager.addAxiom(ontology,
 				factory.getOWLDataPropertyAssertionAxiom(factory.getOWLDataProperty(GD.VALUE), individual, value));
+		manager.addAxiom(ontology, factory.getOWLClassAssertionAxiom(factory.getOWLClass(GD.PARAMETER), individual));
 		return individual.getIRI();
 	}
 

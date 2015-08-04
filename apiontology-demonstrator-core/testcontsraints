@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#adm04-08-2015_10:49.12#"
-     xml:base="http://ontology.unister.de/ontology/api#adm04-08-2015_10:49.12"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-_1#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-_1"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#adm04-08-2015_10:49.12"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-_1"/>
     
 
 
@@ -239,6 +239,27 @@
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
         <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetWeatherInformation"/>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/b0f849b8-d151-46e1-a8c5-8f28712a0ed9 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b0f849b8-d151-46e1-a8c5-8f28712a0ed9">
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">90001</api:value>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
