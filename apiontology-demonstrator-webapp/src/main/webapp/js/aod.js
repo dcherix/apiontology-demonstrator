@@ -94,7 +94,7 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
     };
 
     s.hasExperimentInput = function() {
-        return s.experimentInput && Object.keys(s.experimentInput).length > 0;
+        return s.experimentInput && s.experimentInput.values && Object.keys(s.experimentInput.values).length > 0;
     };
 
     s.hasDatamodel = function() {
