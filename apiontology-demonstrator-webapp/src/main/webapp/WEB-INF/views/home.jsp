@@ -88,7 +88,7 @@
 								<td class="experiment-input-value">
 									<input
 										type="text"
-										data-ng-model="experimentInput[parameter]"/>
+										data-ng-model="experimentInput.values[parameter]"/>
 								</td>
 							</tr>
 						</table>

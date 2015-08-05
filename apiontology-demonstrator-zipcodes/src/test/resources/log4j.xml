@@ -15,7 +15,7 @@
     </logger>
     <!-- [SPRING] Logger -->
     <logger name="org.springframework" additivity="false">
-        <level value="INFO" />
+        <level value="DEBUG" />
         <appender-ref ref="stdout" />
     </logger>
     <logger name="org.apache.http" additivity="false">
@@ -26,7 +26,7 @@
         <level value="DEBUG" />
         <appender-ref ref="stdout" />
     </logger>
-    
+
     <root>
         <level value="WARN" />
         <appender-ref ref="stdout" />

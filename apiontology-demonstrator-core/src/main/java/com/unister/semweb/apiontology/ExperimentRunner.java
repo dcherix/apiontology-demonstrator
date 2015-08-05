@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import com.clarkparsia.owlapiv3.XSD;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.google.common.collect.BiMap;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -100,18 +103,37 @@ public class ExperimentRunner {
 		return iri.toString();
 	}
 
+	private IRI expandIri(String iri) {
+		String[] split = iri.split(":");
+		String key = split[0];
+		String suffix = split[1];
+		BiMap<String, String> inversedMap = dao.getPrefixes().inverse();
+		if (inversedMap.containsKey(key)) {
+			return IRI.create(inversedMap.get(key), suffix);
+		}
+		return IRI.create(iri);
+	}
+
+	private List<IRI> expandIris(Collection<String> iris) {
+		List<IRI> expanded = Lists.newLinkedList();
+		for(String iri:iris){
+			expanded.add(this.expandIri(iri));
+		}
+		return expanded;
+	}
+
 	public OWLOntology addWebService(String service) {
 		discovery.discover(service);
 		return manager.getOntology(Constants.ADM_ONTOLOGY);
 	}
 
 	public OWLOntology addMandatoryParam(String webservice, Collection<String> params) {
-		dao.addConstraints(webservice, params);
+		dao.addConstraints(webservice, expandIris(params));
 		return manager.getOntology(Constants.ADM_ONTOLOGY);
 	}
 
 	public OWLOntology addEquivalence(String p1, String p2) {
-		dao.addEquivalent(p1, p2);
+		dao.addEquivalent(expandIri(p1), expandIri(p2));
 		return manager.getOntology(Constants.ADM_ONTOLOGY);
 	}
 
@@ -122,9 +144,10 @@ public class ExperimentRunner {
 			OWLOntology baseOntology = manager.getOntology(Constants.ADM_ONTOLOGY);
 			baseOntology.getOWLOntologyManager().saveOntology(baseOntology, IRI.create(new File("adm")));
 			boolean solvable = true;
+			long ts = Calendar.getInstance().getTimeInMillis();
 			while (solvable) {
 
-				OWLOntology ontology = manager.createOntology(IRI.create(GD.NAMESPACE, "experiment-" + "_" + run),
+				OWLOntology ontology = manager.createOntology(IRI.create(GD.NAMESPACE, "experiment-"+ts + "_" + run),
 						Sets.newHashSet(baseOntology));
 				ontology.getOWLOntologyManager().saveOntology(ontology, IRI.create(new File("testcontsraints")));
 				OntologyUtils ontologyUtils = new OntologyUtils(ontology);
@@ -132,7 +155,9 @@ public class ExperimentRunner {
 				ro.init();
 				List<IRI> parameters = Lists.newLinkedList();
 				for (Entry<String, String> param : params.entrySet()) {
-					parameters.add(ro.addParam(IRI.create(param.getKey()), param.getValue()));
+					if (param.getValue() != null) {
+						parameters.add(ro.addParam(expandIri(param.getKey()), param.getValue()));
+					}
 				}
 				OWLNamedIndividual service = ro.addRequest(parameters);
 

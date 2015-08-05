@@ -118,15 +118,15 @@ public class OntologyUtils {
 
 	}
 
-	public void addConstraints(String webService, Collection<String> params) {
+	public void addConstraints(String webService, Collection<IRI> params) {
 		OWLDataFactory factory = ontology.getOWLOntologyManager().getOWLDataFactory();
 		OWLObjectProperty hasParam = factory.getOWLObjectProperty(GD.HAS_PARAMETER);
 
 		OWLClass service = factory.getOWLClass(IRI.create(webService));
 		Set<OWLClassExpression> expressions = Sets.newHashSet();
-		for (String param : params) {
+		for (IRI param : params) {
 			OWLObjectSomeValuesFrom someValues = factory.getOWLObjectSomeValuesFrom(hasParam,
-					factory.getOWLClass(IRI.create(param)));
+					factory.getOWLClass(param));
 			expressions.add(someValues);
 		}
 
