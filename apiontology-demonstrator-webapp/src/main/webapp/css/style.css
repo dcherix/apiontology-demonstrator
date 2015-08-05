@@ -1,6 +1,9 @@
 @CHARSET "UTF-8";
 
 body {
+	display: table;
+	table-layout: fixed;
+	border-spacing: 5px;
 	margin: 0;
 	width: 100%;
 	font-family: "Lucida Console", Monaco, monospace;
@@ -9,6 +12,7 @@ body {
 }
 
 .content {
+	display: table-cell;
 	padding: 10px;
 }
 
@@ -32,6 +36,11 @@ body {
 	border-radius: 10px;
 }
 
+.button-container {
+	text-align: right;
+	margin-bottom: 40px;
+}
+
 button {
 	background: #e6f3ff;
 	box-shadow: 2px 2px 10px -2px rgba(64,96,128,1);
@@ -39,27 +48,28 @@ button {
 	padding: 10px;
 	border: 0;
 	cursor: pointer;
-	float: right;
+}
+
+input {
+	background: #fff;
+	box-shadow: 2px 2px 10px -2px rgba(64,96,128,1);
+	border-radius: 10px;
+	padding: 10px;
+	border: 0;
+	width: calc(100% - 25px);
 }
 
 button:hover {
 	background: #fff;
-
 }
 
-.table {
-	display: table;
-	table-layout: fixed;
+table {
 	border-spacing: 5px;
 	width: 100%;
 }
 
-.row {
-	display: row;
-}
-
-.cell {
-	display: table-cell;
+td {
+	vertical-align: top;
 }
 
 .option:hover {
@@ -72,10 +82,23 @@ button:hover {
 	background: #1e90ff;
 }
 
-.datamodel .row {
+.datamodel tr {
 	overflow: auto;
 }
 
-.datamodel .row {
+.datamodel tr {
 	white-space: pre;
+}
+
+.uri .input {
+	width: 100%;
+}
+
+.experiment-input-parameter {
+	vertical-align: middle;
+	width: 60%;
+}
+
+.experiment-input-value {
+	width: 40%;
 }
