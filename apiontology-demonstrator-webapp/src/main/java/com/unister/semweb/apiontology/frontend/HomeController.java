@@ -1,6 +1,5 @@
 package com.unister.semweb.apiontology.frontend;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
@@ -11,63 +10,65 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.unister.semweb.apiontology.ExperimentRunner;
-import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationObject;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Constraint;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence;
-import com.unister.semweb.apiontology.demonstrator.api.exchange.ExperimentInput;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.Exchange;
 
 @Controller
 public class HomeController {
 
-	@Resource
-	private ExperimentRunner runner;
+    @Resource
+    private ExperimentRunner runner;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
-//	@PostConstruct
-//	public void init(){
-//		runner.addWebService("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL");
-//	}
+    // @PostConstruct
+    // public void init(){
+    // runner.addWebService("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL");
+    // }
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home() {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home() {
+        return "home";
+    }
 
-		ModelAndView model = new ModelAndView("home");
-		return model;
-	}
+    @RequestMapping(value = "/exchange.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Exchange exchange(@RequestBody Exchange request) throws OWLOntologyStorageException {
+        Exchange response = new Exchange();
 
-	@RequestMapping(value = "/configurations.json", method = RequestMethod.GET)
-	@ResponseBody
-	public ConfigurationObject config() {
-		return runner.getConfiguration();
-	}
+        if ("init".equals(request.getAction())) {
+            response.setConfigurations(runner.getConfiguration());
+        }
 
-	@RequestMapping(value = "/configurations.json", method = RequestMethod.POST)
-	@ResponseBody
-	public ConfigurationObject config(@RequestBody ConfigurationObject object) {
-		for(Constraint constraint:object.getConstraints()){
-			runner.addMandatoryParam(constraint.getWebService(), constraint.getParameters());
-		}
-		for(Equivalence equivalence:object.getEquivalences()){
-			String p1 = equivalence.getParameter();
-			for(String p2 :equivalence.getEqParameters()){
-				runner.addEquivalence(p1, p2);
-			}
-		}
-		return runner.getConfiguration();
-	}
+        else if ("add uri".equals(request.getAction())) {
+            runner.addWebService(request.getUri());
+            response.setConfigurations(runner.getConfiguration());
+        }
 
-	public ConfigurationObject runExperiment(ExperimentInput input) throws OWLOntologyStorageException{
-		runner.runExperiment(input.getValues());
-		return runner.getConfiguration();
-	}
+        else if ("submit config".equals(request.getAction())) {
+            for (Constraint constraint : request.getConfigurations().getConstraints()) {
+                runner.addMandatoryParam(constraint.getWebService(), constraint.getParameters());
+            }
 
-	public ConfigurationObject addWebService(String input) {
-		runner.addWebService(input);
-		return runner.getConfiguration();
-	}
+            for (Equivalence equivalence : request.getConfigurations().getEquivalences()) {
+                String p1 = equivalence.getParameter();
+                for (String p2 : equivalence.getEqParameters()) {
+                    runner.addEquivalence(p1, p2);
+                }
+            }
+
+            response.setConfigurations(runner.getConfiguration());
+        }
+
+        else if ("submit input".equals(request.getAction())) {
+            runner.runExperiment(request.getExperimentInput().getValues());
+            response.setConfigurations(runner.getConfiguration());
+        }
+
+        return response;
+    }
 }
