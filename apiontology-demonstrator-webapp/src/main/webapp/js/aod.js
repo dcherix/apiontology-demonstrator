@@ -49,7 +49,7 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
 
     var exchange = function(request) {
         $http.post('exchange.json', request).success(function(response) {
-            s.configurations = respone.configurations;
+            s.configurations = response.configurations;
             s.experimentInput = response.experimentInput;
         });
     };
