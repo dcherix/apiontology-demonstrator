@@ -47,7 +47,7 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
         return result;
     };
 
-    var exchange = function(action, request) {
+    var exchange = function(request) {
         $http.post('exchange.json', request).success(function(response) {
             s.configurations = respone.configurations;
             s.experimentInput = response.experimentInput;
@@ -55,18 +55,22 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
     };
 
     s.init = function() {
-        exchange('init', {});
+        exchange({
+            action : 'init'
+        });
     };
 
     s.addUri = function() {
-        exchange('add uri', {
+        exchange({
+            action : 'add uri',
             uri : s.uri
         });
         s.uri = '';
     };
 
     s.submitConfig = function() {
-        exchange('submit config', {
+        exchange({
+            action : 'submit config',
             configurations : {
                 constraints : selectedConstraints(),
                 equivalences : selectedEquivalences()
@@ -75,7 +79,8 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
     };
 
     s.submitInput = function() {
-        exchange('submit input', {
+        exchange({
+            action : 'submit input',
             experimentInput : s.experimentInput
         });
     };
