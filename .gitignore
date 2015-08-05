@@ -4,7 +4,6 @@
 .classpath
 .springBeans
 target
-data
 bin
 *.versionsBackup
 **/*.versionsBackup
