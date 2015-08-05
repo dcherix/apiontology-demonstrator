@@ -101,3 +101,17 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
         return s.configurations && s.configurations.datamodel;
     };
 } ]);
+
+aodApp.directive('ngEnter', function() {
+    return function(scope, element, attrs) {
+        element.bind("keydown keypress", function(event) {
+            if (event.which === 13) {
+                scope.$apply(function() {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});

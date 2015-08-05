@@ -1,9 +1,6 @@
 @CHARSET "UTF-8";
 
 body {
-	display: table;
-	table-layout: fixed;
-	border-spacing: 5px;
 	margin: 0;
 	width: 100%;
 	font-family: "Lucida Console", Monaco, monospace;
@@ -11,17 +8,8 @@ body {
 	line-height: 15px;
 }
 
-.content {
-	display: table-cell;
-	padding: 10px;
-}
-
-.left {
-	width: 30%;
-}
-
 .right {
-	width: 70%;
+	width: 100%;
 }
 
 .label {
@@ -58,7 +46,7 @@ input {
 	border-radius: 10px;
 	padding: 10px;
 	border: 0;
-	width: calc(100% - 25px);
+	width: calc(100% - 10px);
 }
 
 button:hover {
@@ -72,6 +60,7 @@ table {
 
 td {
 	vertical-align: top;
+	padding: 10px;
 }
 
 .option:hover {
@@ -84,16 +73,13 @@ td {
 	background: #1e90ff;
 }
 
-.datamodel tr {
-	overflow: auto;
-}
-
-.datamodel tr {
+.datamodel td {
 	white-space: pre;
 }
 
 .uri .input {
 	width: 100%;
+	min-width: 500px;
 }
 
 .experiment-input-parameter {
@@ -103,4 +89,8 @@ td {
 
 .experiment-input-value {
 	width: 40%;
+}
+
+.experiment-input-value input {
+	width: calc(100% - 20px);
 }
