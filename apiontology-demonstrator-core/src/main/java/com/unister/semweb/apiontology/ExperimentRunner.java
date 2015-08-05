@@ -42,6 +42,7 @@ import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationObj
 import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationObject.Builder;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Constraint;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.ExperimentInput;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 import com.unister.semweb.apiontology.util.Constants;
 
@@ -55,11 +56,19 @@ public class ExperimentRunner {
 	@Resource
 	private OWLOntologyManager manager;
 
+	public ExperimentInput getExperimentInput() {
+		ExperimentInput.Builder builder = ExperimentInput.builder();
+		Set<IRI> parameters = dao.parameters();
+		for (IRI parameter : parameters) {
+			builder.value(shortIri(parameter));
+		}
+		return builder.build();
+	}
+
 	public ConfigurationObject getConfiguration() {
 		Builder builder = ConfigurationObject.builder();
 		Set<IRI> parameters = dao.parameters();
 		Multimap<String, String> multimap = HashMultimap.create();
-		Map<String, String> prefixes = dao.getPrefixes();
 		for (IRI iri : parameters) {
 			String parameter = shortIri(iri);
 			multimap.put(dao.webservice(iri), parameter);
@@ -178,7 +187,7 @@ public class ExperimentRunner {
 				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.STRING);
 				for (IRI iri : iris) {
 					params.put(iri.toString(), (String) result);
-					logger.info("Result: {}\ntype: {}",result,iri);
+					logger.info("Result: {}\ntype: {}", result, iri);
 				}
 			} else {
 
@@ -188,7 +197,7 @@ public class ExperimentRunner {
 				for (IRI iri : iris) {
 					String resultAsString = writer.toString();
 					params.put(iri.toString(), resultAsString);
-					logger.info("Result: {}\ntype: {}",resultAsString,iri);
+					logger.info("Result: {}\ntype: {}", resultAsString, iri);
 				}
 			}
 		}

@@ -47,6 +47,7 @@ public class HomeController {
         else if ("add uri".equals(request.getAction())) {
             runner.addWebService(request.getUri());
             response.setConfigurations(runner.getConfiguration());
+            response.setExperimentInput(runner.getExperimentInput());
         }
 
         else if ("submit config".equals(request.getAction())) {
@@ -62,11 +63,13 @@ public class HomeController {
             }
 
             response.setConfigurations(runner.getConfiguration());
+            response.setExperimentInput(runner.getExperimentInput());
         }
 
         else if ("submit input".equals(request.getAction())) {
             runner.runExperiment(request.getExperimentInput().getValues());
             response.setConfigurations(runner.getConfiguration());
+            response.setExperimentInput(runner.getExperimentInput());
         }
 
         return response;
