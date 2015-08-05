@@ -24,4 +24,21 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
 
+	<bean id="serviceDiscovery" class="com.unister.semweb.apiontology.ServiceDiscovery">
+		<constructor-arg name="dao" ref="webServiceDAO" />
+	</bean>
+
+	<bean id="webServiceDAO" class="com.unister.semweb.apiontology.data.OntologyUtils" />
+
+	<bean id="manager" class="org.semanticweb.owlapi.apibinding.OWLManager"
+		factory-method="createOWLOntologyManager" />
+
+	<bean id="ontology" factory-bean="manager" factory-method="createOntology">
+		<constructor-arg name="ontologyIRI">
+			<util:constant static-field="com.unister.semweb.apiontology.util.Constants.ADM_ONTOLOGY"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="runner" class="com.unister.semweb.apiontology.ExperimentRunner" />
+
 </beans>

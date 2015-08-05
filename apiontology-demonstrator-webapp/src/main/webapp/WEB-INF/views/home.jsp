@@ -55,10 +55,13 @@
 	</div>
 
 	<div class="right content cell">
-		<div class="label">Ontotlogy</div>
-		<div>
-			<div class="datamodel">{{ configurations.datamodel }}</div>
-		</div>
+		<div class="label">Ontology</div>
+		<div class="table box datamodel"><%--
+		--%><div class="row"><%--
+			--%><div class="cell"
+				data-ng-bind-html="datamodel()"></div><%--
+			--%></div><%--
+		--%></div>
 	</div>
 </body>
 </html>

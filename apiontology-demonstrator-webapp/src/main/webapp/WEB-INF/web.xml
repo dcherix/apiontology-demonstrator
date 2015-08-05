@@ -28,4 +28,8 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	  <listener>
+        <listener-class>com.unister.semweb.apiontology.frontend.Logo</listener-class>
+    </listener>
 </web-app>

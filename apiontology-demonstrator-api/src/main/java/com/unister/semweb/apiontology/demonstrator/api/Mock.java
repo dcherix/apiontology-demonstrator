@@ -11,12 +11,12 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationsObject;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationObject;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Constraint;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence;
 
 public class Mock {
-	public static ConfigurationsObject mock() {
+	public static ConfigurationObject mock() {
 		List<Constraint> constraints = Lists.newArrayList();
 		Set<String> parameters = Sets.newHashSet();
 		for (int i = 0; i < 3; i++) {
@@ -41,7 +41,7 @@ public class Mock {
 			equivalences.add(equivalence);
 		}
 
-		ConfigurationsObject co = new ConfigurationsObject();
+		ConfigurationObject co = new ConfigurationObject();
 		co.setConstraints(constraints);
 		co.setEquivalences(equivalences);
 

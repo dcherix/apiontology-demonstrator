@@ -253,9 +253,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/b0f849b8-d151-46e1-a8c5-8f28712a0ed9 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/f367fd0c-c782-40b3-93d0-4794fdfd835b -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b0f849b8-d151-46e1-a8c5-8f28712a0ed9">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/f367fd0c-c782-40b3-93d0-4794fdfd835b">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">90001</api:value>
@@ -263,9 +263,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/f76b6068-7506-4b47-931e-95923be52468 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/300f0a88-58fb-4624-bad3-967cc5b8569a -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/f76b6068-7506-4b47-931e-95923be52468">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/300f0a88-58fb-4624-bad3-967cc5b8569a">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">90001</api:value>
@@ -273,9 +273,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/175ba03f-e685-4e03-b1ac-cccc9200cb4c -->
+    <!-- http://ontology.unister.de/ontology/api#/param/4e4009da-4e4d-4b8b-9241-1c241c2101ba -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/175ba03f-e685-4e03-b1ac-cccc9200cb4c">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/4e4009da-4e4d-4b8b-9241-1c241c2101ba">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
@@ -300,12 +300,12 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/service/cfc447d0-310b-4aed-8a8d-670257ab9805 -->
+    <!-- http://ontology.unister.de/ontology/api#/service/73aa76fb-e70d-47fa-8977-0f6738a3215a -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/cfc447d0-310b-4aed-8a8d-670257ab9805">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/73aa76fb-e70d-47fa-8977-0f6738a3215a">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/f76b6068-7506-4b47-931e-95923be52468"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/175ba03f-e685-4e03-b1ac-cccc9200cb4c"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/f367fd0c-c782-40b3-93d0-4794fdfd835b"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/4e4009da-4e4d-4b8b-9241-1c241c2101ba"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

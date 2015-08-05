@@ -253,9 +253,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/b0f849b8-d151-46e1-a8c5-8f28712a0ed9 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/300f0a88-58fb-4624-bad3-967cc5b8569a -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b0f849b8-d151-46e1-a8c5-8f28712a0ed9">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/300f0a88-58fb-4624-bad3-967cc5b8569a">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">90001</api:value>

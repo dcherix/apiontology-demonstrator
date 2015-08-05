@@ -25,12 +25,16 @@ import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.clarkparsia.owlapiv3.XSD;
 import com.unister.semweb.apiontology.data.OntologyUtils;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
 public class ServiceDiscovery {
+
+	private static final transient Logger logger = LoggerFactory.getLogger(ServiceDiscovery.class);
 
 	private OntologyUtils dao;
 
@@ -41,6 +45,7 @@ public class ServiceDiscovery {
 	}
 
 	public void discover(String wsdlUrl) {
+		logger.info("Processing wsdl url {}", wsdlUrl);
 		JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
 		Client client = dcf.createClient(wsdlUrl, Thread.currentThread().getContextClassLoader());
 
@@ -60,6 +65,7 @@ public class ServiceDiscovery {
 
 	public void addService(BindingOperationInfo operation, String wsdlUrl) {
 		QName qName = operation.getOperationInfo().getName();
+		logger.info("Processing Operation {}", qName);
 		IRI serviceIri = IRI.create(qName.getNamespaceURI() + qName.getLocalPart());
 		dao.addWebService(serviceIri, wsdlUrl, qName.getLocalPart());
 		processMessage(true, serviceIri, operation.getInput());
@@ -72,7 +78,7 @@ public class ServiceDiscovery {
 			String localPart = part.getElementQName().getLocalPart();
 			Class<?> partClass = part.getTypeClass();
 			for (Method m : partClass.getDeclaredMethods()) {
-				if (m.getName().startsWith("set") || m.getName().startsWith("get") ) {
+				if (m.getName().startsWith("set") || m.getName().startsWith("get")) {
 					for (Class<?> paramType : m.getParameterTypes()) {
 						OWLDatatype datatype = null;
 						if (paramType.equals(String.class)) {
@@ -86,8 +92,12 @@ public class ServiceDiscovery {
 						} else {
 							datatype = XSD.BASE_64_BINARY;
 						}
-						dao.addParam(IRI.create(base + localPart + "#", m.getName().replaceAll("set", "").replaceAll("get", "")), datatype,
-								serviceIri, isInput, partClass);
+
+						IRI paramIri = IRI.create(base + localPart + "#",
+								m.getName().replaceAll("set", "").replaceAll("get", ""));
+						dao.addPrefix(paramIri);
+						dao.addParam(paramIri, datatype, serviceIri, isInput, partClass);
+						logger.info("Add param {}", paramIri);
 					}
 				}
 			}

@@ -9,7 +9,6 @@
 		<module>apiontology-demonstrator-core</module>
 		<module>apiontology-demonstrator-api</module>
 		<module>apiontology-demonstrator-webapp</module>
-		<module>apiontology-demonstrator-zipcodes</module>
 	</modules>
 
 	<properties>
@@ -53,6 +52,21 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.clarkparsia.pellet</groupId>
+				<artifactId>pellet-owlapiv3</artifactId>
+				<version>2.3.2-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

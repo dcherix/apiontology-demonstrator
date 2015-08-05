@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,31 +15,39 @@ import javax.annotation.Resource;
 import javax.xml.bind.JAXB;
 
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.clarkparsia.owlapiv3.XSD;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.unister.semweb.apiontology.data.OntologyUtils;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationObject;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.ConfigurationObject.Builder;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.Constraint;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 import com.unister.semweb.apiontology.util.Constants;
 
 public class ExperimentRunner {
+
+	private static final transient Logger logger = LoggerFactory.getLogger(ExperimentRunner.class);
 	@Resource
 	private ServiceDiscovery discovery;
 	@Resource
@@ -46,13 +55,54 @@ public class ExperimentRunner {
 	@Resource
 	private OWLOntologyManager manager;
 
+	public ConfigurationObject getConfiguration() {
+		Builder builder = ConfigurationObject.builder();
+		Set<IRI> parameters = dao.parameters();
+		Multimap<String, String> multimap = HashMultimap.create();
+		Map<String, String> prefixes = dao.getPrefixes();
+		for (IRI iri : parameters) {
+			String parameter = shortIri(iri);
+			multimap.put(dao.webservice(iri), parameter);
+			Set<IRI> eqParameters = Sets.newHashSet(parameters);
+			eqParameters.remove(iri);
+			com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence.Builder eqBuilder = Equivalence
+					.builder();
+			for (IRI eq : eqParameters) {
+				eqBuilder.eqParameter(shortIri(eq));
+			}
+			builder.equivalence(eqBuilder.parameter(parameter).build());
+		}
+
+		for (String key : multimap.keySet()) {
+			if (key != null) {
+				builder.constraint((Constraint.builder().webService(key).parameters(multimap.get(key)).build()));
+			}
+		}
+		builder.datamodel(manager.getOntology(Constants.ADM_ONTOLOGY), dao.getPrefixes());
+		return builder.build();
+	}
+
+	private String shortIri(IRI iri) {
+		if (iri.getNamespace() != null) {
+			if (dao.getPrefixes().containsKey(iri.getNamespace())) {
+				return dao.getPrefixes().get(iri.getNamespace()) + ":" + iri.getShortForm();
+			}
+		}
+		return iri.toString();
+	}
+
 	public OWLOntology addWebService(String service) {
 		discovery.discover(service);
 		return manager.getOntology(Constants.ADM_ONTOLOGY);
 	}
 
-	public OWLOntology addMandatoryParam(String webservice, List<String> params) {
+	public OWLOntology addMandatoryParam(String webservice, Collection<String> params) {
 		dao.addConstraints(webservice, params);
+		return manager.getOntology(Constants.ADM_ONTOLOGY);
+	}
+
+	public OWLOntology addEquivalence(String p1, String p2) {
+		dao.addEquivalent(p1, p2);
 		return manager.getOntology(Constants.ADM_ONTOLOGY);
 	}
 
@@ -84,14 +134,14 @@ public class ExperimentRunner {
 
 				ontology.getOWLOntologyManager().saveOntology(ontology, IRI.create(new File("torun.rdf")));
 
-				solvable=false;
+				solvable = false;
 				for (Iterator<OWLClass> it = classes.iterator(); it.hasNext();) {
 					OWLClass serviceClass = it.next();
 
 					if (dao.getNumberOfMandatoryParams(serviceClass.getIRI().toString()) == parameters.size()) {
 						Object[] results = ro.invoke(service, serviceClass);
 						processResults(results, ontology, serviceClass.getIRI(), ontologyUtils, params);
-						solvable=true;
+						solvable = true;
 					}
 				}
 				ontology.getOWLOntologyManager().removeAxioms(ontology, ontology.getAxioms(service));
@@ -102,29 +152,21 @@ public class ExperimentRunner {
 				// IRI.create(file));
 			}
 		} catch (OWLOntologyCreationException | MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on service discovery", e);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on running experiment ", e);
 		}
 	}
 
@@ -136,6 +178,7 @@ public class ExperimentRunner {
 				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.STRING);
 				for (IRI iri : iris) {
 					params.put(iri.toString(), (String) result);
+					logger.info("Result: {}\ntype: {}",result,iri);
 				}
 			} else {
 
@@ -143,7 +186,9 @@ public class ExperimentRunner {
 				JAXB.marshal(result, writer);
 				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.BASE_64_BINARY);
 				for (IRI iri : iris) {
-					params.put(iri.toString(), writer.toString());
+					String resultAsString = writer.toString();
+					params.put(iri.toString(), resultAsString);
+					logger.info("Result: {}\ntype: {}",resultAsString,iri);
 				}
 			}
 		}

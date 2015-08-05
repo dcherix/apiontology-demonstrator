@@ -1,11 +1,9 @@
 package com.unister.semweb.apiontology.util;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.semanticweb.owlapi.model.IRI;
-
-import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.util.Calendar;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
 public class Constants {
