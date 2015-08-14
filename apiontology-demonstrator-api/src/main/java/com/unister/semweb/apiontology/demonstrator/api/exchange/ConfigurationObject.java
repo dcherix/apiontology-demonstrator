@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
-import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
 /**
  * Configuration Object
@@ -28,7 +27,16 @@ public class ConfigurationObject {
 
 	private List<Constraint> constraints;
 	private List<Equivalence> equivalences;
+
+	/**
+	 * Dynamic datamodel changed via configuration by the user.
+	 */
 	private String datamodel;
+
+	/**
+	 * Default datamodel containing all standard predefined constraints.
+	 */
+	private String standardDatamodel;
 
 	public String getDatamodel() {
 		return datamodel;
@@ -36,6 +44,14 @@ public class ConfigurationObject {
 
 	public void setDatamodel(String datamodel) {
 		this.datamodel = datamodel;
+	}
+
+	public String getStandardDatamodel() {
+		return standardDatamodel;
+	}
+
+	public void setStandardDatamodel(String standardDatamodel) {
+		this.standardDatamodel = standardDatamodel;
 	}
 
 	public List<Constraint> getConstraints() {

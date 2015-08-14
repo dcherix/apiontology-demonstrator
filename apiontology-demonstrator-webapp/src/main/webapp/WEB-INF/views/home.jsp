@@ -83,7 +83,8 @@
 						<table class="box">
 							<tr class="experiment-input"
 								data-ng-repeat="(parameter, value) in experimentInput.values">
-								<td class="experiment-input-parameter">{{ parameter }}</td>
+								<td class="experiment-input-parameter"
+									data-ng-class="{ 'is-new' : experimentInput.isNew[parameter] }">{{ parameter }}</td>
 								<td class="experiment-input-value">
 									<input
 										type="text"
@@ -97,17 +98,27 @@
 						<button
 							data-ng-click="submitInput()">Submit experiment input</button>
 					</div>
+
+					<div>Execution Runs: {{ experimentInput.executionRuns }}</div>
 				</div>
 			</td>
 
 			<td class="right">
 				<div
 					data-ng-show="hasDatamodel()">
-					<div class="label">Ontology</div>
+					<div class="label">Dynamic OWL Definitions</div>
 					<table class="box datamodel">
 						<tr>
 							<td
-								data-ng-bind-html="datamodel()"></td>
+								data-ng-bind-html="format('datamodel')"></td>
+						</tr>
+					</table>
+
+					<div class="label">Standard OWL Definitions</div>
+					<table class="box datamodel">
+						<tr>
+							<td
+								data-ng-bind-html="format('standardDatamodel')"></td>
 						</tr>
 					</table>
 				</div>

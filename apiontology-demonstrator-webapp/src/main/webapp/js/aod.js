@@ -85,11 +85,18 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
         });
     };
 
-    s.datamodel = function() {
-        return $sce.trustAsHtml(s.configurations && s.configurations.datamodel ? s.configurations.datamodel : '');
+    s.format = function(key) {
+        var result = s.configurations && s.configurations[key] ? s.configurations[key] : '';
+        var matches = result.match(/^#.*$/mg);
+        if (matches !== null) {
+            matches.forEach(function(match) {
+                result = result.replace(match, '<span class="comment">' + match + '</span>');
+            });
+        }
+        return $sce.trustAsHtml(result);
     };
 
-    s.hasConstraintsAndEquivalences = function(property) {
+    s.hasConstraintsAndEquivalences = function() {
         return hasConfigProperty('constraints') && hasConfigProperty('equivalences');
     };
 
