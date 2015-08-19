@@ -51,6 +51,11 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
         $http.post('exchange.json', request).success(function(response) {
             s.configurations = response.configurations;
             s.experimentInput = response.experimentInput;
+            if (response.message) {
+                setTimeout(function() {
+                    alert(response.message);
+                }, 100);
+            }
         });
     };
 

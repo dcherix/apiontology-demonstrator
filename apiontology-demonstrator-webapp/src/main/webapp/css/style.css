@@ -49,6 +49,11 @@ input {
 	width: calc(100% - 10px);
 }
 
+input:focus, button:active {
+	box-shadow: 2px 2px 10px -2px #000;
+	outline: 0;
+}
+
 button:hover {
 	background: #fff;
 }
@@ -58,9 +63,16 @@ table {
 	width: 100%;
 }
 
+th {
+	text-align: left;
+	padding: 5px 10px;
+	border-bottom: 1px dotted #acc9e6;
+	border-radius: 10px;
+}
+
 td {
 	vertical-align: top;
-	padding: 10px;
+	padding: 5px 10px;
 }
 
 .option:hover {

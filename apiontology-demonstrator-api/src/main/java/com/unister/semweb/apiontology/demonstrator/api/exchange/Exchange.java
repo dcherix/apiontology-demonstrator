@@ -4,6 +4,7 @@ public class Exchange {
 
     private String action;
     private String uri;
+    private String message;
     private ConfigurationObject configurations;
     private ExperimentInput experimentInput;
 
@@ -21,6 +22,14 @@ public class Exchange {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public ConfigurationObject getConfigurations() {

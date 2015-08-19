@@ -20,7 +20,11 @@
 			<td>
 				<div>
 					<div class="label">Ontology URI</div>
+					<div>Description/Instructions</div>
 					<table class="box uri">
+						<tr>
+							<th colspan="2">Web Service URI</th>
+						</tr>
 						<tr>
 							<td class="input">
 								<input
@@ -39,7 +43,12 @@
 				<div data-ng-show="hasConstraintsAndEquivalences()">
 					<div>
 						<div class="label">Constraints</div>
+						<div>Description/Instructions</div>
 						<table class="box constraints">
+							<tr>
+								<th>Web Service</th>
+								<th>Constraints</th>
+							</tr>
 							<tr class="constraint"
 								data-ng-repeat="constraint in configurations.constraints">
 								<td>{{ constraint.webService }}</td>
@@ -55,7 +64,12 @@
 
 					<div>
 						<div class="label">Parameter Equivalences</div>
+						<div>Description/Instructions</div>
 						<table class="box equivalences">
+							<tr>
+								<th colspan="2">Parameter</th>
+								<th>Equivalent Parameters</th>
+							</tr>
 							<tr class="equivalence"
 								data-ng-repeat="equivalence in configurations.equivalences">
 								<td class="parameter">{{ equivalence.parameter }}</td>
@@ -80,7 +94,12 @@
 					data-ng-show="hasExperimentInput()">
 					<div>
 						<div class="label">Experiment Input</div>
+						<div>Description/Instructions</div>
 						<table class="box">
+							<tr>
+								<th>Parameter</th>
+								<th>Value</th>
+							</tr>
 							<tr class="experiment-input"
 								data-ng-repeat="(parameter, value) in experimentInput.values">
 								<td class="experiment-input-parameter"
@@ -107,6 +126,7 @@
 				<div
 					data-ng-show="hasDatamodel()">
 					<div class="label">Dynamic OWL Definitions</div>
+					<div>Description</div>
 					<table class="box datamodel">
 						<tr>
 							<td
@@ -115,6 +135,7 @@
 					</table>
 
 					<div class="label">Standard OWL Definitions</div>
+					<div>Description</div>
 					<table class="box datamodel">
 						<tr>
 							<td
