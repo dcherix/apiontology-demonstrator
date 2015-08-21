@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1438785275776_1#"
-     xml:base="http://ontology.unister.de/ontology/api#experiment-1438785275776_1"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440157291749_1#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-1440157291749_1"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1438785275776_1"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440157291749_1"/>
     
 
 
@@ -114,20 +114,6 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#Param/base64Binary -->
-
-    <owl:Class rdf:about="http://ontology.unister.de/ontology/api#Param/base64Binary">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#value"/>
-                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#base64Binary"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.unister.de/ontology/api#Param/string -->
 
     <owl:Class rdf:about="http://ontology.unister.de/ontology/api#Param/string">
@@ -142,113 +128,46 @@
     
 
 
-    <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP -->
+    <!-- http://www.webserviceX.NET/GetQuote -->
 
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP">
+    <owl:Class rdf:about="http://www.webserviceX.NET/GetQuote">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
-                        <owl:someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP"/>
+                        <owl:someValuesFrom rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetCityForecastByZIP</api:operationName>
-        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityForecastByZIP</api:inputClass>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityForecastByZIPResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
+        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetQuote</api:operationName>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.webservicex.com/stockquote.asmx?WSDL</api:wsdlUrl>
+        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">net.webservicex.GetQuote</api:inputClass>
+        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">net.webservicex.GetQuoteResponse</api:outputClass>
     </owl:Class>
     
 
 
-    <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP -->
+    <!-- http://www.webserviceX.NET/GetQuote#Symbol -->
 
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
-                        <owl:someValuesFrom rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetCityWeatherByZIP</api:operationName>
-        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityWeatherByZIP</api:inputClass>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetCityWeatherByZIPResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/WeatherWS/GetWeatherInformation -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformation">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetWeatherInformation</api:operationName>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.weatherws.GetWeatherInformationResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</api:wsdlUrl>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP">
-        <owl:equivalentClass rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"/>
+    <owl:Class rdf:about="http://www.webserviceX.NET/GetQuote#Symbol">
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
+        <api:webService rdf:resource="http://www.webserviceX.NET/GetQuote"/>
     </owl:Class>
     
 
 
-    <!-- http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult -->
+    <!-- http://www.webserviceX.NET/GetQuoteResponse#GetQuoteResult -->
 
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/base64Binary"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP">
+    <owl:Class rdf:about="http://www.webserviceX.NET/GetQuoteResponse#GetQuoteResult">
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/base64Binary"/>
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/base64Binary"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/WeatherWS/GetWeatherInformation"/>
+        <api:webService rdf:resource="http://www.webserviceX.NET/GetQuote"/>
     </owl:Class>
     
 
@@ -264,12 +183,12 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/2ee54b20-afae-4603-8370-913e970702ea -->
+    <!-- http://ontology.unister.de/ontology/api#/param/e5fd6c8f-3f78-41b8-954e-2105377dadd3 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/2ee54b20-afae-4603-8370-913e970702ea">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/e5fd6c8f-3f78-41b8-954e-2105377dadd3">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdf:type rdf:resource="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">90001</api:value>
+        <rdf:type rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AAPL</api:value>
     </owl:NamedIndividual>
 </rdf:RDF>
 

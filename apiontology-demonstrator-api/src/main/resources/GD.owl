@@ -1,0 +1,120 @@
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: gd: <http://ontology.unister.de/ontology/api#>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+
+Ontology: <http://ontology.unister.de/ontology/api#>
+
+
+Annotations: 
+    rdfs:comment "General definitions, valid for all application data models"@en
+
+AnnotationProperty: rdfs:label
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: xsd:boolean
+
+    
+Datatype: xsd:string
+
+    
+ObjectProperty: gd:webService
+
+    Domain: 
+        gd:Parameter
+    
+    Range: 
+        gd:WebService
+    
+    InverseOf: 
+        gd:hasParameter
+    
+    
+ObjectProperty: gd:hasParameter
+
+    Domain: 
+        gd:WebService
+    
+    Range: 
+        gd:Parameter
+    
+    InverseOf: 
+        gd:webService
+    
+    
+DataProperty: gd:operationName
+
+    Annotations: 
+        rdfs:comment "Used to registry the operation corresponding to this webservice"@en
+    
+    Domain: 
+        gd:WebService
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: gd:inputClass
+
+    Annotations: 
+        rdfs:comment "Used to register the JAVA class use as container for the input"@en
+    
+    Domain: 
+        gd:WebService
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: gd:outputClass
+
+    Annotations: 
+        rdfs:comment "Used to register the JAVA class use as container for the output"@en
+    
+    Domain: 
+        gd:WebService
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: gd:isInput
+
+    Annotations: 
+        rdfs:comment "Used to flag a parameter as an input parameter"@en
+    
+    Domain: 
+        gd:Parameter
+    
+    Range: 
+        xsd:boolean
+    
+    
+DataProperty: gd:value
+
+    
+Class: gd:Parameter
+
+    Annotations: 
+        rdfs:label "Parameter"@en,
+        rdfs:label "Represents the parameter used by WebServices"@en
+    
+    
+Class: gd:WebService
+
+    Annotations: 
+        rdfs:comment "Represents a WebService: each WSDL Operation is a separate WebService"@en,
+        rdfs:label "WebService"@en
+    
+    

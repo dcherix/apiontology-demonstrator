@@ -35,8 +35,29 @@
 
 	<bean id="ontology" factory-bean="manager" factory-method="createOntology">
 		<constructor-arg name="ontologyIRI">
-			<util:constant static-field="com.unister.semweb.apiontology.util.Constants.ADM_ONTOLOGY"/>
+			<util:constant
+				static-field="com.unister.semweb.apiontology.util.Constants.ADM_ONTOLOGY" />
 		</constructor-arg>
+	</bean>
+
+	<bean id="resourceLoader" class="org.springframework.core.io.DefaultResourceLoader" />
+	<bean id="resource" factory-bean="resourceLoader" factory-method="getResource">
+		<constructor-arg name="location" value="GD.owl" />
+	</bean>
+
+	<bean id="streamDocumentSource" class="org.semanticweb.owlapi.io.StreamDocumentSource">
+		<constructor-arg name="documentIRI">
+			<util:constant
+				static-field="com.unister.semweb.apiontology.util.Constants.GD_ONTOLOGY" />
+		</constructor-arg>
+		<constructor-arg name="stream">
+			<bean factory-bean="resource" factory-method="getInputStream" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="gd-ontology" factory-bean="manager"
+		factory-method="loadOntologyFromOntologyDocument">
+		<constructor-arg name="documentSource" ref="streamDocumentSource" />
 	</bean>
 
 	<bean id="runner" class="com.unister.semweb.apiontology.ExperimentRunner" />

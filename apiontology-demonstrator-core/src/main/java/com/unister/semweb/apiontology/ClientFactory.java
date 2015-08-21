@@ -29,7 +29,7 @@ public class ClientFactory {
 
 	private void loadClient(String url) {
 		JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
-		Client client = dcf.createClient("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL",
+		Client client = dcf.createClient(url,
 				Thread.currentThread().getContextClassLoader());
 		this.clients.put(url, client);
 	}

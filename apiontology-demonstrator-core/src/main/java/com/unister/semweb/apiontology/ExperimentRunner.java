@@ -68,7 +68,7 @@ public class ExperimentRunner {
 		return builder.build();
 	}
 
-	public ConfigurationObject getConfiguration() {
+	public ConfigurationObject getConfiguration(OWLOntology ontology) {
 		Builder builder = ConfigurationObject.builder();
 		Set<IRI> parameters = dao.parameters();
 		Multimap<String, String> multimap = HashMultimap.create();
@@ -90,8 +90,17 @@ public class ExperimentRunner {
 				builder.constraint((Constraint.builder().webService(key).parameters(multimap.get(key)).build()));
 			}
 		}
-		builder.datamodel(manager.getOntology(Constants.ADM_ONTOLOGY), dao.getPrefixes());
+		builder.standardDatamodel(manager.getOntology(Constants.GD_ONTOLOGY), dao.getPrefixes());
+		if(ontology != null){
+			builder.datamodel(ontology, dao.getPrefixes());
+		} else {
+			builder.datamodel(manager.getOntology(Constants.ADM_ONTOLOGY), dao.getPrefixes());
+		}
 		return builder.build();
+	}
+
+	public ConfigurationObject getConfiguration(){
+		return this.getConfiguration(null);
 	}
 
 	private String shortIri(IRI iri) {
@@ -137,11 +146,11 @@ public class ExperimentRunner {
 		return manager.getOntology(Constants.ADM_ONTOLOGY);
 	}
 
-	public void runExperiment(Map<String, String> params) throws OWLOntologyStorageException {
+	public Response runExperiment(ExperimentInput input) throws OWLOntologyStorageException {
 		int run = 0;
-
+		OWLOntology baseOntology = manager.getOntology(Constants.ADM_ONTOLOGY);
 		try {
-			OWLOntology baseOntology = manager.getOntology(Constants.ADM_ONTOLOGY);
+
 			baseOntology.getOWLOntologyManager().saveOntology(baseOntology, IRI.create(new File("adm")));
 			boolean solvable = true;
 			long ts = Calendar.getInstance().getTimeInMillis();
@@ -150,11 +159,11 @@ public class ExperimentRunner {
 				OWLOntology ontology = manager.createOntology(IRI.create(GD.NAMESPACE, "experiment-"+ts + "_" + run),
 						Sets.newHashSet(baseOntology));
 				ontology.getOWLOntologyManager().saveOntology(ontology, IRI.create(new File("testcontsraints")));
-				OntologyUtils ontologyUtils = new OntologyUtils(ontology);
-				RunningOntology ro = new RunningOntology(ontology);
+				OntologyUtils ontologyUtils = new OntologyUtils(ontology, dao.getPrefixes());
+				RunningOntology ro = new RunningOntology(ontology, ontologyUtils);
 				ro.init();
 				List<IRI> parameters = Lists.newLinkedList();
-				for (Entry<String, String> param : params.entrySet()) {
+				for (Entry<String, String> param : input.getValues().entrySet()) {
 					if (param.getValue() != null) {
 						parameters.add(ro.addParam(expandIri(param.getKey()), param.getValue()));
 					}
@@ -174,14 +183,13 @@ public class ExperimentRunner {
 
 					if (dao.getNumberOfMandatoryParams(serviceClass.getIRI().toString()) == parameters.size()) {
 						Object[] results = ro.invoke(service, serviceClass);
-						processResults(results, ontology, serviceClass.getIRI(), ontologyUtils, params);
+						processResults(results, ontology, serviceClass.getIRI(), ontologyUtils, input);
 						solvable = true;
 					}
 				}
 				ontology.getOWLOntologyManager().removeAxioms(ontology, ontology.getAxioms(service));
 				baseOntology = ontology;
 				run++;
-
 				// ontology.getOWLOntologyManager().saveOntology(ontology,
 				// IRI.create(file));
 			}
@@ -202,16 +210,19 @@ public class ExperimentRunner {
 		} catch (InvocationTargetException e) {
 			logger.error("Error on running experiment ", e);
 		}
+		input.setExecutionRuns(run);
+		return new Response(input, this.getConfiguration(baseOntology));
 	}
 
 	private void processResults(Object[] results, OWLOntology ontology, IRI serviceClass, OntologyUtils ontologyUtils,
-			Map<String, String> params) {
+			ExperimentInput input) {
 		for (Object result : results) {
 
 			if (result.getClass().equals(String.class)) {
 				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.STRING);
 				for (IRI iri : iris) {
-					params.put(iri.toString(), (String) result);
+					input.getValues().put(iri.toString(), (String) result);
+					input.getIsNew().put(iri.toString(), true);
 					logger.info("Result: {}\ntype: {}", result, iri);
 				}
 			} else {
@@ -221,7 +232,8 @@ public class ExperimentRunner {
 				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.BASE_64_BINARY);
 				for (IRI iri : iris) {
 					String resultAsString = writer.toString();
-					params.put(iri.toString(), resultAsString);
+					input.getValues().put(iri.toString(), (String) result);
+					input.getIsNew().put(iri.toString(), true);
 					logger.info("Result: {}\ntype: {}", resultAsString, iri);
 				}
 			}
@@ -293,6 +305,27 @@ public class ExperimentRunner {
 			return ontology
 					.containsAxiom(owlDataFactory.getOWLSubClassOfAxiom(owlDataFactory.getOWLClass(input), superClass));
 		}
+
+	}
+
+	public static class Response {
+		private final ExperimentInput input;
+		private final ConfigurationObject configuration;
+		/**
+		 * @param input
+		 * @param configuration
+		 */
+		public Response(final ExperimentInput input, final ConfigurationObject configuration) {
+			this.input = input;
+			this.configuration = configuration;
+		}
+		public ExperimentInput getInput() {
+			return input;
+		}
+		public ConfigurationObject getConfiguration() {
+			return configuration;
+		}
+
 
 	}
 

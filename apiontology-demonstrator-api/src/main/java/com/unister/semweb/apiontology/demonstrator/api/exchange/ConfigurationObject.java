@@ -78,6 +78,7 @@ public class ConfigurationObject {
 		private List<Constraint> constraints;
 		private List<Equivalence> equivalences;
 		private String datamodel;
+		private String standardDatamodel;
 
 		public Builder datamodel(OWLOntology ontology, Map<String, String> prefixes) {
 
@@ -88,7 +89,28 @@ public class ConfigurationObject {
 					ontologyFormat.setPrefix(entry.getValue(), entry.getKey());
 				}
 				ontology.getOWLOntologyManager().saveOntology(ontology, ontologyFormat, os);
-				this.datamodel = StringEscapeUtils.escapeHtml4(os.toString("UTF-8"));
+
+				String datamodel = os.toString("UTF-8");
+				datamodel = datamodel.substring(datamodel.indexOf("Class: <"));
+				this.datamodel = StringEscapeUtils.escapeHtml4(datamodel);
+
+			} catch (OWLOntologyStorageException | UnsupportedEncodingException e) {
+				logger.error("Error on writing ontology", e);
+			}
+
+			return this;
+		}
+
+		public Builder standardDatamodel(OWLOntology ontology, Map<String, String> prefixes) {
+
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			try {
+				ManchesterOWLSyntaxOntologyFormat ontologyFormat = new ManchesterOWLSyntaxOntologyFormat();
+				for (Entry<String, String> entry : prefixes.entrySet()) {
+					ontologyFormat.setPrefix(entry.getValue(), entry.getKey());
+				}
+				ontology.getOWLOntologyManager().saveOntology(ontology, ontologyFormat, os);
+				this.standardDatamodel = StringEscapeUtils.escapeHtml4(os.toString("UTF-8"));
 
 			} catch (OWLOntologyStorageException | UnsupportedEncodingException e) {
 				logger.error("Error on writing ontology", e);
@@ -117,7 +139,11 @@ public class ConfigurationObject {
 			ConfigurationObject co = new ConfigurationObject();
 			co.setConstraints(constraints);
 			co.setEquivalences(equivalences);
+			if(datamodel != null){
+				co.setDatamodel(datamodel);
+			}
 			co.setDatamodel(datamodel);
+			co.setStandardDatamodel(standardDatamodel);
 			return co;
 		}
 	}

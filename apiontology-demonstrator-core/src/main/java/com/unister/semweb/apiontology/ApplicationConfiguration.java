@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.unister.semweb.apiontology.data.OntologyUtils;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.ExperimentInput;
 import com.unister.semweb.apiontology.util.Constants;
 
 @Configuration
@@ -52,6 +53,7 @@ public class ApplicationConfiguration {
 		 adm.addMandatoryParam("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP", Lists.newArrayList("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"));
 		 Map<String, String> params = Maps.newHashMap();
 		 params.put("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP", "90001");
-		 adm.runExperiment(params);
+		 ExperimentInput input = ExperimentInput.builder().value("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP", "90001", false).build();
+		 adm.runExperiment(input);
 	}
 }

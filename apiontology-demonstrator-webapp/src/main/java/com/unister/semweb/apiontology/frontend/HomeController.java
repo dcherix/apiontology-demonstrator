@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.unister.semweb.apiontology.ExperimentRunner;
+import com.unister.semweb.apiontology.ExperimentRunner.Response;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Constraint;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.Exchange;
@@ -69,10 +70,10 @@ public class HomeController {
         else if ("submit input".equals(request.getAction())) {
             // TODO Remove try catch block, catch the exception in runner, provide getter for message
             try {
-                runner.runExperiment(request.getExperimentInput().getValues());
+               Response result = runner.runExperiment(request.getExperimentInput());
                 // response.setMessage(runner.getMessage());
-                response.setConfigurations(runner.getConfiguration());
-                response.setExperimentInput(runner.getExperimentInput());
+                response.setConfigurations(result.getConfiguration());
+                response.setExperimentInput(result.getInput());
             } catch (Exception e) {
                 response.setMessage("org.apache.cxf.binding.soap.SoapFault: Server was unable to process request. ---> A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)");
             }

@@ -32,6 +32,7 @@ import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLEquivalentClassesAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectExactCardinality;
 import org.semanticweb.owlapi.model.OWLObjectIntersectionOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -107,6 +108,14 @@ public class OntologyUtils {
 		this.init();
 	}
 
+	public OntologyUtils(OWLOntology ontology, BiMap<String, String> prefixes) {
+		super();
+		this.ontology = ontology;
+		this.manager = ontology.getOWLOntologyManager();
+		this.prefixes = prefixes;
+		this.init();
+	}
+
 	public void addConstraint(String constraint) throws OntologyException {
 		OWLOntology o;
 		try {
@@ -116,6 +125,26 @@ public class OntologyUtils {
 			throw new OntologyException("Unable to add constraint: " + constraint, e);
 		}
 
+	}
+
+	public String shortIri(IRI iri) {
+		if (iri.getNamespace() != null) {
+			if (this.getPrefixes().containsKey(iri.getNamespace())) {
+				return this.getPrefixes().get(iri.getNamespace()) + ":" + iri.getShortForm();
+			}
+		}
+		return iri.toString();
+	}
+
+	public IRI expandIri(String iri) {
+		String[] split = iri.split(":");
+		String key = split[0];
+		String suffix = split[1];
+		BiMap<String, String> inversedMap = this.getPrefixes().inverse();
+		if (inversedMap.containsKey(key)) {
+			return IRI.create(inversedMap.get(key), suffix);
+		}
+		return IRI.create(iri);
 	}
 
 	public void addConstraints(String webService, Collection<IRI> params) {

@@ -4,18 +4,19 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.cxf.endpoint.Client;
-import org.mindswap.pellet.PelletOptions;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationValue;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -27,9 +28,11 @@ import org.slf4j.LoggerFactory;
 
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
+import com.google.common.collect.Maps;
+import com.unister.semweb.apiontology.data.OntologyUtils;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 
-public class RunningOntology implements AutoCloseable {
+public class RunningOntology {
 
 	private static final transient Logger logger = LoggerFactory.getLogger(RunningOntology.class);
 
@@ -37,15 +40,24 @@ public class RunningOntology implements AutoCloseable {
 	private PelletReasoner reasoner;
 	private OWLDataFactory factory;
 	private OWLOntologyManager manager;
+	private OntologyUtils ontologyUtils;
 
 	public RunningOntology(IRI ontologyFile, OWLOntologyManager manager) throws OWLOntologyCreationException {
 		this.manager = manager;
 		this.ontology = manager.loadOntologyFromOntologyDocument(ontologyFile);
+		this.ontologyUtils = new OntologyUtils(ontology);
 	}
 
 	public RunningOntology(OWLOntology ontology) {
 		this.ontology = ontology;
 		this.manager = ontology.getOWLOntologyManager();
+		this.ontologyUtils = new OntologyUtils(ontology);
+	}
+
+	public RunningOntology(OWLOntology ontology, OntologyUtils ontologyUtils) {
+		this.ontology = ontology;
+		this.manager = ontology.getOWLOntologyManager();
+		this.ontologyUtils = ontologyUtils;
 	}
 
 	public void init() throws OWLOntologyCreationException, MalformedURLException {
@@ -111,6 +123,31 @@ public class RunningOntology implements AutoCloseable {
 		return reasoner.getTypes(individual, true).getFlattened();
 	}
 
+	public Map<String,String> getParameters() {
+		Map<String,String> paramAndValues = Maps.newHashMap();
+		for (OWLNamedIndividual individual : ontology.getIndividualsInSignature()) {
+			reasoner.flush();
+			Set<OWLClass> classes = reasoner.getTypes(individual, false).getFlattened();
+			OWLLiteral value = null;
+			if (classes.contains(factory.getOWLClass(GD.PARAMETER))) {
+				for (OWLDataPropertyAssertionAxiom assertion : ontology.getDataPropertyAssertionAxioms(individual)) {
+					if (assertion.getProperty().equals(factory.getOWLDataProperty(GD.VALUE))) {
+						value = assertion.getObject();
+					}
+				}
+				if (value != null) {
+					for (OWLClass owlClass : classes) {
+						if (!owlClass.equals(factory.getOWLClass(GD.PARAMETER))) {
+							String className = ontologyUtils.shortIri(owlClass.getIRI());
+							paramAndValues.put(className, value.getLiteral());
+						}
+					}
+				}
+			}
+		}
+		return paramAndValues;
+	}
+
 	public Object[] invoke(OWLNamedIndividual individual, OWLClass serviceClass)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException, InvocationTargetException {
@@ -168,25 +205,23 @@ public class RunningOntology implements AutoCloseable {
 		return null;
 	}
 
-	@Override
-	public void close() throws Exception {
-		manager.removeOntology(ontology);
-	}
-
 	public static void main(String[] args) throws OWLOntologyCreationException, MalformedURLException,
 			InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException, InvocationTargetException {
 
-//		RunningOntology ro = new RunningOntology(IRI.create(new File("test")));
-//		ro.init();
-//		IRI p = ro.addParam(IRI.create("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"), "90001");
-//		OWLNamedIndividual service = ro.addRequest(Lists.newArrayList(p));
-//		Set<OWLClass> classes = ro.getClasses(service);
-//		System.out.println(classes);
-//		for (Iterator<OWLClass> it = classes.iterator(); it.hasNext();) {
-//			ro.invoke(service, it.next());
-//
-//		}
+		// RunningOntology ro = new RunningOntology(IRI.create(new
+		// File("test")));
+		// ro.init();
+		// IRI p =
+		// ro.addParam(IRI.create("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP"),
+		// "90001");
+		// OWLNamedIndividual service = ro.addRequest(Lists.newArrayList(p));
+		// Set<OWLClass> classes = ro.getClasses(service);
+		// System.out.println(classes);
+		// for (Iterator<OWLClass> it = classes.iterator(); it.hasNext();) {
+		// ro.invoke(service, it.next());
+		//
+		// }
 
 	}
 }
