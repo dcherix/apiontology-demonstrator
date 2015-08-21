@@ -91,7 +91,7 @@ public class ExperimentRunner {
 			}
 		}
 		builder.standardDatamodel(manager.getOntology(Constants.GD_ONTOLOGY), dao.getPrefixes());
-		if(ontology != null){
+		if (ontology != null) {
 			builder.datamodel(ontology, dao.getPrefixes());
 		} else {
 			builder.datamodel(manager.getOntology(Constants.ADM_ONTOLOGY), dao.getPrefixes());
@@ -99,7 +99,7 @@ public class ExperimentRunner {
 		return builder.build();
 	}
 
-	public ConfigurationObject getConfiguration(){
+	public ConfigurationObject getConfiguration() {
 		return this.getConfiguration(null);
 	}
 
@@ -125,7 +125,7 @@ public class ExperimentRunner {
 
 	private List<IRI> expandIris(Collection<String> iris) {
 		List<IRI> expanded = Lists.newLinkedList();
-		for(String iri:iris){
+		for (String iri : iris) {
 			expanded.add(this.expandIri(iri));
 		}
 		return expanded;
@@ -154,15 +154,16 @@ public class ExperimentRunner {
 			baseOntology.getOWLOntologyManager().saveOntology(baseOntology, IRI.create(new File("adm")));
 			boolean solvable = true;
 			long ts = Calendar.getInstance().getTimeInMillis();
+			List<IRI> parameters = Lists.newLinkedList();
+
 			while (solvable) {
 
-				OWLOntology ontology = manager.createOntology(IRI.create(GD.NAMESPACE, "experiment-"+ts + "_" + run),
+				OWLOntology ontology = manager.createOntology(IRI.create(GD.NAMESPACE, "experiment-" + ts + "_" + run),
 						Sets.newHashSet(baseOntology));
 				ontology.getOWLOntologyManager().saveOntology(ontology, IRI.create(new File("testcontsraints")));
 				OntologyUtils ontologyUtils = new OntologyUtils(ontology, dao.getPrefixes());
 				RunningOntology ro = new RunningOntology(ontology, ontologyUtils);
 				ro.init();
-				List<IRI> parameters = Lists.newLinkedList();
 				for (Entry<String, String> param : input.getValues().entrySet()) {
 					if (param.getValue() != null) {
 						parameters.add(ro.addParam(expandIri(param.getKey()), param.getValue()));
@@ -311,6 +312,7 @@ public class ExperimentRunner {
 	public static class Response {
 		private final ExperimentInput input;
 		private final ConfigurationObject configuration;
+
 		/**
 		 * @param input
 		 * @param configuration
@@ -319,13 +321,14 @@ public class ExperimentRunner {
 			this.input = input;
 			this.configuration = configuration;
 		}
+
 		public ExperimentInput getInput() {
 			return input;
 		}
+
 		public ConfigurationObject getConfiguration() {
 			return configuration;
 		}
-
 
 	}
 

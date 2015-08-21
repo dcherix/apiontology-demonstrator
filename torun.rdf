@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440157291749_1#"
-     xml:base="http://ontology.unister.de/ontology/api#experiment-1440157291749_1"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440163578461_1#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-1440163578461_1"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440157291749_1"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440163578461_1"/>
     
 
 
@@ -183,19 +183,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/b87b0404-954f-46db-ae0f-96852cf71473 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/b29703f6-e735-49f9-a3bb-88595c5be4ad -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b87b0404-954f-46db-ae0f-96852cf71473">
-        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdf:type rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;StockQuotes&gt;&lt;Stock&gt;&lt;Symbol&gt;AAPL&lt;/Symbol&gt;&lt;Last&gt;112.65&lt;/Last&gt;&lt;Date&gt;8/20/2015&lt;/Date&gt;&lt;Time&gt;4:00pm&lt;/Time&gt;&lt;Change&gt;-2.36&lt;/Change&gt;&lt;Open&gt;114.11&lt;/Open&gt;&lt;High&gt;114.35&lt;/High&gt;&lt;Low&gt;111.63&lt;/Low&gt;&lt;Volume&gt;68609128&lt;/Volume&gt;&lt;MktCap&gt;642.41B&lt;/MktCap&gt;&lt;PreviousClose&gt;115.01&lt;/PreviousClose&gt;&lt;PercentageChange&gt;-2.05%&lt;/PercentageChange&gt;&lt;AnnRange&gt;95.18 - 134.54&lt;/AnnRange&gt;&lt;Earns&gt;8.65&lt;/Earns&gt;&lt;P-E&gt;13.03&lt;/P-E&gt;&lt;Name&gt;Apple Inc.&lt;/Name&gt;&lt;/Stock&gt;&lt;/StockQuotes&gt;</api:value>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.unister.de/ontology/api#/param/e5fd6c8f-3f78-41b8-954e-2105377dadd3 -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/e5fd6c8f-3f78-41b8-954e-2105377dadd3">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b29703f6-e735-49f9-a3bb-88595c5be4ad">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AAPL</api:value>
@@ -203,33 +193,33 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/fbe4bdba-4d7e-4df9-8d82-0e65b99d9f86 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/0dfde131-49e5-485c-ba18-604318283da7 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/fbe4bdba-4d7e-4df9-8d82-0e65b99d9f86">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/0dfde131-49e5-485c-ba18-604318283da7">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://www.webserviceX.NET/GetQuoteResponse#GetQuoteResult"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;StockQuotes&gt;&lt;Stock&gt;&lt;Symbol&gt;AAPL&lt;/Symbol&gt;&lt;Last&gt;112.65&lt;/Last&gt;&lt;Date&gt;8/20/2015&lt;/Date&gt;&lt;Time&gt;4:00pm&lt;/Time&gt;&lt;Change&gt;-2.36&lt;/Change&gt;&lt;Open&gt;114.11&lt;/Open&gt;&lt;High&gt;114.35&lt;/High&gt;&lt;Low&gt;111.63&lt;/Low&gt;&lt;Volume&gt;68609128&lt;/Volume&gt;&lt;MktCap&gt;642.41B&lt;/MktCap&gt;&lt;PreviousClose&gt;115.01&lt;/PreviousClose&gt;&lt;PercentageChange&gt;-2.05%&lt;/PercentageChange&gt;&lt;AnnRange&gt;95.18 - 134.54&lt;/AnnRange&gt;&lt;Earns&gt;8.65&lt;/Earns&gt;&lt;P-E&gt;13.03&lt;/P-E&gt;&lt;Name&gt;Apple Inc.&lt;/Name&gt;&lt;/Stock&gt;&lt;/StockQuotes&gt;</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;StockQuotes&gt;&lt;Stock&gt;&lt;Symbol&gt;AAPL&lt;/Symbol&gt;&lt;Last&gt;112.65&lt;/Last&gt;&lt;Date&gt;8/20/2015&lt;/Date&gt;&lt;Time&gt;4:00pm&lt;/Time&gt;&lt;Change&gt;N/A&lt;/Change&gt;&lt;Open&gt;N/A&lt;/Open&gt;&lt;High&gt;N/A&lt;/High&gt;&lt;Low&gt;N/A&lt;/Low&gt;&lt;Volume&gt;182170&lt;/Volume&gt;&lt;MktCap&gt;642.41B&lt;/MktCap&gt;&lt;PreviousClose&gt;112.65&lt;/PreviousClose&gt;&lt;PercentageChange&gt;N/A&lt;/PercentageChange&gt;&lt;AnnRange&gt;95.18 - 134.54&lt;/AnnRange&gt;&lt;Earns&gt;8.65&lt;/Earns&gt;&lt;P-E&gt;13.03&lt;/P-E&gt;&lt;Name&gt;Apple Inc.&lt;/Name&gt;&lt;/Stock&gt;&lt;/StockQuotes&gt;</api:value>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/5ef68180-0d6d-4e88-a05a-769942615bb7 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/361dd597-858e-48e9-b181-5b0536e52494 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/5ef68180-0d6d-4e88-a05a-769942615bb7">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/361dd597-858e-48e9-b181-5b0536e52494">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AAPL</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;StockQuotes&gt;&lt;Stock&gt;&lt;Symbol&gt;AAPL&lt;/Symbol&gt;&lt;Last&gt;112.65&lt;/Last&gt;&lt;Date&gt;8/20/2015&lt;/Date&gt;&lt;Time&gt;4:00pm&lt;/Time&gt;&lt;Change&gt;N/A&lt;/Change&gt;&lt;Open&gt;N/A&lt;/Open&gt;&lt;High&gt;N/A&lt;/High&gt;&lt;Low&gt;N/A&lt;/Low&gt;&lt;Volume&gt;182170&lt;/Volume&gt;&lt;MktCap&gt;642.41B&lt;/MktCap&gt;&lt;PreviousClose&gt;112.65&lt;/PreviousClose&gt;&lt;PercentageChange&gt;N/A&lt;/PercentageChange&gt;&lt;AnnRange&gt;95.18 - 134.54&lt;/AnnRange&gt;&lt;Earns&gt;8.65&lt;/Earns&gt;&lt;P-E&gt;13.03&lt;/P-E&gt;&lt;Name&gt;Apple Inc.&lt;/Name&gt;&lt;/Stock&gt;&lt;/StockQuotes&gt;</api:value>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/service/aa575cc3-1176-48d0-a3ee-f064cda80cb3 -->
+    <!-- http://ontology.unister.de/ontology/api#/service/e0675715-5537-428a-aa51-462b06cc50ee -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/aa575cc3-1176-48d0-a3ee-f064cda80cb3">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/e0675715-5537-428a-aa51-462b06cc50ee">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/b87b0404-954f-46db-ae0f-96852cf71473"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/fbe4bdba-4d7e-4df9-8d82-0e65b99d9f86"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/5ef68180-0d6d-4e88-a05a-769942615bb7"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/b29703f6-e735-49f9-a3bb-88595c5be4ad"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/0dfde131-49e5-485c-ba18-604318283da7"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/361dd597-858e-48e9-b181-5b0536e52494"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

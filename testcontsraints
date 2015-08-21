@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440157291749_1#"
-     xml:base="http://ontology.unister.de/ontology/api#experiment-1440157291749_1"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440163578461_1#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-1440163578461_1"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440157291749_1"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440163578461_1"/>
     
 
 
@@ -183,9 +183,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/e5fd6c8f-3f78-41b8-954e-2105377dadd3 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/b29703f6-e735-49f9-a3bb-88595c5be4ad -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/e5fd6c8f-3f78-41b8-954e-2105377dadd3">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b29703f6-e735-49f9-a3bb-88595c5be4ad">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdf:type rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AAPL</api:value>

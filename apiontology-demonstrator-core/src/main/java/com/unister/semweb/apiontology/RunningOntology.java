@@ -74,6 +74,18 @@ public class RunningOntology {
 	}
 
 	public IRI addParam(IRI paramType, String value) {
+
+		for( OWLClassAssertionAxiom assertion:ontology.getClassAssertionAxioms(factory.getOWLClass(paramType))){
+			OWLIndividual individual = assertion.getIndividual();
+			for( OWLDataPropertyAssertionAxiom valueAssertion:ontology.getDataPropertyAssertionAxioms(individual)){
+				if(valueAssertion.getProperty().equals(factory.getOWLDataProperty(GD.VALUE))){
+					if(valueAssertion.getObject().getLiteral().equals(value)){
+						return individual.asOWLNamedIndividual().getIRI();
+					}
+				}
+			}
+		}
+
 		OWLNamedIndividual individual = createParam(paramType);
 		manager.addAxiom(ontology,
 				factory.getOWLDataPropertyAssertionAxiom(factory.getOWLDataProperty(GD.VALUE), individual, value));

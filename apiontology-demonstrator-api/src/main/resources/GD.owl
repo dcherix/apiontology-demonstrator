@@ -89,6 +89,18 @@ DataProperty: gd:outputClass
         xsd:string
     
     
+DataProperty: gd:wsdlUrl
+
+    Annotations: 
+        rdfs:comment "Use to link the wsdlurl to a webservice"@en
+    
+    Domain: 
+        gd:WebService
+    
+    Range: 
+        xsd:string
+    
+    
 DataProperty: gd:isInput
 
     Annotations: 

@@ -91,7 +91,15 @@ public class ConfigurationObject {
 				ontology.getOWLOntologyManager().saveOntology(ontology, ontologyFormat, os);
 
 				String datamodel = os.toString("UTF-8");
-				datamodel = datamodel.substring(datamodel.indexOf("Class: <"));
+				int index = datamodel.indexOf("Class: <");
+
+				if(index<=0){
+					this.datamodel=null;
+					return this;
+
+				}
+
+				datamodel = datamodel.substring(index);
 				this.datamodel = StringEscapeUtils.escapeHtml4(datamodel);
 
 			} catch (OWLOntologyStorageException | UnsupportedEncodingException e) {
