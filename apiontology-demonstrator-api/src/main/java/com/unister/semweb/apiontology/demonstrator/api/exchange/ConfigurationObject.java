@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxOntologyFormat;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.slf4j.Logger;
@@ -89,7 +90,6 @@ public class ConfigurationObject {
 					ontologyFormat.setPrefix(entry.getValue(), entry.getKey());
 				}
 				ontology.getOWLOntologyManager().saveOntology(ontology, ontologyFormat, os);
-
 				String datamodel = os.toString("UTF-8");
 				int index = datamodel.indexOf("Class: <");
 
