@@ -36,7 +36,8 @@ def main():
       servicename='CompanyData',
       userfunction=companydata,
       args={'company':str},
-      returns={'CompanyDataResult': {'city':str, 'country':str , 'stock':str}}
+      #returns={'CompanyDataResult': {'city':str, 'country':str , 'stock':str}}
+      returns={'city':str, 'country':str , 'stock':str}
   )
 
 

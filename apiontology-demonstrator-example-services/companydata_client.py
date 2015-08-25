@@ -18,6 +18,7 @@ client = SoapClient(
 # Test: call the remote method
 def test(company):
   response = client.CompanyData(company=company)
+  print "%s " % (response.__repr__,)
   try:
     print "company=%s --> city=%s, country=%s, stock=%s" % (company,response("city"),response("stock"),response("country"))
   except:
