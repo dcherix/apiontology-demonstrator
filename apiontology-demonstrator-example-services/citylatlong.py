@@ -37,7 +37,7 @@ def main():
       servicename='CityLatLong',
       userfunction=citylatlong,
       args={'cityname':str, 'adminarea':str},
-      returns={'CityLatLongResult': {'lat':str, 'long':str}}
+      returns={'lat':str, 'long':str}
   )
 
 

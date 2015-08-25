@@ -59,7 +59,7 @@ def main():
       servicename='ClosestStockExchange',
       userfunction=closeststockexchange,
       args={'stocksymbol':str, 'latitude':str, 'longitude':str},
-      returns={'ClosestStockExchangeResult': {'closestStockExchange':str, 'closestStockExchange_lat':str, 'closestStockExchange_long':str}}
+      returns={'closestStockExchange':str, 'closestStockExchange_lat':str, 'closestStockExchange_long':str}
   )
 
 

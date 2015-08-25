@@ -41,7 +41,7 @@ def main():
       servicename='Weather',
       userfunction=weather,
       args={'city':str, 'country':str},
-      returns={'WeatherResult': {'weather':str}}
+      returns={'weather':str}
   )
 
 

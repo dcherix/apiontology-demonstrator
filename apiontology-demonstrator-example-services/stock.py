@@ -47,7 +47,7 @@ def main():
       servicename='Stock',
       userfunction=stock,
       args={'symbol':str},
-      returns={'StockResult': {'rate':str, 'companyname':str}}
+      returns={'rate':str, 'companyname':str}
   )
 
 
