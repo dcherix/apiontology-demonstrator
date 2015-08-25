@@ -75,7 +75,7 @@ public class HomeController {
                 response.setConfigurations(result.getConfiguration());
                 response.setExperimentInput(result.getInput());
             } catch (Exception e) {
-                response.setMessage("org.apache.cxf.binding.soap.SoapFault: Server was unable to process request. ---> A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)");
+                response.setMessage(e.getMessage());
             }
         }
 

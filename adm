@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#adm21-08-2015_03:25.22#"
-     xml:base="http://ontology.unister.de/ontology/api#adm21-08-2015_03:25.22"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#adm25-08-2015_09:35.27#"
+     xml:base="http://ontology.unister.de/ontology/api#adm25-08-2015_09:35.27"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#adm21-08-2015_03:25.22"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#adm25-08-2015_09:35.27"/>
     
 
 
@@ -30,6 +30,12 @@
     <!-- http://ontology.unister.de/ontology/api#isInput -->
 
     <owl:AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#isInput"/>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#javaClass -->
+
+    <owl:AnnotationProperty rdf:about="http://ontology.unister.de/ontology/api#javaClass"/>
     
 
 
@@ -128,46 +134,146 @@
     
 
 
-    <!-- http://www.webserviceX.NET/GetQuote -->
+    <!-- http://ws.cdyne.com/ResolveIP -->
 
-    <owl:Class rdf:about="http://www.webserviceX.NET/GetQuote">
+    <owl:Class rdf:about="http://ws.cdyne.com/ResolveIP">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
-                        <owl:someValuesFrom rdf:resource="http://www.webserviceX.NET/GetQuote#Symbol"/>
+                        <owl:someValuesFrom rdf:resource="http://ws.cdyne.com/ResolveIP#IpAddress"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://ws.cdyne.com/ResolveIP#LicenseKey"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GetQuote</api:operationName>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.webservicex.com/stockquote.asmx?WSDL</api:wsdlUrl>
-        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">net.webservicex.GetQuote</api:inputClass>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">net.webservicex.GetQuoteResponse</api:outputClass>
+        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ResolveIP</api:operationName>
+        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.ResolveIP</api:inputClass>
+        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.ResolveIPResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://ws.cdyne.com/ip2geo/ip2geo.asmx?wsdl</api:wsdlUrl>
     </owl:Class>
     
 
 
-    <!-- http://www.webserviceX.NET/GetQuote#Symbol -->
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#AreaCode -->
 
-    <owl:Class rdf:about="http://www.webserviceX.NET/GetQuote#Symbol">
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#AreaCode">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getAreaCode</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#City -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#City">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getCity</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#Country -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#Country">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getCountry</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#CountryCode -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#CountryCode">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getCountryCode</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#Organization -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#Organization">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getOrganization</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#RegionName -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#RegionName">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getRegionName</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#StateProvince -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#StateProvince">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getStateProvince</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/#ResolveIPResponse#TimeZone -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#TimeZone">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getTimeZone</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ws.cdyne.com/ResolveIP#IpAddress -->
+
+    <owl:Class rdf:about="http://ws.cdyne.com/ResolveIP#IpAddress">
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
-        <api:webService rdf:resource="http://www.webserviceX.NET/GetQuote"/>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
     </owl:Class>
     
 
 
-    <!-- http://www.webserviceX.NET/GetQuoteResponse#GetQuoteResult -->
+    <!-- http://ws.cdyne.com/ResolveIP#LicenseKey -->
 
-    <owl:Class rdf:about="http://www.webserviceX.NET/GetQuoteResponse#GetQuoteResult">
+    <owl:Class rdf:about="http://ws.cdyne.com/ResolveIP#LicenseKey">
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://www.webserviceX.NET/GetQuote"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
     </owl:Class>
 </rdf:RDF>
 

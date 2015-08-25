@@ -32,7 +32,6 @@ import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLEquivalentClassesAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
-import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectExactCardinality;
 import org.semanticweb.owlapi.model.OWLObjectIntersectionOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -68,6 +67,7 @@ public class OntologyUtils {
 	private static final transient Logger logger = LoggerFactory.getLogger(OntologyUtils.class);
 
 	private static final String SAVE_DIR = null;
+
 	public static void main(String[] args)
 			throws OWLOntologyStorageException, OWLOntologyCreationException, OWLParserException, IOException {
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
@@ -85,6 +85,7 @@ public class OntologyUtils {
 		new TurtleOntologyParser().parse(new ReaderDocumentSource(new StringReader(sds)), o);
 		manager.saveOntology(o, new ManchesterOWLSyntaxOntologyFormat(), System.out);
 	}
+
 	private OWLDataFactory factory;
 	@Resource
 	private OWLOntologyManager manager;
@@ -94,7 +95,6 @@ public class OntologyUtils {
 	private OWLClass paramClass;
 
 	private BiMap<String, String> prefixes;
-
 
 	private OWLClass webServiceClass;
 
@@ -125,6 +125,23 @@ public class OntologyUtils {
 			throw new OntologyException("Unable to add constraint: " + constraint, e);
 		}
 
+	}
+
+	public OWLClassExpression getParam(String classMethod) {
+
+		for (OWLSubClassOfAxiom subclassOfAxiom : ontology
+				.getSubClassAxiomsForSuperClass(factory.getOWLClass(GD.PARAMETER))) {
+			OWLClassExpression subclass = subclassOfAxiom.getSubClass();
+			for (OWLAnnotationAssertionAxiom annotationAxiom : ontology
+					.getAnnotationAssertionAxioms(subclass.asOWLClass().getIRI())) {
+				if (annotationAxiom.getProperty().equals(factory.getOWLAnnotationProperty(GD.JAVA_CLASS))) {
+					if(annotationAxiom.getValue().equals(factory.getOWLLiteral(classMethod))){
+						return subclass;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	public String shortIri(IRI iri) {
@@ -194,12 +211,12 @@ public class OntologyUtils {
 		this.addEquivalent(factory.getOWLClass(owlClass), equivalence);
 	}
 
-	public void addEquivalent(String p1, String p2){
+	public void addEquivalent(String p1, String p2) {
 		this.addEquivalent(IRI.create(p1), IRI.create(p2));
 	}
 
-	public void addEquivalent(IRI p1, IRI p2){
-		this.addEquivalent(factory.getOWLClass(p1),factory.getOWLClass(p2));
+	public void addEquivalent(IRI p1, IRI p2) {
+		this.addEquivalent(factory.getOWLClass(p1), factory.getOWLClass(p2));
 	}
 
 	public void addEquivalent(OWLClass owlClass, OWLClassExpression equivalence) {
@@ -212,6 +229,11 @@ public class OntologyUtils {
 	}
 
 	public void addParam(IRI param, OWLDatatype type, IRI service, boolean input, Class<?> containerClass) {
+		this.addParam(param, type, service, input, containerClass, null);
+	}
+
+	public void addParam(IRI param, OWLDatatype type, IRI service, boolean input, Class<?> containerClass,
+			String classMethod) {
 		OWLClass newParam = factory.getOWLClass(param);
 
 		OWLAxiom axiom;
@@ -225,6 +247,12 @@ public class OntologyUtils {
 				service);
 
 		manager.addAxiom(ontology, factory.getOWLAnnotationAssertionAxiom(newParam.getIRI(), annotation));
+
+		if (classMethod != null) {
+			annotation = factory.getOWLAnnotation(factory.getOWLAnnotationProperty(GD.JAVA_CLASS),
+					factory.getOWLLiteral(classMethod));
+			manager.addAxiom(ontology, factory.getOWLAnnotationAssertionAxiom(newParam.getIRI(), annotation));
+		}
 
 		OWLAnnotation annotation2 = factory.getOWLAnnotation(factory.getOWLAnnotationProperty(GD.IS_INPUT),
 				factory.getOWLLiteral(input));
@@ -325,8 +353,8 @@ public class OntologyUtils {
 		this.paramClass = factory.getOWLClass(GD.PARAMETER);
 		mandatoryParams = Maps.newHashMap();
 		prefixes = HashBiMap.create();
-		prefixes.put( GD.NAMESPACE,"gd");
-		prefixes.put( GD.NAMESPACE+"Param/","gdp");
+		prefixes.put(GD.NAMESPACE, "gd");
+		prefixes.put(GD.NAMESPACE + "Param/", "gdp");
 	}
 
 	public List<OWLIndividual> listAllWebservices() {
