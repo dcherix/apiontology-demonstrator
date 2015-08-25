@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 import com.clarkparsia.owlapiv3.XSD;
 import com.unister.semweb.apiontology.data.OntologyUtils;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
+import com.unister.semweb.apiontology.util.Utils;
 
 public class ServiceDiscovery {
 
@@ -68,17 +69,17 @@ public class ServiceDiscovery {
 		logger.info("Processing Operation {}", qName);
 		IRI serviceIri = IRI.create(qName.getNamespaceURI() + qName.getLocalPart());
 		dao.addWebService(serviceIri, wsdlUrl, qName.getLocalPart());
-		processMessage(true, serviceIri, operation.getInput());
-		processMessage(false, serviceIri, operation.getOutput());
+		processInputMessage(serviceIri, operation.getInput());
+		processOutputMessage(serviceIri, operation.getOutput());
 	}
 
-	private void processMessage(boolean isInput, IRI serviceIri, BindingMessageInfo bindingMessageInfo) {
+	private void processInputMessage(IRI serviceIri, BindingMessageInfo bindingMessageInfo) {
 		for (MessagePartInfo part : bindingMessageInfo.getMessageParts()) {
 			String base = part.getElementQName().getNamespaceURI();
 			String localPart = part.getElementQName().getLocalPart();
 			Class<?> partClass = part.getTypeClass();
 			for (Method m : partClass.getDeclaredMethods()) {
-				if (m.getName().startsWith("set") || m.getName().startsWith("get")) {
+				if (m.getName().startsWith("set")) {
 					for (Class<?> paramType : m.getParameterTypes()) {
 						OWLDatatype datatype = null;
 						if (paramType.equals(String.class)) {
@@ -96,10 +97,47 @@ public class ServiceDiscovery {
 						IRI paramIri = IRI.create(base + localPart + "#",
 								m.getName().replaceAll("set", "").replaceAll("get", ""));
 						dao.addPrefix(paramIri);
-						dao.addParam(paramIri, datatype, serviceIri, isInput, partClass);
+						dao.addParam(paramIri, datatype, serviceIri, true, partClass);
 						logger.info("Add param {}", paramIri);
 					}
 				}
+			}
+		}
+	}
+
+	private void processOutputMessage(IRI serviceIri, BindingMessageInfo bindingMessageInfo) {
+		for (MessagePartInfo part : bindingMessageInfo.getMessageParts()) {
+			String base = part.getElementQName().getNamespaceURI();
+			String localPart = part.getElementQName().getLocalPart();
+			Class<?> partClass = part.getTypeClass();
+			processClass(serviceIri, base, localPart, partClass, partClass);
+		}
+	}
+
+	private void processClass(IRI serviceIri, String base, String localPart, Class<?> containerClass,
+			Class<?> partClass) {
+		for (Method m : partClass.getDeclaredMethods()) {
+			if (m.getName().startsWith("get")) {
+				Class<?> returnType = m.getReturnType();
+				OWLDatatype datatype = null;
+				String suffix = m.getName().replaceAll("set", "").replaceAll("get", "");
+				IRI paramIri = IRI.create(base+"#"+localPart + "#",suffix);
+				if (returnType.equals(String.class)) {
+					datatype = XSD.STRING;
+				} else if (returnType.equals(Double.class)) {
+					datatype = XSD.DOUBLE;
+				} else if (returnType.equals(Long.class) || returnType.equals(Integer.class)) {
+					datatype = XSD.LONG;
+				} else if (returnType.equals(Float.class)) {
+					datatype = XSD.FLOAT;
+				} else {
+					processClass(serviceIri, base, localPart, containerClass, returnType);
+					continue;
+				}
+
+				dao.addPrefix(paramIri);
+				dao.addParam(paramIri, datatype, serviceIri, false, containerClass, Utils.classMethod2Literal(partClass, m));
+				logger.info("Add param {}", paramIri);
 			}
 		}
 	}
@@ -108,7 +146,7 @@ public class ServiceDiscovery {
 			throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
 		OWLOntology ontology = OWLManager.createOWLOntologyManager().createOntology();
 		ServiceDiscovery sd = new ServiceDiscovery(new OntologyUtils(ontology));
-		sd.discover("http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL");
+		sd.discover("http://ws.cdyne.com/ip2geo/ip2geo.asmx?wsdl");
 		OWLDataFactory factory = ontology.getOWLOntologyManager().getOWLDataFactory();
 		OWLObjectProperty hasParam = factory.getOWLObjectProperty(GD.HAS_PARAMETER);
 		OWLObjectSomeValuesFrom someValues = factory.getOWLObjectSomeValuesFrom(hasParam,

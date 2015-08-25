@@ -1,27 +1,28 @@
 package com.unister.semweb.apiontology;
 
 import java.io.File;
-import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.xml.bind.JAXB;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
+import org.semanticweb.owlapi.model.OWLAnnotationValueVisitor;
+import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -48,6 +49,7 @@ import com.unister.semweb.apiontology.demonstrator.api.exchange.Equivalence;
 import com.unister.semweb.apiontology.demonstrator.api.exchange.ExperimentInput;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 import com.unister.semweb.apiontology.util.Constants;
+import com.unister.semweb.apiontology.util.Utils;
 
 public class ExperimentRunner {
 
@@ -196,48 +198,68 @@ public class ExperimentRunner {
 			}
 		} catch (OWLOntologyCreationException | MalformedURLException e) {
 			logger.error("Error on service discovery", e);
-		} catch (InstantiationException e) {
+		} catch ( Exception e) {
 			logger.error("Error on running experiment ", e);
-		} catch (IllegalAccessException e) {
-			logger.error("Error on running experiment ", e);
-		} catch (ClassNotFoundException e) {
-			logger.error("Error on running experiment ", e);
-		} catch (NoSuchMethodException e) {
-			logger.error("Error on running experiment ", e);
-		} catch (SecurityException e) {
-			logger.error("Error on running experiment ", e);
-		} catch (IllegalArgumentException e) {
-			logger.error("Error on running experiment ", e);
-		} catch (InvocationTargetException e) {
-			logger.error("Error on running experiment ", e);
+//		} catch (IllegalAccessException e) {
+//			logger.error("Error on running experiment ", e);
+//		} catch (ClassNotFoundException e) {
+//			logger.error("Error on running experiment ", e);
+//		} catch (NoSuchMethodException e) {
+//			logger.error("Error on running experiment ", e);
+//		} catch (SecurityException e) {
+//			logger.error("Error on running experiment ", e);
+//		} catch (IllegalArgumentException e) {
+//			logger.error("Error on running experiment ", e);
+//		} catch (InvocationTargetException e) {
+//			logger.error("Error on running experiment ", e);
 		}
 		input.setExecutionRuns(run);
 		return new Response(input, this.getConfiguration(baseOntology));
 	}
 
 	private void processResults(Object[] results, OWLOntology ontology, IRI serviceClass, OntologyUtils ontologyUtils,
-			ExperimentInput input) {
+			ExperimentInput input) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+
+
 		for (Object result : results) {
 
 			if (result.getClass().equals(String.class)) {
-				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.STRING);
-				for (IRI iri : iris) {
-					input.getValues().put(iri.toString(), (String) result);
-					input.getIsNew().put(iri.toString(), true);
-					logger.info("Result: {}\ntype: {}", result, iri);
-				}
+				processLiteral(ontology, serviceClass, ontologyUtils, input, result);
 			} else {
 
-				StringWriter writer = new StringWriter();
-				JAXB.marshal(result, writer);
-				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.BASE_64_BINARY);
-				for (IRI iri : iris) {
-					String resultAsString = writer.toString();
-					input.getValues().put(iri.toString(), (String) result);
-					input.getIsNew().put(iri.toString(), true);
-					logger.info("Result: {}\ntype: {}", resultAsString, iri);
+//				StringWriter writer = new StringWriter();
+//				JAXB.marshal(result, writer);
+//				List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.BASE_64_BINARY);
+//				for (IRI iri : iris) {
+//					String resultAsString = writer.toString();
+//					input.getValues().put(iri.toString(), (String) result);
+//					input.getIsNew().put(iri.toString(), true);
+//					logger.info("Result: {}\ntype: {}", resultAsString, iri);
+//				}
+//
+				for(Method m:result.getClass().getMethods()){
+					if(m.getName().startsWith("get")){
+						OWLClassExpression param = ontologyUtils.getParam(Utils.classMethod2Literal(result.getClass(), m));
+						Object value = m.invoke(result);
+						if(param != null && value != null){
+							String iri = shortIri(param.asOWLClass().getIRI());
+							input.getValues().put(iri, value.toString());
+							input.getIsNew().put(iri, true);
+							logger.info("Result: {}\ntype: {}", result, iri);
+						}
+					}
 				}
 			}
+		}
+	}
+
+	private void processLiteral(OWLOntology ontology, IRI serviceClass, OntologyUtils ontologyUtils,
+			ExperimentInput input, Object result) {
+		List<IRI> iris = getOutputParams(ontology, serviceClass, ontologyUtils, XSD.STRING);
+		for (IRI iri : iris) {
+			input.getValues().put(shortIri(iri), (String) result);
+			input.getIsNew().put(shortIri(iri), true);
+			logger.info("Result: {}\ntype: {}", result, iri);
 		}
 	}
 
@@ -245,24 +267,61 @@ public class ExperimentRunner {
 			OWLDatatype datatype) {
 		OWLDataFactory owlDataFactory = ontology.getOWLOntologyManager().getOWLDataFactory();
 		OWLAnnotationProperty webService = owlDataFactory.getOWLAnnotationProperty(GD.WEB_SERVICE_PROPERTY);
+		OWLAnnotationProperty isInput = owlDataFactory.getOWLAnnotationProperty(GD.IS_INPUT);
 		List<IRI> iris = Lists.newLinkedList();
+		BooleanVisitor visitor = new BooleanVisitor();
 
 		OWLClass paramClass = ontologyUtils.getParamByType(datatype);
 
 		for (OWLSubClassOfAxiom params : ontology.getSubClassAxiomsForSuperClass(paramClass)) {
-			for (OWLAnnotationAssertionAxiom axiom : ontology
-					.getAnnotationAssertionAxioms(params.getSubClass().asOWLClass().getIRI())) {
+			IRI iri = params.getSubClass().asOWLClass().getIRI();
+			boolean parameter = false;
+			boolean input = false;
+			for (OWLAnnotationAssertionAxiom axiom : ontology.getAnnotationAssertionAxioms(iri)) {
 				if (axiom.getProperty().equals(webService)) {
 					if (axiom.getValue().equals(serviceClass)) {
-						iris.add(params.getSubClass().asOWLClass().getIRI());
+						parameter = true;
 					}
+				} else if (axiom.getProperty().equals(isInput)) {
+					axiom.getValue().accept(visitor);
+					input = visitor.getResult();
 				}
+			}
+			if (parameter && !input) {
+				iris.add(iri);
 			}
 		}
 
 		Collections2.filter(iris, Predicates.and(Predicates.not(new IsInput(ontology)),
 				new SubClassOf(ontology, ontologyUtils.getParamByType(datatype))));
 		return iris;
+	}
+
+	public static class BooleanVisitor implements OWLAnnotationValueVisitor {
+
+		private Boolean result = null;
+
+		public Boolean getResult() {
+			return result;
+		}
+
+		@Override
+		public void visit(IRI iri) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void visit(OWLAnonymousIndividual individual) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void visit(OWLLiteral literal) {
+			result = literal.parseBoolean();
+		}
+
 	}
 
 	public static class IsInput implements Predicate<IRI> {
@@ -280,8 +339,9 @@ public class ExperimentRunner {
 
 		@Override
 		public boolean apply(IRI input) {
-			return ontology.containsAxiom(owlDataFactory.getOWLDataPropertyAssertionAxiom(
+			boolean isInput = ontology.containsAxiom(owlDataFactory.getOWLDataPropertyAssertionAxiom(
 					owlDataFactory.getOWLDataProperty(GD.IS_INPUT), owlDataFactory.getOWLNamedIndividual(input), true));
+			return isInput;
 		}
 
 	}

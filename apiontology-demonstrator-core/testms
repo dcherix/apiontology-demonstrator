@@ -14,6 +14,9 @@ AnnotationProperty: <http://ontology.unister.de/ontology/api#operationName>
 AnnotationProperty: <http://ontology.unister.de/ontology/api#webService>
 
     
+AnnotationProperty: <http://ontology.unister.de/ontology/api#javaClass>
+
+    
 AnnotationProperty: <http://ontology.unister.de/ontology/api#outputClass>
 
     
@@ -24,9 +27,6 @@ AnnotationProperty: <http://ontology.unister.de/ontology/api#wsdlUrl>
 
     
 AnnotationProperty: <http://ontology.unister.de/ontology/api#inputClass>
-
-    
-Datatype: xsd:base64Binary
 
     
 Datatype: xsd:string
@@ -41,91 +41,159 @@ ObjectProperty: <http://ontology.unister.de/ontology/api#hasParameter>
 DataProperty: <http://ontology.unister.de/ontology/api#value>
 
     
-Class: <http://ontology.unister.de/ontology/api#Parameter>
-
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetWeatherInformation>
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#CountryCode>
 
     Annotations: 
-        <http://ontology.unister.de/ontology/api#wsdlUrl> "http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#outputClass> "com.cdyne.ws.weatherws.GetWeatherInformationResponse"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#operationName> "GetWeatherInformation"^^xsd:string
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#WebService>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetWeatherInformationResponse#GetWeatherInformationResult>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetWeatherInformation>,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getCountryCode"^^xsd:string,
         <http://ontology.unister.de/ontology/api#isInput> false
     
     SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/base64Binary>
+        <http://ontology.unister.de/ontology/api#Param/string>,
+        <http://ontology.unister.de/ontology/api#Parameter>
+    
+    
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#RegionName>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#isInput> false,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getRegionName"^^xsd:string,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>
+    
+    SubClassOf: 
+        <http://ontology.unister.de/ontology/api#Parameter>,
+        <http://ontology.unister.de/ontology/api#Param/string>
+    
+    
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#TimeZone>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getTimeZone"^^xsd:string,
+        <http://ontology.unister.de/ontology/api#isInput> false,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>
+    
+    SubClassOf: 
+        <http://ontology.unister.de/ontology/api#Param/string>,
+        <http://ontology.unister.de/ontology/api#Parameter>
+    
+    
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#City>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
+        <http://ontology.unister.de/ontology/api#isInput> false,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getCity"^^xsd:string
+    
+    SubClassOf: 
+        <http://ontology.unister.de/ontology/api#Parameter>,
+        <http://ontology.unister.de/ontology/api#Param/string>
     
     
 Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP>
 
+    
+Class: <http://ws.cdyne.com/ResolveIP#LicenseKey>
+
     Annotations: 
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
         <http://ontology.unister.de/ontology/api#isInput> true
     
     SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/string>
+        <http://ontology.unister.de/ontology/api#Param/string>,
+        <http://ontology.unister.de/ontology/api#Parameter>
     
     
-Class: <http://ontology.unister.de/ontology/api#Param/base64Binary>
-
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Parameter>,
-        <http://ontology.unister.de/ontology/api#value> some xsd:base64Binary
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIPResponse#GetCityWeatherByZIPResult>
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#AreaCode>
 
     Annotations: 
         <http://ontology.unister.de/ontology/api#isInput> false,
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getAreaCode"^^xsd:string
     
     SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/base64Binary>
+        <http://ontology.unister.de/ontology/api#Param/string>,
+        <http://ontology.unister.de/ontology/api#Parameter>
     
+    
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#Organization>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#isInput> false,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getOrganization"^^xsd:string,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>
+    
+    SubClassOf: 
+        <http://ontology.unister.de/ontology/api#Parameter>,
+        <http://ontology.unister.de/ontology/api#Param/string>
+    
+    
+Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>
+
+    EquivalentTo: 
+        <http://ontology.unister.de/ontology/api#hasParameter> some <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP>
+    
+    
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#Country>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#isInput> false,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getCountry"^^xsd:string
+    
+    SubClassOf: 
+        <http://ontology.unister.de/ontology/api#Parameter>,
+        <http://ontology.unister.de/ontology/api#Param/string>
+    
+    
+Class: <http://ws.cdyne.com/http://ws.cdyne.com/ResolveIPResponse#ResolveIPResult#StateProvince>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#isInput> false,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
+        <http://ontology.unister.de/ontology/api#javaClass> "com.cdyne.ws.IPInformation#getStateProvince"^^xsd:string
+    
+    SubClassOf: 
+        <http://ontology.unister.de/ontology/api#Param/string>,
+        <http://ontology.unister.de/ontology/api#Parameter>
+    
+    
+Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP>
+
     
 Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP>
 
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#inputClass> "com.cdyne.ws.weatherws.GetCityForecastByZIP"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#operationName> "GetCityForecastByZIP"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#outputClass> "com.cdyne.ws.weatherws.GetCityForecastByZIPResponse"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#wsdlUrl> "http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL"^^xsd:string
-    
     EquivalentTo: 
         <http://ontology.unister.de/ontology/api#hasParameter> some <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP>
+    
+    
+Class: <http://ontology.unister.de/ontology/api#WebService>
+
+    
+Class: <http://ws.cdyne.com/ResolveIP>
+
+    Annotations: 
+        <http://ontology.unister.de/ontology/api#wsdlUrl> "http://ws.cdyne.com/ip2geo/ip2geo.asmx?wsdl"^^xsd:string,
+        <http://ontology.unister.de/ontology/api#inputClass> "com.cdyne.ws.ResolveIP"^^xsd:string,
+        <http://ontology.unister.de/ontology/api#operationName> "ResolveIP"^^xsd:string,
+        <http://ontology.unister.de/ontology/api#outputClass> "com.cdyne.ws.ResolveIPResponse"^^xsd:string
     
     SubClassOf: 
         <http://ontology.unister.de/ontology/api#WebService>
     
     
-Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIPResponse#GetCityForecastByZIPResult>
+Class: <http://ws.cdyne.com/ResolveIP#IpAddress>
 
     Annotations: 
-        <http://ontology.unister.de/ontology/api#isInput> false,
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP>
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/base64Binary>
-    
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP#ZIP>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP>,
+        <http://ontology.unister.de/ontology/api#webService> <http://ws.cdyne.com/ResolveIP>,
         <http://ontology.unister.de/ontology/api#isInput> true
     
     SubClassOf: 
-        <http://ontology.unister.de/ontology/api#Param/string>
+        <http://ontology.unister.de/ontology/api#Param/string>,
+        <http://ontology.unister.de/ontology/api#Parameter>
     
+    
+Class: <http://ontology.unister.de/ontology/api#Parameter>
+
     
 Class: <http://ontology.unister.de/ontology/api#Param/string>
 
@@ -133,22 +201,4 @@ Class: <http://ontology.unister.de/ontology/api#Param/string>
         <http://ontology.unister.de/ontology/api#Parameter>,
         <http://ontology.unister.de/ontology/api#value> some xsd:string
     
-    
-Class: <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP>
-
-    Annotations: 
-        <http://ontology.unister.de/ontology/api#wsdlUrl> "http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#inputClass> "com.cdyne.ws.weatherws.GetCityWeatherByZIP"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#outputClass> "com.cdyne.ws.weatherws.GetCityWeatherByZIPResponse"^^xsd:string,
-        <http://ontology.unister.de/ontology/api#operationName> "GetCityWeatherByZIP"^^xsd:string
-    
-    EquivalentTo: 
-        <http://ontology.unister.de/ontology/api#hasParameter> some <http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP#ZIP>
-    
-    SubClassOf: 
-        <http://ontology.unister.de/ontology/api#WebService>
-    
-    
-Class: <http://ontology.unister.de/ontology/api#WebService>
-
     

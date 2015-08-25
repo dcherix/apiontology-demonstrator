@@ -3,7 +3,7 @@ package com.unister.semweb.apiontology.demonstrator.api.owl;
 import org.semanticweb.owlapi.model.IRI;
 
 public class GD {
-	
+
 	public static final String NAMESPACE = "http://ontology.unister.de/ontology/api#";
 
 	public static final IRI HAS_PARAMETER;
@@ -11,6 +11,7 @@ public class GD {
 	public static final IRI METHOD;
 	public static final IRI OBJECT_NAME;
 	public static final IRI INPUT_NAME;
+	public static final IRI JAVA_CLASS;
 	public static final IRI OUTPUT_NAME;
 	public static final IRI PARAMETER;
 	public static final IRI VALUE;
@@ -23,6 +24,7 @@ public class GD {
 		HAS_PARAMETER = IRI.create(NAMESPACE, "hasParameter");
 		IS_INPUT = IRI.create(NAMESPACE, "isInput");
 		INPUT_NAME = IRI.create(NAMESPACE,"inputClass");
+		JAVA_CLASS = IRI.create(NAMESPACE,"javaClass");
 		METHOD = IRI.create(NAMESPACE,"method");
 		OBJECT_NAME = IRI.create(NAMESPACE, "ObjectName");
 		OPERATION_NAME = IRI.create(NAMESPACE,"operationName");
