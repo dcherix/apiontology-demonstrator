@@ -92,7 +92,7 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
 
     s.format = function(key) {
         var result = s.configurations && s.configurations[key] ? s.configurations[key] : '';
-        var matches = result.match(/^Individual.*$/mg);
+        var matches = result.match(/(^Individual|^.*Facts|^.*EquivalentTo).*$/mg);
         if (matches !== null) {
             matches.forEach(function(match) {
                 result = result.replace(match, '<span class="comment">' + match + '</span>');

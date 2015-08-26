@@ -107,7 +107,7 @@
 				<configuration>
 					<warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
 					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
-					<port>8181</port>
+					<port>8080</port>
 					<path>/${project.build.finalName}</path>
 					<systemProperties>
 						<spring.profiles.active>${spring.profiles.active}</spring.profiles.active>

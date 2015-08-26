@@ -54,10 +54,12 @@ public class ServiceDiscovery {
 
 		for (ServiceInfo info : endpoint.getService().getServiceInfos()) {
 			for (BindingInfo binding : info.getBindings()) {
-				if (binding.getBindingId().equals("http://schemas.xmlsoap.org/wsdl/soap12/")) {
+				if (binding.getBindingId().equals("http://schemas.xmlsoap.org/wsdl/soap12/")
+						|| binding.getBindingId().equals("http://schemas.xmlsoap.org/wsdl/soap/")) {
 					for (BindingOperationInfo operation : binding.getOperations()) {
 						this.addService(operation, wsdlUrl);
 					}
+					break;
 				}
 			}
 		}
@@ -121,7 +123,7 @@ public class ServiceDiscovery {
 				Class<?> returnType = m.getReturnType();
 				OWLDatatype datatype = null;
 				String suffix = m.getName().replaceAll("set", "").replaceAll("get", "");
-				IRI paramIri = IRI.create(base+"#"+localPart + "#",suffix);
+				IRI paramIri = IRI.create(base + "#" + localPart + "#", suffix);
 				if (returnType.equals(String.class)) {
 					datatype = XSD.STRING;
 				} else if (returnType.equals(Double.class)) {
@@ -136,7 +138,8 @@ public class ServiceDiscovery {
 				}
 
 				dao.addPrefix(paramIri);
-				dao.addParam(paramIri, datatype, serviceIri, false, containerClass, Utils.classMethod2Literal(partClass, m));
+				dao.addParam(paramIri, datatype, serviceIri, false, containerClass,
+						Utils.classMethod2Literal(partClass, m));
 				logger.info("Add param {}", paramIri);
 			}
 		}
@@ -146,7 +149,7 @@ public class ServiceDiscovery {
 			throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
 		OWLOntology ontology = OWLManager.createOWLOntologyManager().createOntology();
 		ServiceDiscovery sd = new ServiceDiscovery(new OntologyUtils(ontology));
-		sd.discover("http://ws.cdyne.com/ip2geo/ip2geo.asmx?wsdl");
+		sd.discover("http://localhost:8181/");
 		OWLDataFactory factory = ontology.getOWLOntologyManager().getOWLDataFactory();
 		OWLObjectProperty hasParam = factory.getOWLObjectProperty(GD.HAS_PARAMETER);
 		OWLObjectSomeValuesFrom someValues = factory.getOWLObjectSomeValuesFrom(hasParam,

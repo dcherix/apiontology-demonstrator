@@ -16,8 +16,8 @@
 		<tr>
 			<td>
 				<div>
-					<div class="label">Ontology URI</div>
-					<div>Description/Instructions</div>
+					<div class="label">WSDL url</div>
+					<div>Enter here a WSDL definition url</div>
 					<table class="box uri">
 						<tr>
 							<th colspan="2">Web Service URI</th>
@@ -35,7 +35,7 @@
 				<div data-ng-show="hasConstraintsAndEquivalences()">
 					<div>
 						<div class="label">Constraints</div>
-						<div>Description/Instructions</div>
+						<div>Select here for each web service at least one mandatory parameter</div>
 						<table class="box constraints">
 							<tr>
 								<th>Web Service</th>
@@ -57,7 +57,7 @@
 
 					<div>
 						<div class="label">Parameter Equivalences</div>
-						<div>Description/Instructions</div>
+						<div>Select in the right list the to the left equivalent parameter(s)</div>
 						<table class="box equivalences">
 							<tr>
 								<th colspan="2">Parameter</th>
@@ -87,7 +87,7 @@
 				<div data-ng-show="hasExperimentInput()">
 					<div>
 						<div class="label">Experiment Input</div>
-						<div>Description/Instructions</div>
+						<div>Enter here the value(s) for some parameter and start the experiment</div>
 						<table class="box">
 							<tr>
 								<th>Parameter</th>
@@ -116,7 +116,7 @@
 			<td class="right">
 				<div data-ng-show="hasDatamodel()">
 					<div class="label">Dynamic OWL Definitions</div>
-					<div>Description</div>
+					<div>The following OWL abstract in Manchester Syntax describes the configured endpoints and show the computed values in red</div>
 					<table class="box datamodel">
 						<tr>
 							<td data-ng-bind-html="format('datamodel')"></td>
@@ -125,7 +125,7 @@
 				</div>
 				<div>
 					<div class="label">Standard OWL Definitions</div>
-					<div>Description</div>
+					<div>This OWL part defines the resources used in the above ontology.</div>
 					<table class="box datamodel">
 						<tr>
 							<td data-ng-bind-html="format('standardDatamodel')"></td>

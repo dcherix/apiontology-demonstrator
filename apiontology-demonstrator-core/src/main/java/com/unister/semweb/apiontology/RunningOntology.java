@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.unister.semweb.apiontology.data.OntologyUtils;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
@@ -75,11 +76,12 @@ public class RunningOntology {
 
 	public IRI addParam(IRI paramType, String value) {
 
-		for( OWLClassAssertionAxiom assertion:ontology.getClassAssertionAxioms(factory.getOWLClass(paramType))){
+		for (OWLClassAssertionAxiom assertion : ontology.getClassAssertionAxioms(factory.getOWLClass(paramType))) {
 			OWLIndividual individual = assertion.getIndividual();
-			for( OWLDataPropertyAssertionAxiom valueAssertion:ontology.getDataPropertyAssertionAxioms(individual)){
-				if(valueAssertion.getProperty().equals(factory.getOWLDataProperty(GD.VALUE))){
-					if(valueAssertion.getObject().getLiteral().equals(value)){
+			for (OWLDataPropertyAssertionAxiom valueAssertion : ontology.getDataPropertyAssertionAxioms(individual)) {
+				if (valueAssertion.getProperty().equals(factory.getOWLDataProperty(GD.VALUE))) {
+					if (valueAssertion.getObject().getLiteral().equals(value)) {
+						addTypes(paramType, individual.asOWLNamedIndividual());
 						return individual.asOWLNamedIndividual().getIRI();
 					}
 				}
@@ -90,7 +92,16 @@ public class RunningOntology {
 		manager.addAxiom(ontology,
 				factory.getOWLDataPropertyAssertionAxiom(factory.getOWLDataProperty(GD.VALUE), individual, value));
 		manager.addAxiom(ontology, factory.getOWLClassAssertionAxiom(factory.getOWLClass(GD.PARAMETER), individual));
+		addTypes(paramType, individual);
 		return individual.getIRI();
+	}
+
+	private void addTypes(IRI paramType, OWLNamedIndividual individual) {
+		for (OWLClass type : reasoner.getTypes(individual, true).getFlattened()) {
+			if (!type.getIRI().equals(paramType)) {
+				manager.addAxiom(ontology, factory.getOWLClassAssertionAxiom(type, individual));
+			}
+		}
 	}
 
 	public IRI addParam(IRI paramType, double value) {
@@ -130,13 +141,21 @@ public class RunningOntology {
 
 	}
 
+	public List<IRI> getTypes(IRI iri) {
+		List<IRI> types = Lists.newLinkedList();
+		for (OWLClass owlClass : reasoner.getTypes(factory.getOWLNamedIndividual(iri), true).getFlattened()) {
+			types.add(owlClass.getIRI());
+		}
+		return types;
+	}
+
 	public Set<OWLClass> getClasses(OWLNamedIndividual individual) {
 		reasoner.flush();
 		return reasoner.getTypes(individual, true).getFlattened();
 	}
 
-	public Map<String,String> getParameters() {
-		Map<String,String> paramAndValues = Maps.newHashMap();
+	public Map<String, String> getParameters() {
+		Map<String, String> paramAndValues = Maps.newHashMap();
 		for (OWLNamedIndividual individual : ontology.getIndividualsInSignature()) {
 			reasoner.flush();
 			Set<OWLClass> classes = reasoner.getTypes(individual, false).getFlattened();
@@ -180,7 +199,7 @@ public class RunningOntology {
 			OWLAnnotationValue annotationValue = annotation.getValue();
 			if (annotationValue instanceof OWLLiteral) {
 				String className = ((OWLLiteral) annotationValue).getLiteral();
-				Class<?> containerClass = Thread.currentThread().getContextClassLoader().loadClass(className);
+				Class<?> containerClass = ClientFactory.getInstance().getClass(className);
 				container = containerClass.newInstance();
 			}
 		}
@@ -192,10 +211,17 @@ public class RunningOntology {
 			String methodName = "";
 
 			for (OWLClass paramClass : reasoner.getTypes(value.asOWLNamedIndividual(), true).getFlattened()) {
-				methodName = "set" + StringUtils.substringAfterLast(paramClass.getIRI().toString(), "#");
-				Method method = container.getClass().getMethod(methodName, String.class);
+
+				Method method = null;
+				try {
+					methodName = "set" + StringUtils.substringAfterLast(paramClass.getIRI().toString(), "#");
+					method = container.getClass().getMethod(methodName, String.class);
+				} catch (NoSuchMethodException e) {
+					logger.warn("Method {} doesn't exist", methodName);
+				}
 				if (method != null) {
 					method.invoke(container, literal.getLiteral());
+					break;
 				}
 			}
 			logger.debug("Container class {}", container.getClass());

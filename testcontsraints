@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440488313437_1#"
-     xml:base="http://ontology.unister.de/ontology/api#experiment-1440488313437_1"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440590795772_2#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-1440590795772_2"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440488313437_1"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440590795772_2"/>
     
 
 
@@ -108,6 +108,271 @@
     
 
 
+    <!-- http://example.com/CityLatLong.wsdlCityLatLong -->
+
+    <owl:Class rdf:about="http://example.com/CityLatLong.wsdlCityLatLong">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Cityname"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
+        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CityLatLong</api:operationName>
+        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.citylatlong.CityLatLong</api:inputClass>
+        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.citylatlong.CityLatLongResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8182/</api:wsdlUrl>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CompanyData.wsdlCompanyData -->
+
+    <owl:Class rdf:about="http://example.com/CompanyData.wsdlCompanyData">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://example.com/CompanyData.wsdlCompanyData#Company"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
+        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CompanyData</api:operationName>
+        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyData</api:inputClass>
+        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyDataResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8181/</api:wsdlUrl>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Stock.wsdlStock -->
+
+    <owl:Class rdf:about="http://example.com/Stock.wsdlStock">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://example.com/Stock.wsdlStock#Symbol"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
+        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stock</api:operationName>
+        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.stock.Stock</api:inputClass>
+        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.stock.StockResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8184/</api:wsdlUrl>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Weather.wsdlWeather -->
+
+    <owl:Class rdf:about="http://example.com/Weather.wsdlWeather">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://example.com/Weather.wsdlWeather#City"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
+                        <owl:someValuesFrom rdf:resource="http://example.com/Weather.wsdlWeather#Country"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
+        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Weather</api:operationName>
+        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.weather.Weather</api:inputClass>
+        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.weather.WeatherResponse</api:outputClass>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8183/</api:wsdlUrl>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CityLatLong.wsdl#CityLatLongResponse#Lat -->
+
+    <owl:Class rdf:about="http://example.com/CityLatLong.wsdl#CityLatLongResponse#Lat">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.citylatlong.CityLatLongResponse::getLat</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CityLatLong.wsdl#CityLatLongResponse#Long -->
+
+    <owl:Class rdf:about="http://example.com/CityLatLong.wsdl#CityLatLongResponse#Long">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.citylatlong.CityLatLongResponse::getLong</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CityLatLong.wsdlCityLatLong#Adminarea -->
+
+    <owl:Class rdf:about="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea">
+        <owl:equivalentClass rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country"/>
+        <owl:equivalentClass rdf:resource="http://example.com/Weather.wsdlWeather#Country"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CityLatLong.wsdlCityLatLong#Cityname -->
+
+    <owl:Class rdf:about="http://example.com/CityLatLong.wsdlCityLatLong#Cityname">
+        <owl:equivalentClass rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#City"/>
+        <owl:equivalentClass rdf:resource="http://example.com/Weather.wsdlWeather#City"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CompanyData.wsdl#CompanyDataResponse#City -->
+
+    <owl:Class rdf:about="http://example.com/CompanyData.wsdl#CompanyDataResponse#City">
+        <owl:equivalentClass rdf:resource="http://example.com/Weather.wsdlWeather#City"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyDataResponse::getCity</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/CompanyData.wsdlCompanyData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CompanyData.wsdl#CompanyDataResponse#Country -->
+
+    <owl:Class rdf:about="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyDataResponse::getCountry</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/CompanyData.wsdlCompanyData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock -->
+
+    <owl:Class rdf:about="http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock">
+        <owl:equivalentClass rdf:resource="http://example.com/Stock.wsdlStock#Symbol"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyDataResponse::getStock</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/CompanyData.wsdlCompanyData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/CompanyData.wsdlCompanyData#Company -->
+
+    <owl:Class rdf:about="http://example.com/CompanyData.wsdlCompanyData#Company">
+        <owl:equivalentClass rdf:resource="http://example.com/Stock.wsdl#StockResponse#Companyname"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://example.com/CompanyData.wsdlCompanyData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Stock.wsdl#StockResponse#Companyname -->
+
+    <owl:Class rdf:about="http://example.com/Stock.wsdl#StockResponse#Companyname">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.stock.StockResponse::getCompanyname</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/Stock.wsdlStock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Stock.wsdl#StockResponse#Rate -->
+
+    <owl:Class rdf:about="http://example.com/Stock.wsdl#StockResponse#Rate">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.stock.StockResponse::getRate</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/Stock.wsdlStock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Stock.wsdlStock#Symbol -->
+
+    <owl:Class rdf:about="http://example.com/Stock.wsdlStock#Symbol">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://example.com/Stock.wsdlStock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Weather.wsdl#WeatherResponse#Weather -->
+
+    <owl:Class rdf:about="http://example.com/Weather.wsdl#WeatherResponse#Weather">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.weather.WeatherResponse::getWeather</api:javaClass>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
+        <api:webService rdf:resource="http://example.com/Weather.wsdlWeather"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Weather.wsdlWeather#City -->
+
+    <owl:Class rdf:about="http://example.com/Weather.wsdlWeather#City">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://example.com/Weather.wsdlWeather"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.com/Weather.wsdlWeather#Country -->
+
+    <owl:Class rdf:about="http://example.com/Weather.wsdlWeather#Country">
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
+        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
+        <api:webService rdf:resource="http://example.com/Weather.wsdlWeather"/>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.unister.de/ontology/api#Parameter -->
 
     <owl:Class rdf:about="http://ontology.unister.de/ontology/api#Parameter"/>
@@ -134,150 +399,6 @@
     
 
 
-    <!-- http://ws.cdyne.com/ResolveIP -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/ResolveIP">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
-                        <owl:someValuesFrom rdf:resource="http://ws.cdyne.com/ResolveIP#IpAddress"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.unister.de/ontology/api#hasParameter"/>
-                        <owl:someValuesFrom rdf:resource="http://ws.cdyne.com/ResolveIP#LicenseKey"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ResolveIP</api:operationName>
-        <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.ResolveIP</api:inputClass>
-        <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.ResolveIPResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://ws.cdyne.com/ip2geo/ip2geo.asmx?wsdl</api:wsdlUrl>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#AreaCode -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#AreaCode">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getAreaCode</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#City -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#City">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getCity</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#Country -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#Country">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getCountry</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#CountryCode -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#CountryCode">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getCountryCode</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#Organization -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#Organization">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getOrganization</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#RegionName -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#RegionName">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getRegionName</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#StateProvince -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#StateProvince">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getStateProvince</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/#ResolveIPResponse#TimeZone -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/#ResolveIPResponse#TimeZone">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.cdyne.ws.IPInformation::getTimeZone</api:javaClass>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/ResolveIP#IpAddress -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/ResolveIP#IpAddress">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ws.cdyne.com/ResolveIP#LicenseKey -->
-
-    <owl:Class rdf:about="http://ws.cdyne.com/ResolveIP#LicenseKey">
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
-        <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
-        <api:webService rdf:resource="http://ws.cdyne.com/ResolveIP"/>
-    </owl:Class>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -289,22 +410,48 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/62a3f2da-70c1-4061-9077-dfad78fc8d36 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/a45e7d0a-ac27-471f-b8a6-cd4384849e13 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/62a3f2da-70c1-4061-9077-dfad78fc8d36">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/a45e7d0a-ac27-471f-b8a6-cd4384849e13">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea"/>
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country"/>
+        <rdf:type rdf:resource="http://example.com/Weather.wsdlWeather#Country"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdf:type rdf:resource="http://ws.cdyne.com/ResolveIP#LicenseKey"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">United States</api:value>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/978a66b3-3ac2-44b2-94f8-ddb9d7b82064 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/a9d47655-8943-4a09-b4ce-fa584b530230 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/978a66b3-3ac2-44b2-94f8-ddb9d7b82064">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/a9d47655-8943-4a09-b4ce-fa584b530230">
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdlCompanyData#Company"/>
+        <rdf:type rdf:resource="http://example.com/Stock.wsdl#StockResponse#Companyname"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <rdf:type rdf:resource="http://ws.cdyne.com/ResolveIP#IpAddress"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">94.101.33.114</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Xerox</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/bc3354d4-e995-47c4-bdb1-ee16c71c3507 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/bc3354d4-e995-47c4-bdb1-ee16c71c3507">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Cityname"/>
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#City"/>
+        <rdf:type rdf:resource="http://example.com/Weather.wsdlWeather#City"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norwalk, Connecticut</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/76860868-5d01-44d1-8497-f74888891fe8 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/76860868-5d01-44d1-8497-f74888891fe8">
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock"/>
+        <rdf:type rdf:resource="http://example.com/Stock.wsdlStock#Symbol"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">XRX</api:value>
     </owl:NamedIndividual>
 </rdf:RDF>
 

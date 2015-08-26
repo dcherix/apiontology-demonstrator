@@ -32,6 +32,7 @@ import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLEquivalentClassesAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectExactCardinality;
 import org.semanticweb.owlapi.model.OWLObjectIntersectionOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -51,6 +52,7 @@ import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.unister.semweb.apiontology.ExperimentRunner.IsInput;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 import com.unister.semweb.apiontology.exception.OntologyException;
 
@@ -135,7 +137,7 @@ public class OntologyUtils {
 			for (OWLAnnotationAssertionAxiom annotationAxiom : ontology
 					.getAnnotationAssertionAxioms(subclass.asOWLClass().getIRI())) {
 				if (annotationAxiom.getProperty().equals(factory.getOWLAnnotationProperty(GD.JAVA_CLASS))) {
-					if(annotationAxiom.getValue().equals(factory.getOWLLiteral(classMethod))){
+					if (annotationAxiom.getValue().equals(factory.getOWLLiteral(classMethod))) {
 						return subclass;
 					}
 				}
@@ -323,6 +325,33 @@ public class OntologyUtils {
 
 	public int getNumberOfMandatoryParams(String webService) {
 		return mandatoryParams.get(webService);
+	}
+
+	public List<IRI> getResultParams(String webService) {
+
+		List<IRI> params = Lists.newLinkedList();
+		for (OWLSubClassOfAxiom paramSubClass : ontology
+				.getSubClassAxiomsForSuperClass(factory.getOWLClass(GD.PARAMETER))) {
+			OWLClassExpression individualClass = paramSubClass.getSubClass();
+			boolean isInput = true;
+			boolean hasWebService = false;
+			for (OWLAnnotationAssertionAxiom annotation : ontology
+					.getAnnotationAssertionAxioms(individualClass.asOWLClass().getIRI())) {
+				if (annotation.getProperty().equals(factory.getOWLAnnotationProperty(GD.WEB_SERVICE_PROPERTY))) {
+					if (annotation.getValue().toString().equals(webService)) {
+						hasWebService = true;
+					}
+				} else if (annotation.getProperty().equals(factory.getOWLAnnotationProperty(GD.IS_INPUT))) {
+					BooleanVisitor visitor = new BooleanVisitor();
+					annotation.getValue().accept(visitor);
+					isInput = visitor.getResult();
+				}
+			}
+			if(hasWebService && !isInput){
+				params.add(individualClass.asOWLClass().getIRI());
+			}
+		}
+		return params;
 	}
 
 	public OWLClass getParamByType(OWLDatatype type) {

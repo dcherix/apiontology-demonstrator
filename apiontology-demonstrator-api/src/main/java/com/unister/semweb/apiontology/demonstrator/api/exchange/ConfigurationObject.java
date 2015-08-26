@@ -93,10 +93,11 @@ public class ConfigurationObject {
 				}
 				ontology.getOWLOntologyManager().saveOntology(ontology, ontologyFormat, os);
 				String datamodel = os.toString("UTF-8");
-				int index = datamodel.indexOf("Class: <");
+				int index = datamodel.indexOf("Class: <") > 0 ? datamodel.indexOf("Class: <")
+						: datamodel.indexOf("Class: n");
 
-				if(index<=0){
-					this.datamodel=null;
+				if (index <= 0) {
+					this.datamodel = null;
 					return this;
 
 				}
@@ -149,7 +150,7 @@ public class ConfigurationObject {
 			ConfigurationObject co = new ConfigurationObject();
 			co.setConstraints(constraints);
 			co.setEquivalences(equivalences);
-			if(datamodel != null){
+			if (datamodel != null) {
 				co.setDatamodel(datamodel);
 			}
 			co.setDatamodel(datamodel);
