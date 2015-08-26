@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440593181824_2#"
-     xml:base="http://ontology.unister.de/ontology/api#experiment-1440593181824_2"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440594130119_2#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-1440594130119_2"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440593181824_2"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440594130119_2"/>
     
 
 
@@ -288,20 +288,9 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/ccb8c4d7-040b-49ca-8be1-6d60f52f5dae -->
+    <!-- http://ontology.unister.de/ontology/api#/param/b209d52f-06e5-4899-b096-7b40451cc1e2 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/ccb8c4d7-040b-49ca-8be1-6d60f52f5dae">
-        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea"/>
-        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country"/>
-        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">United States</api:value>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.unister.de/ontology/api#/param/ed2e5912-3d8b-4b1c-a60d-55bea12fa48d -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/ed2e5912-3d8b-4b1c-a60d-55bea12fa48d">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/b209d52f-06e5-4899-b096-7b40451cc1e2">
         <rdf:type rdf:resource="http://example.com/CompanyData.wsdlCompanyData#Company"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Xerox</api:value>
@@ -309,9 +298,19 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/5cceb339-a9cd-463c-9009-29b254660cf9 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/d344279a-e167-4fc4-9925-e30c0a80dbdf -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/5cceb339-a9cd-463c-9009-29b254660cf9">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/d344279a-e167-4fc4-9925-e30c0a80dbdf">
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">XRX</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/33264e86-55f0-4d3e-a309-5eed963257e5 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/33264e86-55f0-4d3e-a309-5eed963257e5">
         <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Cityname"/>
         <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#City"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
@@ -320,12 +319,13 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/55cf60e4-e56b-4090-993e-0d29f0916a53 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/84fa7379-ca0e-4270-b69b-53dba4f838a5 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/55cf60e4-e56b-4090-993e-0d29f0916a53">
-        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock"/>
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/84fa7379-ca0e-4270-b69b-53dba4f838a5">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea"/>
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">XRX</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">United States</api:value>
     </owl:NamedIndividual>
 </rdf:RDF>
 

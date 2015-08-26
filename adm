@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#adm26-08-2015_02:44.02#"
-     xml:base="http://ontology.unister.de/ontology/api#adm26-08-2015_02:44.02"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#adm26-08-2015_03:01.04#"
+     xml:base="http://ontology.unister.de/ontology/api#adm26-08-2015_03:01.04"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#adm26-08-2015_02:44.02"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#adm26-08-2015_03:01.04"/>
     
 
 

@@ -92,10 +92,10 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
 
     s.format = function(key) {
         var result = s.configurations && s.configurations[key] ? s.configurations[key] : '';
-        var matches = result.match(/^(Individual.*|\s{4}Facts:\$|\s{4}EquivalentTo:\s)$/mg);
+        var matches = result.match(/^(Individual.*|\s{4}Facts:.*|\s{4}EquivalentTo:\s)$/mg);
         if (matches !== null) {
             matches.forEach(function(match) {
-                result = result.replace(match, '<span class="comment">' + match + '</span>');
+                result = result.replace(new RegExp(match,'g'), '<span class="comment">' + match + '</span>');
             });
         }
         return $sce.trustAsHtml(result);
