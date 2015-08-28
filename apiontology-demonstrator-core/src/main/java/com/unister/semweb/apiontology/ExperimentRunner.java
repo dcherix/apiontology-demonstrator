@@ -192,8 +192,7 @@ public class ExperimentRunner {
 
 					if (!parametersClasses.containsAll(returnParams)) {
 						Object[] results = ro.invoke(service, serviceClass);
-						processResults(results, ontology, serviceClass.getIRI(), ontologyUtils, input);
-						solvable = true;
+						solvable = processResults(results, ontology, serviceClass.getIRI(), ontologyUtils, input);
 					}
 				}
 				ontology.getOWLOntologyManager().removeAxioms(ontology, ontology.getAxioms(service));
@@ -210,9 +209,10 @@ public class ExperimentRunner {
 		return new Response(input, this.getConfiguration(baseOntology));
 	}
 
-	private void processResults(Object[] results, OWLOntology ontology, IRI serviceClass, OntologyUtils ontologyUtils,
-			ExperimentInput input) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-
+	private boolean processResults(Object[] results, OWLOntology ontology, IRI serviceClass,
+			OntologyUtils ontologyUtils, ExperimentInput input)
+					throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		boolean hasResult = false;
 		for (Object result : results) {
 
 			if (result.getClass().equals(String.class)) {
@@ -240,11 +240,13 @@ public class ExperimentRunner {
 							input.getValues().put(iri, value.toString());
 							input.getIsNew().put(iri, true);
 							logger.info("Result: {}\ntype: {}", result, iri);
+							hasResult = true;
 						}
 					}
 				}
 			}
 		}
+		return hasResult;
 	}
 
 	private void processLiteral(OWLOntology ontology, IRI serviceClass, OntologyUtils ontologyUtils,
