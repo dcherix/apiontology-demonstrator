@@ -8,3 +8,4 @@ bin
 *.versionsBackup
 **/*.versionsBackup
 **/catalog-*.xml
+**/.~lock.*
