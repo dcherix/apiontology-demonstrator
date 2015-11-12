@@ -114,3 +114,12 @@ td {
 .experiment-input-value input {
 	width: calc(100% - 20px);
 }
+
+.pre-xy-scrollable {
+    overflow: auto;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    white-space: pre;
+    max-height: 340px;
+}
