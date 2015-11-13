@@ -204,6 +204,7 @@ public class RunningOntology {
 			}
 		}
 
+
 		OWLLiteral literal;
 		for (OWLIndividual value : individual.getObjectPropertyValues(factory.getOWLObjectProperty(GD.HAS_PARAMETER),
 				ontology)) {

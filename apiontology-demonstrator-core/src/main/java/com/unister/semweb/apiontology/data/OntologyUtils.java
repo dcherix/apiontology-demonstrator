@@ -8,7 +8,11 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -32,7 +36,6 @@ import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLEquivalentClassesAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
-import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectExactCardinality;
 import org.semanticweb.owlapi.model.OWLObjectIntersectionOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -52,11 +55,15 @@ import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.unister.semweb.apiontology.ExperimentRunner.IsInput;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 import com.unister.semweb.apiontology.exception.OntologyException;
+import com.unister.semweb.apiontology.functions.AnnotationsFunctions;
+import com.unister.semweb.apiontology.functions.IRIFunctions;
+import com.unister.semweb.apiontology.functions.OWLClassFunctions;
 
 import uk.ac.manchester.cs.owl.owlapi.turtle.parser.TurtleOntologyParser;
+
+import static com.unister.semweb.apiontology.functions.FunctionsUtils.apply;
 
 /**
  * Represents a web service
@@ -118,19 +125,7 @@ public class OntologyUtils {
 		this.init();
 	}
 
-	public void addConstraint(String constraint) throws OntologyException {
-		OWLOntology o;
-		try {
-			o = manager.createOntology();
-			new TurtleOntologyParser().parse(new ReaderDocumentSource(new StringReader(constraint)), o);
-		} catch (OWLOntologyCreationException | IOException e) {
-			throw new OntologyException("Unable to add constraint: " + constraint, e);
-		}
-
-	}
-
 	public OWLClassExpression getParam(String classMethod) {
-
 		for (OWLSubClassOfAxiom subclassOfAxiom : ontology
 				.getSubClassAxiomsForSuperClass(factory.getOWLClass(GD.PARAMETER))) {
 			OWLClassExpression subclass = subclassOfAxiom.getSubClass();
@@ -172,35 +167,29 @@ public class OntologyUtils {
 
 		OWLClass service = factory.getOWLClass(IRI.create(webService));
 		Set<OWLClassExpression> expressions = Sets.newHashSet();
-		for (IRI param : params) {
-			OWLObjectSomeValuesFrom someValues = factory.getOWLObjectSomeValuesFrom(hasParam,
-					factory.getOWLClass(param));
-			expressions.add(someValues);
-		}
 
-		OWLObjectExactCardinality cardinality = factory.getOWLObjectExactCardinality(params.size(), hasParam,
-				factory.getOWLClass(GD.PARAMETER));
-		// expressions.add(cardinality);
+		params.stream().forEach(param -> {
+			expressions.add(factory.getOWLObjectSomeValuesFrom(hasParam, factory.getOWLClass(param)));
+		});
+
 		mandatoryParams.put(webService, params.size());
 		OWLObjectIntersectionOf intersection = factory.getOWLObjectIntersectionOf(expressions);
 		ontology.getOWLOntologyManager().addAxiom(ontology,
 				factory.getOWLEquivalentClassesAxiom(service, intersection));
-		// ontology.getOWLOntologyManager().addAxiom(ontology,
-		// factory.getOWLEquivalentClassesAxiom(service, cardinality));
-		// ontology.getOWLOntologyManager().addAxiom(ontology,
-		// factory.getOWLSubClassOfAxiom(service, cardinality));
-
 	}
 
 	public void addConstraints(WebService webService) {
 		IRI webservice = IRI.create(webService.getUrl());
 		webServiceClass = factory.getOWLClass(webservice);
-		Set<OWLClassExpression> someValuesFromRestrictions = Sets.newHashSet();
+
 		OWLObjectProperty hasParameterProperty = factory.getOWLObjectProperty(GD.HAS_PARAMETER);
-		for (String mandatory : webService.getMandatoryParameters()) {
-			someValuesFromRestrictions.add(factory.getOWLObjectSomeValuesFrom(hasParameterProperty,
-					factory.getOWLClass(IRI.create(mandatory))));
-		}
+
+		Set<OWLClassExpression> someValuesFromRestrictions = webService.getMandatoryParameters().stream()
+				.map(IRIFunctions.asIri)
+				.map(IRIFunctions.asOWLClass())
+				.map(OWLClassFunctions.hasParameterOWLObjectSomeValues)
+				.collect(Collectors.toSet());
+
 		OWLObjectUnionOf union = factory.getOWLObjectUnionOf(someValuesFromRestrictions);
 		OWLObjectExactCardinality cardinality = factory
 				.getOWLObjectExactCardinality(webService.getMandatoryParameters().size(), hasParameterProperty);
@@ -347,7 +336,7 @@ public class OntologyUtils {
 					isInput = visitor.getResult();
 				}
 			}
-			if(hasWebService && !isInput){
+			if (hasWebService && !isInput) {
 				params.add(individualClass.asOWLClass().getIRI());
 			}
 		}

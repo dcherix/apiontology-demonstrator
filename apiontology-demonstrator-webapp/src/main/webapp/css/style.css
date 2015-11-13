@@ -70,6 +70,12 @@ th {
 	border-radius: 10px;
 }
 
+.scr-panel{
+  height:500px;
+  overflow-y:scroll;
+  width:100%;
+}
+
 td {
 	vertical-align: top;
 	padding: 5px 10px;

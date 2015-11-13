@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1440763370644_0#"
-     xml:base="http://ontology.unister.de/ontology/api#experiment-1440763370644_0"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+<rdf:RDF xmlns="http://ontology.unister.de/ontology/api#experiment-1447342177246_2#"
+     xml:base="http://ontology.unister.de/ontology/api#experiment-1447342177246_2"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:api="http://ontology.unister.de/ontology/api#">
-    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1440763370644_0"/>
+    <owl:Ontology rdf:about="http://ontology.unister.de/ontology/api#experiment-1447342177246_2"/>
     
 
 
@@ -129,7 +129,7 @@
         <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CityLatLong</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.citylatlong.CityLatLong</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.citylatlong.CityLatLongResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://unidev517:8182/</api:wsdlUrl>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8182</api:wsdlUrl>
     </owl:Class>
     
 
@@ -159,7 +159,7 @@
         <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClosestStockExchange</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.closeststockexchange.ClosestStockExchange</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.closeststockexchange.ClosestStockExchangeResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://unidev517:8185/</api:wsdlUrl>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8185</api:wsdlUrl>
     </owl:Class>
     
 
@@ -181,7 +181,7 @@
         <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CompanyData</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyData</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyDataResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://unidev517:8181/</api:wsdlUrl>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8181</api:wsdlUrl>
     </owl:Class>
     
 
@@ -203,7 +203,7 @@
         <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stock</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.stock.Stock</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.stock.StockResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://unidev517:8184/</api:wsdlUrl>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8184</api:wsdlUrl>
     </owl:Class>
     
 
@@ -229,7 +229,7 @@
         <api:operationName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Weather</api:operationName>
         <api:inputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.weather.Weather</api:inputClass>
         <api:outputClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.weather.WeatherResponse</api:outputClass>
-        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://unidev517:8183/</api:wsdlUrl>
+        <api:wsdlUrl rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:8183</api:wsdlUrl>
     </owl:Class>
     
 
@@ -264,7 +264,6 @@
 
     <owl:Class rdf:about="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea">
         <owl:equivalentClass rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country"/>
-        <owl:equivalentClass rdf:resource="http://example.com/Weather.wsdlWeather#Country"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
@@ -277,7 +276,6 @@
 
     <owl:Class rdf:about="http://example.com/CityLatLong.wsdlCityLatLong#Cityname">
         <owl:equivalentClass rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#City"/>
-        <owl:equivalentClass rdf:resource="http://example.com/Weather.wsdlWeather#City"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
@@ -386,7 +384,6 @@
     <!-- http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock -->
 
     <owl:Class rdf:about="http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock">
-        <owl:equivalentClass rdf:resource="http://example.com/Stock.wsdlStock#Symbol"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
         <api:javaClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string">com.example.companydata.CompanyDataResponse::getStock</api:javaClass>
@@ -399,7 +396,6 @@
     <!-- http://example.com/CompanyData.wsdlCompanyData#Company -->
 
     <owl:Class rdf:about="http://example.com/CompanyData.wsdlCompanyData#Company">
-        <owl:equivalentClass rdf:resource="http://example.com/Stock.wsdl#StockResponse#Companyname"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
         <rdfs:subClassOf rdf:resource="http://ontology.unister.de/ontology/api#Param/string"/>
         <api:isInput rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</api:isInput>
@@ -514,46 +510,117 @@
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/eb69fc09-99e3-4c3e-ae76-7d9c84d97360 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/a0e77dd7-2d63-4f36-a33e-9872a9def9fd -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/eb69fc09-99e3-4c3e-ae76-7d9c84d97360">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/a0e77dd7-2d63-4f36-a33e-9872a9def9fd">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Adminarea"/>
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Country"/>
+        <rdf:type rdf:resource="http://example.com/Weather.wsdlWeather#Country"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">United States</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/f17f9d00-b39f-48a6-a903-439c40d578b1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/f17f9d00-b39f-48a6-a903-439c40d578b1">
+        <rdf:type rdf:resource="http://example.com/Stock.wsdl#StockResponse#Rate"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10.2</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/1db2eb71-0615-4415-9d01-8f52ce72e658 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/1db2eb71-0615-4415-9d01-8f52ce72e658">
+        <rdf:type rdf:resource="http://example.com/Weather.wsdl#WeatherResponse#Weather"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloudy</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/215ecff0-5cf6-4d9b-a0d2-1f0823b628ce -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/215ecff0-5cf6-4d9b-a0d2-1f0823b628ce">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdl#CityLatLongResponse#Long"/>
+        <rdf:type rdf:resource="http://example.com/ClosestStockExchange.wsdlClosestStockExchange#Longitude"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">41.09388888888889</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/25929a37-1a19-4ad0-9d2a-9e03d9a18369 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/25929a37-1a19-4ad0-9d2a-9e03d9a18369">
+        <rdf:type rdf:resource="http://example.com/Stock.wsdl#StockResponse#Companyname"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Xerox Corp</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/3cb965e6-3a78-4c2f-bf06-53226a888af6 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/3cb965e6-3a78-4c2f-bf06-53226a888af6">
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdlCompanyData#Company"/>
+        <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Xerox</api:value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.unister.de/ontology/api#/param/5378a1c4-b133-4f15-9ed1-703828519d21 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/5378a1c4-b133-4f15-9ed1-703828519d21">
         <rdf:type rdf:resource="http://example.com/ClosestStockExchange.wsdlClosestStockExchange#Stocksymbol"/>
         <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#Stock"/>
         <rdf:type rdf:resource="http://example.com/Stock.wsdlStock#Symbol"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AAPL</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">XRX</api:value>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/f1ea57b3-6c32-4f21-b691-bb905759dda4 -->
+    <!-- http://ontology.unister.de/ontology/api#/param/6f19313e-c3b0-4dc3-a141-6324b19bf1d4 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/f1ea57b3-6c32-4f21-b691-bb905759dda4">
-        <rdf:type rdf:resource="http://example.com/CompanyData.wsdlCompanyData#Company"/>
-        <rdf:type rdf:resource="http://example.com/Stock.wsdl#StockResponse#Companyname"/>
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/6f19313e-c3b0-4dc3-a141-6324b19bf1d4">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdl#CityLatLongResponse#Lat"/>
+        <rdf:type rdf:resource="http://example.com/ClosestStockExchange.wsdlClosestStockExchange#Latitude"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Apple</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-73.41972222222222</api:value>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/param/28d1ed2a-8060-4a31-808b-ab847b452dcf -->
+    <!-- http://ontology.unister.de/ontology/api#/param/76abb0c0-0edb-4ec1-91a2-4849610207b4 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/28d1ed2a-8060-4a31-808b-ab847b452dcf">
-        <rdf:type rdf:resource="http://example.com/Stock.wsdl#StockResponse#Rate"/>
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/param/76abb0c0-0edb-4ec1-91a2-4849610207b4">
+        <rdf:type rdf:resource="http://example.com/CityLatLong.wsdlCityLatLong#Cityname"/>
+        <rdf:type rdf:resource="http://example.com/CompanyData.wsdl#CompanyDataResponse#City"/>
+        <rdf:type rdf:resource="http://example.com/Weather.wsdlWeather#City"/>
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#Parameter"/>
-        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">112.84</api:value>
+        <api:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norwalk, Connecticut</api:value>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://ontology.unister.de/ontology/api#/service/d22f8da4-9222-4076-b3ca-2ceebe14438c -->
+    <!-- http://ontology.unister.de/ontology/api#/service/0d2988b5-10bf-4f37-882a-6bdc3f264b52 -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/d22f8da4-9222-4076-b3ca-2ceebe14438c">
+    <owl:NamedIndividual rdf:about="http://ontology.unister.de/ontology/api#/service/0d2988b5-10bf-4f37-882a-6bdc3f264b52">
         <rdf:type rdf:resource="http://ontology.unister.de/ontology/api#WebService"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/eb69fc09-99e3-4c3e-ae76-7d9c84d97360"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/f1ea57b3-6c32-4f21-b691-bb905759dda4"/>
-        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/28d1ed2a-8060-4a31-808b-ab847b452dcf"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/a0e77dd7-2d63-4f36-a33e-9872a9def9fd"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/f17f9d00-b39f-48a6-a903-439c40d578b1"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/1db2eb71-0615-4415-9d01-8f52ce72e658"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/215ecff0-5cf6-4d9b-a0d2-1f0823b628ce"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/25929a37-1a19-4ad0-9d2a-9e03d9a18369"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/3cb965e6-3a78-4c2f-bf06-53226a888af6"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/5378a1c4-b133-4f15-9ed1-703828519d21"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/6f19313e-c3b0-4dc3-a141-6324b19bf1d4"/>
+        <api:hasParameter rdf:resource="http://ontology.unister.de/ontology/api#/param/76abb0c0-0edb-4ec1-91a2-4849610207b4"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

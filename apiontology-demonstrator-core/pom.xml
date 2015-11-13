@@ -59,7 +59,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.clarkparsia.pellet</groupId>
-			<artifactId>pellet-owlapi</artifactId>
+			<artifactId>pellet-owlapiv3</artifactId>
 		</dependency>
 	</dependencies>
 </project>

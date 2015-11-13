@@ -9,3 +9,5 @@ bin
 **/*.versionsBackup
 **/catalog-*.xml
 **/.~lock.*
+*.pyc
+.idea

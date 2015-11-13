@@ -1,4 +1,4 @@
-var aodApp = angular.module('aodApp', []);
+var aodApp = angular.module('aodApp', ['ui.bootstrap']);
 
 aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', function(s, $element, $http, $sce) {
     var hasConfigProperty = function(property) {
@@ -92,12 +92,17 @@ aodApp.controller('MainController', [ '$scope', '$element', '$http', '$sce', fun
 
     s.format = function(key) {
         var result = s.configurations && s.configurations[key] ? s.configurations[key] : '';
-        var matches = result.match(/^(Individual.*|\s{4}Facts:.*|\s{4}EquivalentTo:\s)$/mg);
+        var matches = result.match(/EquivalentTo:/gm);
         if (matches !== null) {
             matches.forEach(function(match) {
-                result = result.replace(new RegExp(match,'g'), '<span class="comment">' + match + '</span>');
+                result = result.replace(new RegExp(match,'g'), '<span class="bg-primary">' + match + '</span>');
             });
         }
+
+        result = result.replace(new RegExp('gd:isInput true','g'), '<span class="bg-info">gd:isInput true</span>');
+        result = result.replace(new RegExp('Individual:','gm'), '<span class="bg-success">Individual:</span>');
+        result = result.replace(new RegExp('Facts:','gm'), '<span class="bg-success">Facts:</span>');
+        result = result.replace(new RegExp('gd:value','gm'), '<span class="bg-success">gd:value</span>');
         return $sce.trustAsHtml(result);
     };
 

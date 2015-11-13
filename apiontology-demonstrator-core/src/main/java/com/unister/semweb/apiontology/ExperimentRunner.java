@@ -6,10 +6,10 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -235,7 +235,7 @@ public class ExperimentRunner {
 						OWLClassExpression param = ontologyUtils
 								.getParam(Utils.classMethod2Literal(result.getClass(), m));
 						Object value = m.invoke(result);
-						if (param != null && value != null) {
+						if (param !=null && value != null) {
 							String iri = shortIri(param.asOWLClass().getIRI());
 							input.getValues().put(iri, value.toString());
 							input.getIsNew().put(iri, true);
