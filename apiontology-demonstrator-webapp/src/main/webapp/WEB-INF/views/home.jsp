@@ -116,7 +116,6 @@
 					parameter equivalence configuration</button>
 			</div>
 		</div>
-
 		<div data-ng-show="hasExperimentInput()">
 			<div class="panel panel-primary">
 				<div class="panel-heading">Experiment Input</div>
@@ -142,30 +141,38 @@
 					experiment input</button>
 			</div>
 
-			<div>Execution Runs: {{ experimentInput.executionRuns }}</div>
+			<div><h3><span  class="label label-default">Execution Runs: {{ experimentInput.executionRuns }}</span></h3></div>
 		</div>
 	</div>
 
 	<div class="col-lg-8">
-		<div data-ng-show="hasDatamodel()" class="panel panel-primary">
-			<div class="panel-heading">
-				Dynamic OWL Definitions <span class="glyphicon glyphicon-minus"
-					aria-hidden="true"></span> The following OWL abstract in Manchester
-				Syntax describes the configured endpoints and show the computed
-				values in red
+		<ul class="nav nav-tabs nav-justified">
+			<li class="active" data-ng-show="hasDatamodel()"><a showtab=""
+				href="#dynamic">Dynamic OWL Definitions</a></li>
+			<li><a showtab="" href="#standard">Standard OWL Definitions</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="dynamic" class="tab-pane fade in active" data-ng-show="hasDatamodel()">
+				<div class="panel panel-primary">
+					<div class="panel-heading">The following OWL abstract in
+						Manchester Syntax describes the configured endpoints and show the
+						computed values in green.
+					</div>
+					<div>
+						<pre data-ng-bind-html="format('datamodel')"></pre>
+					</div>
+				</div>
 			</div>
-			<div class="panel-body scr-panel">
-				<pre data-ng-bind-html="format('datamodel')"></pre>
+
+			<div id="standard" class="tab-pane fade">
+			<div class="panel panel-primary">
+				<div class="panel-heading">This OWL part defines the resources
+					used in the above ontology.
+				</div>
+				<div>
+					<pre data-ng-bind-html="format('standardDatamodel')"></pre>
+				</div>
 			</div>
-		</div>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Standard OWL Definitions <span class="glyphicon glyphicon-minus"
-					aria-hidden="true"></span> This OWL part defines the resources used
-				in the above ontology.
-			</div>
-			<div class="panel-body scr-panel">
-				<pre data-ng-bind-html="format('standardDatamodel')"></pre>
 			</div>
 		</div>
 	</div>

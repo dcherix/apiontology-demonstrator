@@ -55,6 +55,8 @@ import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.Parameter;
+import com.unister.semweb.apiontology.demonstrator.api.exchange.Parameter.Builder;
 import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 import com.unister.semweb.apiontology.exception.OntologyException;
 import com.unister.semweb.apiontology.functions.AnnotationsFunctions;
