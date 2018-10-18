@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.1.6.RELEASE</spring.version>
+		<spring.version>4.3.20.RELEASE</spring.version>
 	</properties>
 
 	<dependencyManagement>
@@ -131,10 +131,10 @@
 	</dependencies>
 
 	<repositories>
-		<repository>
-			<id>releases</id>
-			<url>https://github.com/dcherix/mavenrep/raw/master/releases/</url>
-		</repository>
+        <repository>
+            <id>snapshots</id>
+            <url>http://maven.aksw.org/repository/snapshots/</url>
+        </repository>
 	</repositories>
 
 </project>

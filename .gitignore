@@ -11,3 +11,5 @@ bin
 **/.~lock.*
 *.pyc
 .idea
+.iml
+/.idea/
