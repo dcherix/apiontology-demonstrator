@@ -24,7 +24,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
 
-	<bean id="serviceDiscovery" class="com.unister.semweb.apiontology.ServiceDiscovery">
+	<bean id="serviceDiscovery" class="com.unister.semweb.apiontology.SoapServiceDiscovery">
 		<constructor-arg name="dao" ref="webServiceDAO" />
 	</bean>
 

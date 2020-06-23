@@ -1,0 +1,27 @@
+plugins {
+    id "org.openapi.generator" version "4.3.1"
+}
+
+ext.inputUrl = System.getenv('OPEN_API_URL')
+ext.outputDir = System.getenv('OPEN_API_OUTPUT_DIR')
+
+openApiGenerate {
+//    globalProperties = [
+//        modelDocs: "false",
+//        apiDocs: "false",
+//        modelTests: "false",
+//        apiTests: "false"
+//    ]
+    generatorName = "java"
+    inputSpec = "${inputUrl}".toString()
+    outputDir = "${outputDir}".toString()
+    apiPackage = "org.openapi.example.api"
+    invokerPackage = "org.openapi.example.invoker"
+    modelPackage = "org.openapi.example.model"
+    modelFilesConstrainedTo = [
+        "Error"
+    ]
+    configOptions = [
+        dateLibrary: "java8"
+    ]
+}

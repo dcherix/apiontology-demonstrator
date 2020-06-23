@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.unister.semweb.apiontology.ClientFactoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-06-18T05:50:10" hostname="didier-doksafe.lan" time="2.521">
+  <properties/>
+  <testcase name="testLoad" classname="com.unister.semweb.apiontology.ClientFactoryTest" time="2.521"/>
+  <testcase name="getClassTest" classname="com.unister.semweb.apiontology.ClientFactoryTest" time="0.0"/>
+  <testcase name="test" classname="com.unister.semweb.apiontology.ClientFactoryTest" time="0.0"/>
+  <testcase name="testReLoad" classname="com.unister.semweb.apiontology.ClientFactoryTest" time="0.0"/>
+  <system-out><![CDATA[[DEBUG] - Using org.apache.cxf.common.logging.Log4jLogger for logging.
+[DEBUG] - Creating client from WSDL http://wsf.cdyne.com/WeatherWS/Weather.asmx?wsdl
+[DEBUG] - resolving resource <org.apache.cxf.wsdl11.WSDLManagerImpl/bus> type <interface org.apache.cxf.Bus>
+[DEBUG] - resolving resource <null> type <interface org.apache.cxf.Bus>
+[DEBUG] - Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit' has been (re)configured for plain http.
+[DEBUG] - No Trust Decider configured for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'
+[DEBUG] - No Auth Supplier configured for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'
+[DEBUG] - Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit' has been configured for plain http.
+[DEBUG] - registering incoming observer: org.apache.cxf.transport.TransportURIResolver$1@2f70d6eb
+[DEBUG] - Accept: */*
+[DEBUG] - No Trust Decider for Conduit '{http://cxf.apache.org}TransportURIResolver.http-conduit'. An affirmative Trust Decision is assumed.
+[DEBUG] - Operation {http://ws.cdyne.com/WeatherWS/}GetWeatherInformation cannot be unwrapped, input and output messages (if present) must contain only a single part
+[DEBUG] - Operation {http://ws.cdyne.com/WeatherWS/}GetCityForecastByZIP cannot be unwrapped, input message must reference global element declaration with same localname as operation
+[DEBUG] - Operation {http://ws.cdyne.com/WeatherWS/}GetCityWeatherByZIP cannot be unwrapped, input message must reference global element declaration with same localname as operation
+[DEBUG] - Operation {http://ws.cdyne.com/WeatherWS/}GetWeatherInformation cannot be unwrapped, input and output messages (if present) must contain only a single part
+[DEBUG] - Operation {http://ws.cdyne.com/WeatherWS/}GetCityForecastByZIP cannot be unwrapped, input message must reference global element declaration with same localname as operation
+[DEBUG] - Operation {http://ws.cdyne.com/WeatherWS/}GetCityWeatherByZIP cannot be unwrapped, input message must reference global element declaration with same localname as operation
+[DEBUG] - Created classes: com.cdyne.ws.weatherws.ArrayOfForecast, com.cdyne.ws.weatherws.ArrayOfWeatherDescription, com.cdyne.ws.weatherws.Forecast, com.cdyne.ws.weatherws.ForecastReturn, com.cdyne.ws.weatherws.GetCityForecastByZIP, com.cdyne.ws.weatherws.GetCityForecastByZIPResponse, com.cdyne.ws.weatherws.GetCityWeatherByZIP, com.cdyne.ws.weatherws.GetCityWeatherByZIPResponse, com.cdyne.ws.weatherws.GetWeatherInformation, com.cdyne.ws.weatherws.GetWeatherInformationResponse, com.cdyne.ws.weatherws.ObjectFactory, com.cdyne.ws.weatherws.POP, com.cdyne.ws.weatherws.Temp, com.cdyne.ws.weatherws.WeatherDescription, com.cdyne.ws.weatherws.WeatherReturn
+[DEBUG] - current classloader jdk.internal.loader.ClassLoaders$AppClassLoader@67424e82 can see all interface
+[DEBUG] - current classloader jdk.internal.loader.ClassLoaders$AppClassLoader@67424e82 can see all interface
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

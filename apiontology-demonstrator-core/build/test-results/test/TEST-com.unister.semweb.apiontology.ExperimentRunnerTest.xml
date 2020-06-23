@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.unister.semweb.apiontology.ExperimentRunnerTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2020-06-18T05:50:10" hostname="didier-doksafe.lan" time="0.044">
+  <properties/>
+  <testcase name="testExperimentInput" classname="com.unister.semweb.apiontology.ExperimentRunnerTest" time="0.001">
+    <failure message="java.lang.IllegalStateException: Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:125)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:118)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:118)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:412)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serviceDiscovery' defined in com.unister.semweb.apiontology.ApplicationConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.unister.semweb.apiontology.SoapServiceDiscovery]: Factory method 'serviceDiscovery' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webServiceDAO': Unsatisfied dependency expressed through field 'manager'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:845)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:275)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:243)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117)
+	... 49 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.unister.semweb.apiontology.SoapServiceDiscovery]: Factory method 'serviceDiscovery' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webServiceDAO': Unsatisfied dependency expressed through field 'manager'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 67 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webServiceDAO': Unsatisfied dependency expressed through field 'manager'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.resolveBeanReference(ConfigurationClassEnhancer.java:394)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:366)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44.webServiceDAO(&lt;generated&gt;)
+	at com.unister.semweb.apiontology.ApplicationConfiguration.serviceDiscovery(ApplicationConfiguration.java:31)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44.CGLIB$serviceDiscovery$5(&lt;generated&gt;)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44$$FastClassBySpringCGLIB$$2652d854.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44.serviceDiscovery(&lt;generated&gt;)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 68 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:676)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1251)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1171)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	... 91 more
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1217)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1171)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:668)
+	... 104 more
+</failure>
+  </testcase>
+  <testcase name="testConfiguration" classname="com.unister.semweb.apiontology.ExperimentRunnerTest" time="0.0">
+    <failure message="java.lang.IllegalStateException: Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:125)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:118)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:118)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:412)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serviceDiscovery' defined in com.unister.semweb.apiontology.ApplicationConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.unister.semweb.apiontology.SoapServiceDiscovery]: Factory method 'serviceDiscovery' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webServiceDAO': Unsatisfied dependency expressed through field 'manager'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:845)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:275)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:243)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117)
+	... 49 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.unister.semweb.apiontology.SoapServiceDiscovery]: Factory method 'serviceDiscovery' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webServiceDAO': Unsatisfied dependency expressed through field 'manager'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 67 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webServiceDAO': Unsatisfied dependency expressed through field 'manager'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.resolveBeanReference(ConfigurationClassEnhancer.java:394)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:366)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44.webServiceDAO(&lt;generated&gt;)
+	at com.unister.semweb.apiontology.ApplicationConfiguration.serviceDiscovery(ApplicationConfiguration.java:31)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44.CGLIB$serviceDiscovery$5(&lt;generated&gt;)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44$$FastClassBySpringCGLIB$$2652d854.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.unister.semweb.apiontology.ApplicationConfiguration$$EnhancerBySpringCGLIB$$33c67b44.serviceDiscovery(&lt;generated&gt;)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 68 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'manager': Unsatisfied dependency expressed through method 'setOntologyStorers' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:676)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1251)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1171)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	... 91 more
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.util.Set&lt;org.semanticweb.owlapi.model.OWLStorerFactory&gt;' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1217)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1171)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:668)
+	... 104 more
+</failure>
+  </testcase>
+  <system-out><![CDATA[[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyManager
+[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLDataFactory
+[DEBUG] - Injecting object uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl@3586462b
+[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.model.OWLOntologyIRIMapper
+[DEBUG] - No files found for META-INF/services/org.semanticweb.owlapi.model.OWLOntologyIRIMapper
+[DEBUG] - Injecting values [[]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setIRIMappers(java.util.Set).
+[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-rio/5.1.14/30eee8b21ca94f34ae86c90768c5160cfe254a07/owlapi-rio-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-oboformat/5.1.14/e4eedc193c7a418e48c0bf23f9451a5f464a961e/owlapi-oboformat-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.1.14/98ee40804fa9f7a4ad1f1fb0718381f3b3a5a710/owlapi-parsers-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-rio/5.1.14/30eee8b21ca94f34ae86c90768c5160cfe254a07/owlapi-rio-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-oboformat/5.1.14/e4eedc193c7a418e48c0bf23f9451a5f464a961e/owlapi-oboformat-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.1.14/98ee40804fa9f7a4ad1f1fb0718381f3b3a5a710/owlapi-parsers-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-rio/5.1.14/30eee8b21ca94f34ae86c90768c5160cfe254a07/owlapi-rio-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-oboformat/5.1.14/e4eedc193c7a418e48c0bf23f9451a5f464a961e/owlapi-oboformat-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.1.14/98ee40804fa9f7a4ad1f1fb0718381f3b3a5a710/owlapi-parsers-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.io.OWLParserFactory
+[DEBUG] - Injecting values [[org.semanticweb.owlapi.rio.RioJsonLDParserFactory@5fc36e01, org.semanticweb.owlapi.rio.RioBinaryRdfParserFactory@63ce6b6a, org.semanticweb.owlapi.owlxml.parser.OWLXMLParserFactory@e3e886, org.semanticweb.owlapi.rdf.rdfxml.parser.RDFXMLParserFactory@263b9fbd, org.semanticweb.owlapi.krss2.parser.KRSS2OWLParserFactory@1a1d6777, org.semanticweb.owlapi.functional.parser.OWLFunctionalSyntaxOWLParserFactory@a1ede32, org.semanticweb.owlapi.rio.RioNTriplesParserFactory@232055ed, org.semanticweb.owlapi.rio.RioRDFXMLParserFactory@3671ba5f, org.semanticweb.owlapi.rio.RioTrixParserFactory@12c5dfc, org.semanticweb.owlapi.manchestersyntax.parser.ManchesterOWLSyntaxOntologyParserFactory@59bc38f, org.semanticweb.owlapi.rio.RioN3ParserFactory@544a625f, org.semanticweb.owlapi.rdf.turtle.parser.TurtleOntologyParserFactory@4a5f83ca, org.semanticweb.owlapi.rio.RioTurtleParserFactory@e00c656, org.semanticweb.owlapi.rio.RioJsonParserFactory@1149bf71, org.semanticweb.owlapi.dlsyntax.parser.DLSyntaxOWLParserFactory@76b252a8, org.semanticweb.owlapi.rio.RioRDFaParserFactory@1703dbf8, org.semanticweb.owlapi.rio.RioTrigParserFactory@1b559d4e, org.semanticweb.owlapi.rio.RioNQuadsParserFactory@4d9c5142, org.semanticweb.owlapi.oboformat.OBOFormatOWLAPIParserFactory@1bf4a30b]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setOntologyParsers(java.util.Set).
+[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-impl/5.1.14/e49e68b5e8073a6310811a0b8912c06a4279c7da/owlapi-impl-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLOntologyFactory
+[DEBUG] - Injecting values [[uk.ac.manchester.cs.owl.owlapi.OWLOntologyFactoryImpl@89c5e1f]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setOntologyFactories(java.util.Set).
+[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-rio/5.1.14/30eee8b21ca94f34ae86c90768c5160cfe254a07/owlapi-rio-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-oboformat/5.1.14/e4eedc193c7a418e48c0bf23f9451a5f464a961e/owlapi-oboformat-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.1.14/98ee40804fa9f7a4ad1f1fb0718381f3b3a5a710/owlapi-parsers-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-rio/5.1.14/30eee8b21ca94f34ae86c90768c5160cfe254a07/owlapi-rio-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-oboformat/5.1.14/e4eedc193c7a418e48c0bf23f9451a5f464a961e/owlapi-oboformat-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.1.14/98ee40804fa9f7a4ad1f1fb0718381f3b3a5a710/owlapi-parsers-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-distribution/5.1.14/3caf848d9bd5850a6b7ab807c6d14ef67c203024/owlapi-distribution-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-rio/5.1.14/30eee8b21ca94f34ae86c90768c5160cfe254a07/owlapi-rio-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-oboformat/5.1.14/e4eedc193c7a418e48c0bf23f9451a5f464a961e/owlapi-oboformat-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Loading URL for service jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.1.14/98ee40804fa9f7a4ad1f1fb0718381f3b3a5a710/owlapi-parsers-5.1.14.jar!/META-INF/services/org.semanticweb.owlapi.model.OWLStorerFactory
+[DEBUG] - Injecting values [[org.semanticweb.owlapi.functional.renderer.FunctionalSyntaxStorerFactory@58399379, org.semanticweb.owlapi.rio.RioBinaryRdfStorerFactory@130618e7, org.semanticweb.owlapi.oboformat.OBOFormatStorerFactory@1283e8e7, org.semanticweb.owlapi.rio.RioNTriplesStorerFactory@7abc81d4, org.semanticweb.owlapi.rdf.turtle.renderer.TurtleStorerFactory@74dad6d3, org.semanticweb.owlapi.manchestersyntax.renderer.ManchesterSyntaxStorerFactory@786924a2, org.semanticweb.owlapi.dlsyntax.renderer.DLSyntaxStorerFactory@2bbf8473, org.semanticweb.owlapi.rio.RioRDFXMLStorerFactory@cfd0113, org.semanticweb.owlapi.rio.RioTurtleStorerFactory@2690dc00, org.semanticweb.owlapi.dlsyntax.renderer.DLSyntaxHTMLStorerFactory@6665bdf6, org.semanticweb.owlapi.rio.RioNQuadsStorerFactory@3a0f78b9, org.semanticweb.owlapi.krss2.renderer.KRSS2OWLSyntaxStorerFactory@37857c93, org.semanticweb.owlapi.latex.renderer.LatexStorerFactory@6fa2f194, org.semanticweb.owlapi.owlxml.renderer.OWLXMLStorerFactory@2183080, org.semanticweb.owlapi.rdf.rdfxml.renderer.RDFXMLStorerFactory@4201a458, org.semanticweb.owlapi.rio.RioJsonStorerFactory@657278a8, org.semanticweb.owlapi.rio.RioTrigStorerFactory@79373dcd, org.semanticweb.owlapi.rio.RioJsonLDStorerFactory@10da0521, org.semanticweb.owlapi.rio.RioN3StorerFactory@196d8a53, org.semanticweb.owlapi.rio.RioTrixStorerFactory@38bc48e2]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setOntologyStorers(java.util.Set).
+[DEBUG] - Injecting object uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl@5bfecf6
+[DEBUG] - Loading file META-INF/services/org.semanticweb.owlapi.model.OWLOntologyIRIMapper
+[DEBUG] - No files found for META-INF/services/org.semanticweb.owlapi.model.OWLOntologyIRIMapper
+[DEBUG] - Injecting values [[]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setIRIMappers(java.util.Set).
+[DEBUG] - Injecting values [[org.semanticweb.owlapi.rio.RioTrixParserFactory@391b150, org.semanticweb.owlapi.rio.RioRDFaParserFactory@405a59b9, org.semanticweb.owlapi.rio.RioNTriplesParserFactory@6c806165, org.semanticweb.owlapi.krss2.parser.KRSS2OWLParserFactory@13142f51, org.semanticweb.owlapi.rio.RioBinaryRdfParserFactory@7ed84cde, org.semanticweb.owlapi.manchestersyntax.parser.ManchesterOWLSyntaxOntologyParserFactory@54d1d957, org.semanticweb.owlapi.dlsyntax.parser.DLSyntaxOWLParserFactory@54aad362, org.semanticweb.owlapi.rio.RioJsonLDParserFactory@788bfc4, org.semanticweb.owlapi.rio.RioNQuadsParserFactory@2e348df8, org.semanticweb.owlapi.owlxml.parser.OWLXMLParserFactory@7358200a, org.semanticweb.owlapi.rdf.turtle.parser.TurtleOntologyParserFactory@1d810752, org.semanticweb.owlapi.rdf.rdfxml.parser.RDFXMLParserFactory@4184f797, org.semanticweb.owlapi.rio.RioJsonParserFactory@7daa2b9f, org.semanticweb.owlapi.functional.parser.OWLFunctionalSyntaxOWLParserFactory@29995f0f, org.semanticweb.owlapi.rio.RioRDFXMLParserFactory@66247493, org.semanticweb.owlapi.rio.RioTrigParserFactory@6cf56ee2, org.semanticweb.owlapi.oboformat.OBOFormatOWLAPIParserFactory@37288fdf, org.semanticweb.owlapi.rio.RioN3ParserFactory@12b68dcc, org.semanticweb.owlapi.rio.RioTurtleParserFactory@1114b70a]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setOntologyParsers(java.util.Set).
+[DEBUG] - Injecting values [[uk.ac.manchester.cs.owl.owlapi.OWLOntologyFactoryImpl@542a140]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setOntologyFactories(java.util.Set).
+[DEBUG] - Injecting values [[org.semanticweb.owlapi.owlxml.renderer.OWLXMLStorerFactory@4ad54534, org.semanticweb.owlapi.dlsyntax.renderer.DLSyntaxHTMLStorerFactory@a556334, org.semanticweb.owlapi.manchestersyntax.renderer.ManchesterSyntaxStorerFactory@6929856a, org.semanticweb.owlapi.oboformat.OBOFormatStorerFactory@a5c7bbf, org.semanticweb.owlapi.rio.RioJsonStorerFactory@128a156f, org.semanticweb.owlapi.functional.renderer.FunctionalSyntaxStorerFactory@6d24518, org.semanticweb.owlapi.rio.RioBinaryRdfStorerFactory@631cd630, org.semanticweb.owlapi.rio.RioRDFXMLStorerFactory@5d690aa5, org.semanticweb.owlapi.rio.RioN3StorerFactory@2d2eedf, org.semanticweb.owlapi.dlsyntax.renderer.DLSyntaxStorerFactory@57d1305f, org.semanticweb.owlapi.rdf.rdfxml.renderer.RDFXMLStorerFactory@471eb0ad, org.semanticweb.owlapi.rdf.turtle.renderer.TurtleStorerFactory@3b9cc98b, org.semanticweb.owlapi.latex.renderer.LatexStorerFactory@2f72a165, org.semanticweb.owlapi.rio.RioNQuadsStorerFactory@7fa05e3, org.semanticweb.owlapi.rio.RioTrigStorerFactory@48d8b3c1, org.semanticweb.owlapi.krss2.renderer.KRSS2OWLSyntaxStorerFactory@5b00cb3a, org.semanticweb.owlapi.rio.RioTurtleStorerFactory@5237a46c, org.semanticweb.owlapi.rio.RioNTriplesStorerFactory@1f8a5556, org.semanticweb.owlapi.rio.RioJsonLDStorerFactory@61af28f2, org.semanticweb.owlapi.rio.RioTrixStorerFactory@1fda7224]] on method public void uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl.setOntologyStorers(java.util.Set).
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.9/5586044ba34544a9318bd7508f738dc967cd5e99/slf4j-log4j12-1.7.9.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/didier/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+]]></system-err>
+</testsuite>

@@ -9,11 +9,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 
-import javax.annotation.Resource;
-
+import openllet.owlapi.XSD;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
@@ -30,7 +28,6 @@ import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.clarkparsia.owlapiv3.XSD;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.BiMap;
@@ -53,14 +50,18 @@ import com.unister.semweb.apiontology.util.Utils;
 public class ExperimentRunner {
 
 	private static final transient Logger logger = LoggerFactory.getLogger(ExperimentRunner.class);
-	@Resource
-	private ServiceDiscovery discovery;
-	@Resource
-	private OntologyUtils dao;
-	@Resource
-	private OWLOntologyManager manager;
 
-	public ExperimentInput getExperimentInput() {
+	private final SoapServiceDiscovery discovery;
+	private final OntologyUtils dao;
+	private final OWLOntologyManager manager;
+
+    public ExperimentRunner(SoapServiceDiscovery discovery, OntologyUtils dao, OWLOntologyManager manager) {
+        this.discovery = discovery;
+        this.dao = dao;
+        this.manager = manager;
+    }
+
+    public ExperimentInput getExperimentInput() {
 		ExperimentInput.Builder builder = ExperimentInput.builder();
 		Set<IRI> parameters = dao.parameters();
 		for (IRI parameter : parameters) {

@@ -1,0 +1,62 @@
+plugins {
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+}
+
+allprojects {
+    group = 'com.unister.semweb'
+    version = '0.0.1-SNAPSHOT'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'maven'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java-library'
+
+
+    repositories {
+        mavenLocal()
+//        maven {
+//            url = 'http://maven.aksw.org/repository/snapshots/'
+//        }
+//
+//        maven {
+//            url = 'http://repo.maven.apache.org/maven2'
+//        }
+    }
+
+    dependencies {
+        implementation 'org.slf4j:slf4j-api:1.7.9'
+        implementation 'org.slf4j:slf4j-log4j12:1.7.9'
+        testImplementation 'junit:junit:4.12'
+        testImplementation 'org.hamcrest:hamcrest-all:1.3'
+        testImplementation 'org.mockito:mockito-core:2.0.31-beta'
+    }
+
+    sourceCompatibility = '11'
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from(components.java)
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:2.1.7.RELEASE")
+        }
+    }
+}

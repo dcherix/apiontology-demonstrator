@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import javax.annotation.Resource;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +15,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -28,15 +28,15 @@ import com.unister.semweb.apiontology.demonstrator.api.owl.GD;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ApplicationConfiguration.class })
 public class ExperimentRunnerTest {
-	@Resource
-	private ServiceDiscovery discovery;
-	@Resource
+	@Autowired
+	private SoapServiceDiscovery discovery;
+    @Autowired
 	private OntologyUtils dao;
-	@Resource
+    @Autowired
 	private OWLOntologyManager manager;
-	@Resource
+    @Autowired
 	private OWLOntology ontology;
-	@Resource
+    @Autowired
 	private ExperimentRunner runner;
 
 	@Before
